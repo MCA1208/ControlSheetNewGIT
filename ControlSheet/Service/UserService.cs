@@ -47,8 +47,7 @@ namespace ControlSheet.Service
             transaction = con.BeginTransaction();
 
             try
-            {
-               
+            {               
                 comando = new SqlCommand("spCreateUserAdmin", con);
 
                 comando.CommandType = System.Data.CommandType.StoredProcedure;
