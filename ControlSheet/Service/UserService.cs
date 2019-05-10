@@ -7,21 +7,24 @@ using System.Linq;
 using System.Net;
 using System.Net.Mail;
 using System.Web;
+using ControlSheet.Models;
 
 
 namespace ControlSheet.Service
 {
     public class UserService
     {
-        string conn = ConfigurationManager.ConnectionStrings["cnnString"].ToString();
+
         DataTable dt = new DataTable();
         SqlConnection con;
         SqlCommand comando;
         SqlTransaction transaction;
+        UserModel.SPName SPName = new UserModel.SPName();
+        readonly ConnectionModel Connection = new ConnectionModel();
 
         public DataTable spGetAllUserGroup()
         {
-            con = new SqlConnection(conn);
+            con = new SqlConnection(Connection.stringConn);
             comando = new SqlCommand("spGetAllUserGroup", con);
 
             comando.CommandType = System.Data.CommandType.StoredProcedure;
@@ -36,21 +39,36 @@ namespace ControlSheet.Service
 
         public void sendMail(string email)
         {
-            //ENVIAR MAIL
+            MailMessage mail = new MailMessage();
+            SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com");
+
+            mail.From = new MailAddress("milton.amado10@gmail.com");
+            mail.To.Add("milton.amado10@gmail.com");
+            mail.Subject = "Test Mail";
+            mail.Body = "This is for testing SMTP mail from GMAIL";
+
+            SmtpServer.Port = 587;
+            SmtpServer.Credentials = new System.Net.NetworkCredential("milton.amado10@gmail.com", "jepercreper");
+            SmtpServer.EnableSsl = true;
+
+            SmtpServer.Send(mail);
 
         }
 
         public void CreateUserAdmin(string nameCompany, string eMail, string pass)
         {
-            con = new SqlConnection(conn);
+
+            con = new SqlConnection(Connection.stringConn);
             con.Open();
             transaction = con.BeginTransaction();
-
             try
-            {               
-                comando = new SqlCommand("spCreateUserAdmin", con);
+            {
 
-                comando.CommandType = System.Data.CommandType.StoredProcedure;
+
+                comando = new SqlCommand(SPName.spCreateUserAdmin, con);
+                comando.Transaction = transaction;
+
+                comando.CommandType = CommandType.StoredProcedure;
                 comando.Parameters.AddWithValue("@nameCompany", nameCompany);
                 comando.Parameters.AddWithValue("@eMail", eMail);
                 comando.Parameters.AddWithValue("@pass", pass);
@@ -58,13 +76,17 @@ namespace ControlSheet.Service
                 comando.ExecuteNonQuery();
 
                 transaction.Commit();
-                con.Open();
+                con.Close();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 transaction.Rollback();
 
-            }
+                }
+
+            
+
+
         }
 
     }

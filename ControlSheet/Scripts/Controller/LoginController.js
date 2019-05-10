@@ -70,23 +70,23 @@ function createUserAdmin() {
         nameCompany: $('#txtCompany').val(),
         eMail: $('#txtNewEmail').val(),
         pass: $('#txtNewPass').val()
-    }
+    };
 
     $.post(directories.user.createUserAdmin, data)
-    .done(function (data) {
-        debugger;
-        if (data.status != "error") {
-            alertify.success('Se creo con exito el usuario Administrador');
-        }
-        else {
-            alertify.error(data.message)
-        }
+        .done(function (data) {
 
-    })
-    .fail(function (data) {
-        debugger;
-        alertify.error(data.statusText)
-    })
+            if (data.status != "error") {
+                alertify.success('Se creo con exito el usuario Administrador');
+            }
+            else {
+                alertify.error(data.message);
+            }
+
+        })
+        .fail(function (data) {
+
+            alertify.error(data.statusText);
+        });
 
 
 }
