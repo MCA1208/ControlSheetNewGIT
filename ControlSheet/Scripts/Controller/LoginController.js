@@ -1,5 +1,4 @@
-﻿
-var data = '';
+﻿var data = "";
 
 
 function Login() {
@@ -15,54 +14,44 @@ function Login() {
     }
 
     var data = {
-        user: $('#txtUser').val(), pass: $('#txtPass').val(),
+        user: $('#txtUser').val(), pass: $('#txtPass').val()
 
-    }
+    };
 
-    $.post(directories.user.loginUser, data)    
+    $.post(directories.user.loginUser, data)
         .done(function (data) {
-             debugger;
-            if (data.status != "error") {
+
+            if (data.status !== "error") {
                 alertify.success('Ingreso Exitoso');
             }
             else {
-                alertify.error(data.message)
+                alertify.error(data.message);
             }
 
         })
         .fail(function (data) {
-            debugger;
-            alertify.error(data.statusText)
-        })
+            alertify.error(data.statusText);
+        });
    
 }
 
-
-//function getJSON(messageSuccessFul) {
-
-//    var data = {
-//        user: 'milton.amado10@gmail.com', pass: '123',
-
-//    }
-
-//    $.get('Login/LoginUser', data)
-
-//        .done(function (data) {
-//            debugger
-//            alertify.success(messageSuccessFul);
-//        })
-//        .fail(function (data) {
-
-//        })
+//$('#btnLogin').on("click", function() {
+//    alert('click');
+//});
 
 
-//}
 
 function createUserAdmin() {
 
-    if ($('#txtNewPass').val() != $('#txtNewPassRepeat').val()){
+    if ($('#txtCompany').val() === "" || $('#txtNewEmail') === "" || $('#txtNewPass').val() === "" || $('#txtNewPassRepeat').val() === "") {
 
-        alertify.alert("Crear Usuario", "No coincide las contraseñas ingresadas", "")
+        alertify.alert("Crear Usuario", "Todos los campos son obligatorios", "");
+        return;
+    }
+
+    if ($('#txtNewPass').val() !== $('#txtNewPassRepeat').val()){
+
+        alertify.alert("Crear Usuario", "No coincide las contraseñas ingresadas", "");
         return;
     }
 
@@ -75,7 +64,7 @@ function createUserAdmin() {
     $.post(directories.user.createUserAdmin, data)
         .done(function (data) {
 
-            if (data.status != "error") {
+            if (data.status !== "error") {
                 alertify.success('Se creo con exito el usuario Administrador');
             }
             else {

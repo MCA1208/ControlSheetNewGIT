@@ -16,6 +16,7 @@
 <script src="~/Scripts/bootstrap-4.2.1/js/bootstrap.min.js"></script>
 <script src="~/Scripts/fontawesome/all.js"></script>
 
+
 <head>
     <title>Control Sheet</title>
 </head>
@@ -74,27 +75,30 @@
                 <br />
                 <div class="col-xs-12">
                     <div class="center-block">
-                        <button class="btn btn-primary"><i class="fas fa-sign-in-alt"></i> Ingresar</button>
+                        <button class="btn btn-primary" id="btnLogin" onclick="Login();"><i class="fas fa-sign-in-alt"></i> Ingresar</button>
                     </div>
-                </div><br />
+                </div>
 
-                <hr style="border-color:#494949"/>
-                <div class="row" >
+            </div>
+            <div class="container body-content">
+
+                <div class="row">
                     <div class="col-md-4">
-                        
+
                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#CretaeUserModal"><i class="fas fa-user-plus"></i> Registrarse </button>
                     </div>
                     <div class="col-md-4">
-                        <button class="btn btn-secondary"  onclick="showMessage();"><i class="fas fa-unlock"></i> ¿Olvido su contraseña? </button>
-    
+                        <button class="btn btn-secondary" onclick="showMessage();"><i class="fas fa-unlock"></i> ¿Olvido su contraseña? </button>
+
                     </div>
                     <div class="col-md-4">
                         <button class="btn btn-primary" onclick="Login();"><i class="fas fa-file-download"></i> Documento</button>
                     </div>
- 
-                </div>
 
+                </div>
+                
             </div>
+
             <div class="container body-content ">
                 <hr style="border-color:#494949" />
                 <footer>

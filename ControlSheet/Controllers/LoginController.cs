@@ -13,7 +13,8 @@ namespace ControlSheet.Controllers
     {
         ResultModel data = new ResultModel();
 
-        UserService service = new UserService();
+        UserService Userservice = new UserService();
+        SendMailService MailService = new SendMailService();
 
         // GET: Login
         public ActionResult Index()
@@ -27,12 +28,32 @@ namespace ControlSheet.Controllers
             try
             {
 
+                DataTable dt =  Userservice.spGetUse(user, pass);
 
-                service.sendMail("milton.amado10@gmail.com");
-                    
-               
+                if(dt.Rows.Count == 0)
+                {
+                    data.message = "las Credenciales ingresadas no son validas";
+                    data.status = "error";
+                    return Json(data, JsonRequestBehavior.AllowGet);
 
-                data.result = Convert.ToInt16("");
+                }
+                var em = dt.Rows[0]["email"];
+                System.Web.HttpContext.Current.Session["email"] = dt.Rows[0]["email"];
+                System.Web.HttpContext.Current.Session["idcompany"] = dt.Rows[0]["idcompany"]; 
+                System.Web.HttpContext.Current.Session["idUserProfile"] = dt.Rows[0]["idUserProfile"];
+                System.Web.HttpContext.Current.Session["active"] = dt.Rows[0]["active"];
+
+                var active = Convert.ToInt32(System.Web.HttpContext.Current.Session["active"]);
+
+                if(active == 0)
+                {
+                    data.message = "El usuario se encuentra inactivo";
+                    data.status = "error";
+                    return Json(data, JsonRequestBehavior.AllowGet);
+
+                }
+
+                data.message = "las Credenciales validas";
 
             }
             catch(Exception ex)
@@ -50,10 +71,17 @@ namespace ControlSheet.Controllers
         {
             try
             {
+                var eMailValid = MailService.IsEmail(eMail);
 
+                if (!eMailValid)
+                {
+                    data.message = "Se ha ingresado un email no valido";
+                    data.status = "error";
+                    return Json(data, JsonRequestBehavior.AllowGet); 
 
-                service.CreateUserAdmin(nameCompany, eMail, pass);
+                }
 
+                Userservice.CreateUserAdmin(nameCompany, eMail, pass);
 
             }
             catch (Exception ex)
@@ -66,6 +94,7 @@ namespace ControlSheet.Controllers
 
             return Json(data, JsonRequestBehavior.AllowGet);
         }
+
 
 
     }

@@ -6,7 +6,7 @@ using System.Web.Mvc;
 
 namespace ControlSheet.Controllers
 {
-    public class HomeController : Controller
+    public class ControlSheetController : Controller
     {
         public ActionResult Index()
         {

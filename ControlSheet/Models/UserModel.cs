@@ -11,6 +11,7 @@ namespace ControlSheet.Models
         public class SPName
         {
             public string spCreateUserAdmin = "spCreateUserAdmin";
+            public string spGetUser = "spGetUser";
 
         }
         #endregion
