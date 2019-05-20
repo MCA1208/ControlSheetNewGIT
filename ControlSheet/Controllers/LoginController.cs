@@ -44,8 +44,8 @@ namespace ControlSheet.Controllers
                 System.Web.HttpContext.Current.Session["active"] = dt.Rows[0]["active"];
 
                 var active = Convert.ToInt32(System.Web.HttpContext.Current.Session["active"]);
-
-                if(active == 0)
+                var email = System.Web.HttpContext.Current.Session["email"];
+                if (active == 0)
                 {
                     data.message = "El usuario se encuentra inactivo";
                     data.status = "error";

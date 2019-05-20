@@ -1,0 +1,14 @@
+﻿
+.menu li:nth-child(5) a{
+    background-position: 0 -168px;
+}
+
+.menu li:last-child a{
+    background-position: 0 -210px;
+}
+
+nav {
+    /*position:absolute;*/
+    /*left: -18em;*/
+    z-index:20;
+}

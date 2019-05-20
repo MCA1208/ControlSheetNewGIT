@@ -223,6 +223,7 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Styles\MenuVertical.css" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -236,8 +237,8 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\ControlSheet\About.cshtml" />
-    <Content Include="Views\ControlSheet\Contact.cshtml" />
+    <Content Include="Views\ControlSheet\Report.cshtml" />
+    <Content Include="Views\ControlSheet\Help.cshtml" />
     <Content Include="Views\ControlSheet\Index.cshtml" />
     <Content Include="Views\Login\Index.cshtml" />
     <Content Include="Scripts\Modal\jquery.modal.min.js" />

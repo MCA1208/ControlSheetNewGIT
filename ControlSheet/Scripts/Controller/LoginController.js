@@ -1,5 +1,12 @@
 ﻿var data = "";
 
+//$(document).ready(function () {
+
+//});
+
+$('#btnLogin').click(function () {
+    alert('click2');
+});
 
 function Login() {
 
@@ -22,7 +29,7 @@ function Login() {
         .done(function (data) {
 
             if (data.status !== "error") {
-                alertify.success('Ingreso Exitoso');
+                alertify.success(data.message);
             }
             else {
                 alertify.error(data.message);
@@ -35,9 +42,6 @@ function Login() {
    
 }
 
-//$('#btnLogin').on("click", function() {
-//    alert('click');
-//});
 
 
 

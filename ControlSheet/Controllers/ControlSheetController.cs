@@ -13,14 +13,14 @@ namespace ControlSheet.Controllers
             return View();
         }
 
-        public ActionResult About()
+        public ActionResult Report()
         {
             ViewBag.Message = "Your application description page.";
 
             return View();
         }
 
-        public ActionResult Contact()
+        public ActionResult Help()
         {
             ViewBag.Message = "Your contact page.";
 
