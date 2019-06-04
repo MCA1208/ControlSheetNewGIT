@@ -25,14 +25,17 @@ function Login() {
 
     };
 
-    $.post(directories.user.loginUser, data)
+   // $.post(directories.user.loginUser, data)
+    $.post(directories.home.loginUser, data)
         .done(function (data) {
 
             if (data.status !== "error") {
-                alertify.success(data.message);
+                //alertify.success(data.message);
+                location = data.url;
             }
             else {
                 alertify.error(data.message);
+                
             }
 
         })
@@ -65,7 +68,7 @@ function createUserAdmin() {
         pass: $('#txtNewPass').val()
     };
 
-    $.post(directories.user.createUserAdmin, data)
+    $.post(directories.home.createUserAdmin, data)
         .done(function (data) {
 
             if (data.status !== "error") {

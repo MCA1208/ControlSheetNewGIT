@@ -13,7 +13,9 @@ namespace ControlSheet.Models
         public string status { get; set; } = "ok";
 
         public string message { get; set; }
-       
+
+        public string url { get; set; }
+
 
     }
 }

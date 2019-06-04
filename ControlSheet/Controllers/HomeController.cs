@@ -9,7 +9,7 @@ using System.Data;
 
 namespace ControlSheet.Controllers
 {
-    public class LoginController : Controller
+    public class HomeController : Controller
     {
         ResultModel data = new ResultModel();
 
@@ -18,6 +18,19 @@ namespace ControlSheet.Controllers
 
         // GET: Login
         public ActionResult Index()
+        {
+            return View();
+        }
+        public ActionResult About()
+        {
+            return View();
+        }
+        public ActionResult Contact()
+        {
+            return View();
+        }
+
+        public ActionResult ControlSheet()
         {
             return View();
         }
@@ -53,8 +66,17 @@ namespace ControlSheet.Controllers
 
                 }
 
+                int idProfile = (int)System.Web.HttpContext.Current.Session["idUserProfile"];
+
+                DataTable dtPermission = Userservice.spGetPermissionByProfile(idProfile);
+
+                System.Web.HttpContext.Current.Session["permission"] = dtPermission;
+
                 data.message = "las Credenciales validas";
 
+                var perm = System.Web.HttpContext.Current.Session["permission"];
+
+                data.url = Url.Action("Proyect", "ControlSheet") ;//"ControlSheet/Proyect";
             }
             catch(Exception ex)
             {
@@ -65,6 +87,9 @@ namespace ControlSheet.Controllers
             }
 
             return Json( data, JsonRequestBehavior.AllowGet);
+            //return Json(new { url = Url.Action("Proyect", "ControlSheet") });
+
+
         }
 
         public JsonResult CreateUserAdmin(string nameCompany, string eMail, string pass)

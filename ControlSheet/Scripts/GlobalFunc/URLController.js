@@ -1,12 +1,12 @@
 ﻿var directories = {
 
-    user: {
-        loginUser: 'Login/LoginUser',
-        createUserAdmin: 'Login/CreateUserAdmin'
+    home: {
+        loginUser: 'LoginUser',
+        createUserAdmin: 'CreateUserAdmin'
 
     }
 
 
 
 
-}
+};

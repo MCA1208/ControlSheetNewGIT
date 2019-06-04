@@ -62,6 +62,21 @@ namespace ControlSheet.Service
             return dt;
 
         }
+        public DataTable spGetPermissionByProfile(int IdProfile)
+        {
+            con = new SqlConnection(Connection.stringConn);
+            comando = new SqlCommand(SPName.spGetPermissionByProfile, con);
+
+            comando.CommandType = System.Data.CommandType.StoredProcedure;
+            comando.Parameters.AddWithValue("@IdProfile", IdProfile);
+
+            SqlDataAdapter da = new SqlDataAdapter(comando);
+
+            da.Fill(dt);
+
+            return dt;
+
+        }
 
     }
 }

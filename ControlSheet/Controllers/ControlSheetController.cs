@@ -12,7 +12,11 @@ namespace ControlSheet.Controllers
         {
             return View();
         }
+        public ActionResult Proyect()
+        {           
 
+            return View();
+        }
         public ActionResult Report()
         {
             ViewBag.Message = "Your application description page.";
@@ -26,5 +30,6 @@ namespace ControlSheet.Controllers
 
             return View();
         }
+
     }
 }

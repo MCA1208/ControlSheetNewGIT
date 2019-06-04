@@ -23,26 +23,33 @@
 </head>
 
 <body style=" background: #303030; color: white">
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">Urban Champion</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="@Url.Action("Index","Home")">Inicio <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="@Url.Action("ControlSheet","Home")">Control Sheet</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="@Url.Action("Contact","Home")">Contacto</a>
+                </li>
+            </ul>
+            <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
+        </div>
+    </nav>
     <div class="form-horizontal" style="text-align:center; ">
 
-        <div class="panel-heading navbar" style=" background: #494949; height:15%; ">
-
-            <div class="container">
-                <div class="row justify-content-md-center">
-
-                    @*<div class="col-md-6" >
-
-                                <img src="~/Image/controlsheet.PNG" class="img-responsive" alt="Cinque Terre" style="padding: 10px; float: left; width: 80px;" />
-
-                        </div>
-                        <div class="col-md-6">
-                            <img src="~/Image/LogoUrban.png" style="padding: 10px; float: right; width: 80px;" />
-                        </div>*@
-
-                </div>
-
-            </div>
-        </div>
 
         <div class="container body-content" style="text-align: center; height:60%">
             <br /><br />
@@ -50,29 +57,25 @@
                 Iniciar Sesión en Control Sheet
             </label>
             <br /><br />
-            <table class="table table-bordered" style="margin: 0 auto; text-align: left; width:50%">
 
-                <tr style="width:500px">
+            <div class="auth-wrapper d-flex no-block justify-content-center align-items-center">
 
-                    <th>
-                        EMail
-                    </th>
-                    <td>
-                        <input id="txtUser" type="text" style="width:300px" />
-                    </td>
-                </tr>
-                <tr>
+                <div style="width:400px">
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text bg-info text-white" id="basic-addon1"><i class="fas fa-user"></i></span>
+                        </div>
+                        <input id="txtUser" type="text" class="form-control form-control-lg" placeholder="Usuario" aria-label="Username" aria-describedby="basic-addon1" value="" required" />
+                    </div>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text bg-warning text-white" id="basic-addon2"><i class="fas fa-lock"></i></span>
+                        </div>
+                        <input id="txtPass" type="password" class="form-control form-control-lg" placeholder="Contrase&ntilde;a" aria-label="Password" aria-describedby="basic-addon2" value="" required />
+                    </div>
+                </div>
 
-                    <th>
-                        Contraseña
-                    </th>
-                    <td>
-                        <input id="txtPass" type="password" style="width:300px" />
-                    </td>
-                </tr>
-
-
-            </table>
+            </div>
             <br />
             <div class="col-xs-12">
                 <div class="center-block">
