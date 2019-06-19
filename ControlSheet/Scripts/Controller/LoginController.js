@@ -1,8 +1,9 @@
 ﻿var data = "";
 
-//$(document).ready(function () {
-
-//});
+$(document).ready(function () {
+   
+  
+});
 
 $('#btnLogin').click(function () {
     alert('click2');

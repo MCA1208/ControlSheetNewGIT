@@ -13,6 +13,7 @@ namespace ControlSheet.Models
             public string spCreateUserAdmin = "spCreateUserAdmin";
             public string spGetUser = "spGetUser";
             public string spGetPermissionByProfile = "spGetPermissionByProfile";
+            public string spGetLoadProyectActive = "spGetLoadProyectActive";
 
         }
         #endregion

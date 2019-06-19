@@ -151,12 +151,16 @@
     <Compile Include="Models\ResultModel.cs" />
     <Compile Include="Models\UserModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service\ProyectService.cs" />
     <Compile Include="Service\SendMailService.cs" />
     <Compile Include="Service\UserService.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\dataTables\Buttons-1.5.6\buttons.dataTables.min.css" />
+    <Content Include="Content\dataTables\DataTables-1.10.18\dataTables.jqueryui.min.css" />
+    <Content Include="Content\dataTables\DataTables-1.10.18\jquery.dataTables.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -196,6 +200,8 @@
     <Content Include="Scripts\bootstrap-4.2.1\js\bootstrap.bundle.min.js.map" />
     <Content Include="Scripts\bootstrap-4.2.1\js\bootstrap.js.map" />
     <Content Include="Scripts\bootstrap-4.2.1\js\bootstrap.min.js.map" />
+    <Content Include="Content\dataTables\Buttons-1.5.6\common.scss" />
+    <Content Include="Content\dataTables\Buttons-1.5.6\mixins.scss" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\bootstrap-4.2.1\css\bootstrap-grid.css" />
     <Content Include="Scripts\bootstrap-4.2.1\css\bootstrap-grid.min.css" />
@@ -208,12 +214,25 @@
     <Content Include="Scripts\bootstrap-4.2.1\js\bootstrap.js" />
     <Content Include="Scripts\bootstrap-4.2.1\js\bootstrap.min.js" />
     <Content Include="Scripts\Controller\LoginController.js" />
+    <Content Include="Scripts\Controller\ProyectController.js" />
     <Content Include="Scripts\fontawesome\all.js" />
     <Content Include="Scripts\GlobalFunc\General.js" />
     <Content Include="Scripts\GlobalFunc\URLController.js" />
-    <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery-3.4.0\datatables\Buttons-1.5.6\buttons.colVis.min.js" />
+    <Content Include="Scripts\jquery-3.4.0\datatables\Buttons-1.5.6\buttons.html5.min.js" />
+    <Content Include="Scripts\jquery-3.4.0\datatables\Buttons-1.5.6\buttons.print.min.js" />
+    <Content Include="Scripts\jquery-3.4.0\datatables\Buttons-1.5.6\dataTables.buttons.min.js" />
+    <Content Include="Scripts\jquery-3.4.0\datatables\Buttons-1.5.6\jszip.min.js" />
+    <Content Include="Scripts\jquery-3.4.0\datatables\Buttons-1.5.6\pdfmake.min.js" />
+    <Content Include="Scripts\jquery-3.4.0\datatables\Buttons-1.5.6\vfs_fonts.js" />
+    <Content Include="Scripts\jquery-3.4.0\datatables\DataTables-1.10.18\dataTables.jqueryui.min.js" />
+    <Content Include="Scripts\jquery-3.4.0\datatables\DataTables-1.10.18\jquery.dataTables.min.js" />
+    <Content Include="Scripts\jquery-3.4.0\datatables\datatables.min.js" />
+    <Content Include="Scripts\jquery-3.4.0\datatables\Responsive-2.2.2\dataTables.responsive.min.js" />
+    <Content Include="Scripts\jquery-3.4.0\datatables\Scroller-2.0.0\dataTables.scroller.min.js" />
+    <Content Include="Scripts\jquery-3.4.0\datatables\Scroller-2.0.0\scroller.dataTables.js" />
     <Content Include="Scripts\jquery-3.4.0\jquery-3.4.0.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />

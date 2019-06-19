@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - Mi aplicación ASP.NET</title>
+    <title>@ViewBag.Title Control Sheet</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
@@ -25,12 +25,16 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Tableros</a>
                         <ul class="dropdown-menu">
                             <li>@Html.ActionLink("Proyectos", "Proyect", "ControlSheet")</li>
-                            <li>@Html.ActionLink("Historial", "Edit", "Log")</li>
+                            @if ((int)HttpContext.Current.Session["idUserProfile"] == 2)
+                            {
+                                <li>@Html.ActionLink("Historial", "Edit", "Log")</li>
+                            }
                         </ul>
                     </li>
                     <li>@Html.ActionLink("Reportes", "Report", "ControlSheet")</li>
-               
+
                     <li>@Html.ActionLink("Ayuda", "Help", "ControlSheet")</li>
+                    <li>@Html.ActionLink("Salir", "LogOut", "ControlSheet")</li>
                 </ul>
             </div>
         </div>

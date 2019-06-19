@@ -2,11 +2,14 @@
 
     home: {
         loginUser: 'LoginUser',
-        createUserAdmin: 'CreateUserAdmin'
-
+        createUserAdmin: 'CreateUserAdmin',
+        LoadProyectActive: 'LoadProyectActive'
     }
 
 
 
 
+
 };
+
+
