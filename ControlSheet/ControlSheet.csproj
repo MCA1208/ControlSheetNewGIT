@@ -165,8 +165,10 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Image\controlsheet.PNG" />
-    <Content Include="Image\LogoUrban.png" />
+    <Content Include="Image\Loading\loading1.gif" />
+    <Content Include="Image\Loading\loading2.gif" />
+    <Content Include="Image\Logo\controlsheet.PNG" />
+    <Content Include="Image\Logo\LogoUrban.png" />
     <Content Include="Scripts\AlertMessage\alertifyjs\alertify.js" />
     <Content Include="Scripts\AlertMessage\alertifyjs\alertify.min.js" />
     <Content Include="Scripts\AlertMessage\alertifyjs\css\alertify.css" />
@@ -185,8 +187,6 @@
     <Content Include="Scripts\AlertMessage\alertifyjs\css\themes\semantic.min.css" />
     <Content Include="Scripts\AlertMessage\alertifyjs\css\themes\semantic.rtl.css" />
     <Content Include="Scripts\AlertMessage\alertifyjs\css\themes\semantic.rtl.min.css" />
-    <Content Include="Scripts\bootstrap.js" />
-    <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -220,6 +220,7 @@
     <Content Include="Scripts\GlobalFunc\URLController.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery-3.4.0\BlockUI\jquery.blockUI.min.js" />
     <Content Include="Scripts\jquery-3.4.0\datatables\Buttons-1.5.6\buttons.colVis.min.js" />
     <Content Include="Scripts\jquery-3.4.0\datatables\Buttons-1.5.6\buttons.html5.min.js" />
     <Content Include="Scripts\jquery-3.4.0\datatables\Buttons-1.5.6\buttons.print.min.js" />
@@ -234,6 +235,7 @@
     <Content Include="Scripts\jquery-3.4.0\datatables\Scroller-2.0.0\dataTables.scroller.min.js" />
     <Content Include="Scripts\jquery-3.4.0\datatables\Scroller-2.0.0\scroller.dataTables.js" />
     <Content Include="Scripts\jquery-3.4.0\jquery-3.4.0.min.js" />
+    <Content Include="Scripts\jquery-3.4.0\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />

@@ -1,16 +1,16 @@
 ﻿var data = "";
 
 $(document).ready(function () {
-   
-  
+
+
+    // $.blockUI();
+
+    
 });
 
-$('#btnLogin').click(function () {
-    alert('click2');
-});
 
 function Login() {
-
+    $.blockUI();
     var User = $('#txtUser').val();
     var Pass = $('#txtPass').val();
 
@@ -43,7 +43,7 @@ function Login() {
         .fail(function (data) {
             alertify.error(data.statusText);
         });
-   
+    $.unblockUI();
 }
 
 
