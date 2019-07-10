@@ -65,5 +65,102 @@ namespace ControlSheet.Controllers
             return Json(data, JsonRequestBehavior.AllowGet);
         }
 
+        public JsonResult CreateNewProyect(string proyectName)
+        {
+            try
+            {
+                var userId = (int)System.Web.HttpContext.Current.Session["idUser"];
+
+                dt = ProyectService.CreateNewProyect(proyectName, userId);
+                data.result = JsonConvert.SerializeObject(dt, Formatting.Indented);
+            }
+            catch (Exception ex)
+            {
+                data.message = ex.Message;
+                data.status = "error";
+                return Json(data, JsonRequestBehavior.AllowGet);
+
+            }
+
+            return Json(data, JsonRequestBehavior.AllowGet);
+
+        }
+
+        public JsonResult LoadProyectDetail(int id)
+        {
+            try
+            {
+                dt = ProyectService.LoadProyectDetail(id);
+                data.result = JsonConvert.SerializeObject(dt, Formatting.Indented);
+            }
+            catch (Exception ex)
+            {
+                data.message = ex.Message;
+                data.status = "error";
+                return Json(data, JsonRequestBehavior.AllowGet);
+
+            }
+
+            return Json(data, JsonRequestBehavior.AllowGet);
+
+        }
+
+        public JsonResult InsertProyectDetail(string moduleName, string proyectDescription, string hourEstimated, DateTime dateEstimatedEnd, int idProyect)
+        {
+            try
+            {
+                dt = ProyectService.InsertProyectDetail(moduleName, proyectDescription, hourEstimated,dateEstimatedEnd, idProyect);
+                data.result = JsonConvert.SerializeObject(dt, Formatting.Indented);
+            }
+            catch (Exception ex)
+            {
+                data.message = ex.Message;
+                data.status = "error";
+                return Json(data, JsonRequestBehavior.AllowGet);
+
+            }
+
+            return Json(data, JsonRequestBehavior.AllowGet);
+
+        }
+
+        public JsonResult LoadEditProyectDetail(int idProyect, int idProyectDetail)
+        {
+            try
+            {
+               
+                dt = ProyectService.LoadEditProyectDetail(idProyect, idProyectDetail);
+                data.result = JsonConvert.SerializeObject(dt, Formatting.Indented);
+            }
+            catch (Exception ex)
+            {
+                data.message = ex.Message;
+                data.status = "error";
+                return Json(data, JsonRequestBehavior.AllowGet);
+
+            }
+
+            return Json(data, JsonRequestBehavior.AllowGet);
+
+        }
+        public JsonResult EditProyectDetail(int idProyect, int idProyectDetail, string moduleName, string descriptions, float hourDedicated)
+        {
+            try
+            {
+                dt = ProyectService.EditProyectDetail(idProyect, idProyectDetail, moduleName, descriptions, hourDedicated);
+                data.result = JsonConvert.SerializeObject(dt, Formatting.Indented);
+            }
+            catch (Exception ex)
+            {
+                data.message = ex.Message;
+                data.status = "error";
+                return Json(data, JsonRequestBehavior.AllowGet);
+
+            }
+
+            return Json(data, JsonRequestBehavior.AllowGet);
+
+        }
+
     }
 }

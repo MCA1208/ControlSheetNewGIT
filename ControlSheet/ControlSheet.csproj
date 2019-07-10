@@ -168,6 +168,7 @@
     <Content Include="Image\Loading\loading1.gif" />
     <Content Include="Image\Loading\loading2.gif" />
     <Content Include="Image\Logo\controlsheet.PNG" />
+    <Content Include="Image\Logo\LogoUC.png" />
     <Content Include="Image\Logo\LogoUrban.png" />
     <Content Include="Scripts\AlertMessage\alertifyjs\alertify.js" />
     <Content Include="Scripts\AlertMessage\alertifyjs\alertify.min.js" />

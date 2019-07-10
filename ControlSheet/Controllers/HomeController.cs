@@ -51,6 +51,7 @@ namespace ControlSheet.Controllers
 
                 }
                 var em = dt.Rows[0]["email"];
+                System.Web.HttpContext.Current.Session["idUser"] = dt.Rows[0]["id"];
                 System.Web.HttpContext.Current.Session["email"] = dt.Rows[0]["email"];
                 System.Web.HttpContext.Current.Session["idcompany"] = dt.Rows[0]["idcompany"]; 
                 System.Web.HttpContext.Current.Session["idUserProfile"] = dt.Rows[0]["idUserProfile"];

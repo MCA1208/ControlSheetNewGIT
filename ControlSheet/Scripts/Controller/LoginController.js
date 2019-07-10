@@ -5,7 +5,6 @@ $(document).ready(function () {
 
     // $.blockUI();
 
-    
 });
 
 
@@ -33,6 +32,7 @@ function Login() {
             if (data.status !== "error") {
                 //alertify.success(data.message);
                 location = data.url;
+                $.unblockUI();
             }
             else {
                 alertify.error(data.message);
@@ -43,7 +43,7 @@ function Login() {
         .fail(function (data) {
             alertify.error(data.statusText);
         });
-    $.unblockUI();
+    
 }
 
 

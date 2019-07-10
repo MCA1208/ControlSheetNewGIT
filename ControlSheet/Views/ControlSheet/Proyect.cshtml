@@ -6,9 +6,9 @@
 
     <link href="~/Scripts/AlertMessage/alertifyjs/css/alertify.css" rel="stylesheet" />
     <link href="~/Scripts/AlertMessage/alertifyjs/css/themes/default.css" rel="stylesheet" />
-
     <script src="~/Scripts/bootstrap-4.2.1/js/bootstrap.min.js"></script>
     <script src="~/Scripts/jquery-3.4.0/jquery-3.4.0.min.js"></script>
+
     <script src="~/Scripts/fontawesome/all.js"></script>
     <script src="~/Scripts/AlertMessage/alertifyjs/alertify.js"></script>
 
@@ -33,7 +33,7 @@
 
 </head>
 <body>
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#CrearProyectModal"><i class="fas fa-edit"></i> Crear Nuevo </button>
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#NewProyectModal"><i class="fas fa-edit"></i> Crear Nuevo </button>
 
 
     <div>
@@ -43,8 +43,7 @@
                     <tr>
                         <th scope="col">Nombre Proyecto</th>
                         <th scope="col">Fecha Creación</th>
-                        <th scope="col">Fecha de Fin Estimada</th>
-                        <th scope="col">Fecha de Fin Real</th>
+                         <th scope="col">Fecha de Fin Real</th>
                         <th scope="col">Control</th>
                     </tr>
                 </thead>
@@ -59,7 +58,7 @@
 <!--Begin MODAL-->
 <!-- Modal Crear Proyect-->
 
-<div class="modal fade" id="CrearProyectModal">
+<div class="modal fade" id="NewProyectModal">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -82,7 +81,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fas fa-window-close"></i> Cerrar</button>
-                <button type="button" class="btn btn-primary" onclick="createUserAdmin();"><i class="fas fa-save"></i> Guardar</button>
+                <button type="button" class="btn btn-primary" onclick="createNewProyect();"><i class="fas fa-save"></i> Guardar</button>
             </div>
         </div>
     </div>
@@ -90,10 +89,10 @@
 
 <!-- Modal Editar Proyect-->
 <div class="modal fade" id="EditProyectModal">
-    <div class="modal-dialog">
+    <div class="modal-dialog" role="document" style="max-width:80%">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="">Editar Proyecto</h5>
+                <h5 class="modal-title"  id="titleEditProyectModal">Editar Proyecto</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -102,9 +101,12 @@
                 <div class="table-bordered">
                     <table class="table">
                         <tr>
-                            <th>Nombre Modulo</th>
+                            <th>Nombre módulo</th>
                             <td>
                                 <input style="width:200px" id="txtModuleName" type="text" />
+                            </td>
+                            <td>
+                                <input style="width:200px; display:none" id="txtIdProyect" type="text" />
                             </td>
                         </tr>
                         <tr>
@@ -114,43 +116,43 @@
                             </td>
                         </tr>
                         <tr>
-                            <th>Horas Estimadas</th>
+                            <th>Horas estimadas</th>
                             <td>
-                                <input style="width:200px" id="txtHourProyect" type="number" />
+                                <input style="width:200px" id="txtHourEstimatedProyect" type="number" />
                             </td>
                         </tr>
                         <tr>
-                            <th>Crear item</th>
+                            <th>Fecha Estimada fin por tarea</th>
                             <td>
-                                <button class="btn btn-primary" id="btnNewProyect" type="button"> Agregar </button>
+                                <input style="width:200px" id="txtDateEstimated" type="date" />
                             </td>
                         </tr>
 
                     </table>
-                    <button id="addRow">Agregar Row</button>
+                    <div class="card" >
+                        <button class="btn btn-primary" id="btnAddRow" onclick="addRowTable();">Agregar Tarea</button>
+                    </div>
                 </div>
                 <div class="card">
                     <table id="tableAddRow" class="table table-striped" style="color:black">
 
                         <thead class="thead-light">
                             <tr>
-                                <th scope="col">Nombre Proyecto</th>
-                                <th scope="col">Fecha Creación</th>
-                                <th scope="col">Fecha de Fin Estimada</th>
-                                <th scope="col">Fecha de Fin Real</th>
-                                <th scope="col">Control</th>
+                                <th scope="col">Nombre módulo</th>
+                                <th scope="col">Descripción</th>
+                                <th scope="col">Horas estimadas</th>
+                                <th scope="col">Horas Consumidas</th>
+                                <th scope="col">Fecha Fin </th>
                                 <th scope="col">Control</th>
                             </tr>
                         </thead>
-
-
 
                     </table>
                 </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fas fa-window-close"></i> Cerrar</button>
-                <button type="button" class="btn btn-primary" onclick="createUserAdmin();"><i class="fas fa-save"></i> Guardar</button>
+
             </div>
         </div>
     </div>
@@ -162,7 +164,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="">Editar Proyecto</h5>
+                <h5 class="modal-title" id="">Editar Detalle Proyecto</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -173,53 +175,33 @@
                         <tr>
                             <th>Nombre Modulo</th>
                             <td>
-                                <input style="width:200px" id="txtModuleName" type="text" />
+                                <input style="width:200px" id="txtModuleNameD" type="text" />
+                            </td>
+                            <td>
+                                <input style="width:200px; display:none" id="txtIdProyectDetail" type="text" />
                             </td>
                         </tr>
                         <tr>
                             <th>Descripción</th>
                             <td>
-                                <input style="width:200px" id="txtProyectDescription" type="text" />
+                                <input style="width:200px" id="txtModuleDescription" type="text" />
                             </td>
                         </tr>
                         <tr>
-                            <th>Horas Estimadas</th>
+                            <th>Horas Consumidas</th>
                             <td>
-                                <input style="width:200px" id="txtHourProyect" type="number" />
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>Crear item</th>
-                            <td>
-                                <button class="btn btn-primary" id="btnNewProyect" type="button"> Agregar </button>
+                                <input style="width:200px" id="txtHourConsumed" type="number" />
                             </td>
                         </tr>
 
                     </table>
-                    <button id="addRow">Agregar Row</button>
+                   
                 </div>
-                <div class="card">
-                    <table id="tableAddRow" class="table table-striped" style="color:black">
-
-                        <thead class="thead-light">
-                            <tr>
-                                <th scope="col">Nombre Proyecto</th>
-                                <th scope="col">Fecha Creación</th>
-                                <th scope="col">Fecha de Fin Estimada</th>
-                                <th scope="col">Fecha de Fin Real</th>
-                                <th scope="col">Control</th>
-                                <th scope="col">Control</th>
-                            </tr>
-                        </thead>
-
-
-
-                    </table>
-                </div>
+        
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fas fa-window-close"></i> Cerrar</button>
-                <button type="button" class="btn btn-primary" onclick="createUserAdmin();"><i class="fas fa-save"></i> Guardar</button>
+                <button type="button" class="btn btn-primary" onclick="editDetailproyect();"><i class="fas fa-save"></i> Guardar</button>
             </div>
         </div>
     </div>
