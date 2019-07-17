@@ -21,23 +21,25 @@
                 @*@Html.ActionLink("Nombre de aplicación", "Index", "ControlSheet", new { area = "" }, new { @class = "navbar-brand" })*@
             </div>
             <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Tableros</a>
-                        <ul class="dropdown-menu">
-                            <li>@Html.ActionLink("Proyectos", "Proyect", "ControlSheet")</li>
-                            @if ((int)HttpContext.Current.Session["idUserProfile"] == 2)
-                            {
-                                <li>@Html.ActionLink("Historial", "Edit", "Log")</li>
-                            }
+                <div class="container">
+                    <div class="row">
+                        <ul class="nav navbar-nav">
+                            <li class="col-sm">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Tableros</a>
+                                <ul class="dropdown-menu">
+                                    <li class="nav-item active border border-success col-sm" style="border:2px solid silver; text-align:center">@Html.ActionLink("Proyectos", "Proyect", "ControlSheet")</li>
+                                    @if ((int)HttpContext.Current.Session["idUserProfile"] == 2)
+                                    {
+                                        <li>@Html.ActionLink("Historial", "Edit", "Log")</li>
+                                    }
+                                </ul>
+                            </li>
+                            <li class="col-sm">@Html.ActionLink("Reportes", "Report", "ControlSheet")</li>
+                            <li class="col-sm">@Html.ActionLink("Ayuda", "Help", "ControlSheet")</li>
+                            <li class="col-sm">@Html.ActionLink("Salir", "LogOut", "ControlSheet")</li>
                         </ul>
-                    </li>
-                    <li>@Html.ActionLink("Reportes", "Report", "ControlSheet")</li>
-
-                    <li>@Html.ActionLink("Ayuda", "Help", "ControlSheet")</li>
-                    <li>@Html.ActionLink("Salir", "LogOut", "ControlSheet")</li>
-                </ul>
-            </div>
+                    </div>
+                </div>
         </div>
     </div>
     <div class="container body-content" style="background:#000000; text-align:center">

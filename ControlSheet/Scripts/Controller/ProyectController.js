@@ -3,19 +3,6 @@ $(document).ready(function () {
 
     LoadProyect();
 
-    $('#tableAddRow').DataTable({
-        responsive: {
-            details: {
-                display: $.fn.dataTable.Responsive.display.modal({
-                    header: function (row) {
-                        var data = row.data();
-                        return 'Details for ' + data[0] + ' ' + data[1];
-                    }
-                }),
-                renderer: $.fn.dataTable.Responsive.renderer.tableAll()
-            }
-        }
-    });
    
 });
 
@@ -187,9 +174,7 @@ function LoadProyectDetail(id) {
 
                 $('#tableAddRow').append(_html);
 
-                $('#tableAddRow').DataTable(
-                   
-                );
+                $('#tableAddRow').DataTable();
 
             }
             else {
@@ -252,6 +237,7 @@ function editDetailproyect() {
             if (data.status !== "error") {
 
                 alertify.success("Se edito correctamente");
+
             }
             else {
                 alertify.error(data.message);

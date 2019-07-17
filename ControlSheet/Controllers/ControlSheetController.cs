@@ -12,10 +12,10 @@ namespace ControlSheet.Controllers
 {
     public class ControlSheetController : Controller
     {
+        
         ResultModel data = new ResultModel();
         Service.ProyectService ProyectService = new Service.ProyectService();
         DataTable dt = null;
-
 
         public ActionResult Index()
         {
@@ -109,7 +109,8 @@ namespace ControlSheet.Controllers
         {
             try
             {
-                dt = ProyectService.InsertProyectDetail(moduleName, proyectDescription, hourEstimated,dateEstimatedEnd, idProyect);
+                int idUser = Convert.ToInt32(System.Web.HttpContext.Current.Session["idUser"]);
+                dt = ProyectService.InsertProyectDetail(moduleName, proyectDescription, hourEstimated,dateEstimatedEnd, idProyect, idUser);
                 data.result = JsonConvert.SerializeObject(dt, Formatting.Indented);
             }
             catch (Exception ex)

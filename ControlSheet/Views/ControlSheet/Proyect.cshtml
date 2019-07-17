@@ -4,32 +4,6 @@
 
     <title>Proyectos</title>
 
-    <link href="~/Scripts/AlertMessage/alertifyjs/css/alertify.css" rel="stylesheet" />
-    <link href="~/Scripts/AlertMessage/alertifyjs/css/themes/default.css" rel="stylesheet" />
-    <script src="~/Scripts/bootstrap-4.2.1/js/bootstrap.min.js"></script>
-    <script src="~/Scripts/jquery-3.4.0/jquery-3.4.0.min.js"></script>
-
-    <script src="~/Scripts/fontawesome/all.js"></script>
-    <script src="~/Scripts/AlertMessage/alertifyjs/alertify.js"></script>
-
-
-    <!--DataTables-->
-    <link href="~/Content/dataTables/DataTables-1.10.18/jquery.dataTables.min.css" rel="stylesheet" />
-    <link href="~/Content/dataTables/Buttons-1.5.6/buttons.dataTables.min.css" rel="stylesheet" />
-    <script src="~/Scripts/jquery-3.4.0/datatables/DataTables-1.10.18/jquery.dataTables.min.js"></script>
-    <script src="~/Scripts/jquery-3.4.0/datatables/Buttons-1.5.6/dataTables.buttons.min.js"></script>
-    <script src="~/Scripts/jquery-3.4.0/datatables/Buttons-1.5.6/jszip.min.js"></script>
-    <script src="~/Scripts/jquery-3.4.0/datatables/Buttons-1.5.6/pdfmake.min.js"></script>
-    <script src="~/Scripts/jquery-3.4.0/datatables/Buttons-1.5.6/vfs_fonts.js"></script>
-    <script src="~/Scripts/jquery-3.4.0/datatables/Buttons-1.5.6/buttons.print.min.js"></script>
-    <script src="~/Scripts/jquery-3.4.0/datatables/Buttons-1.5.6/buttons.html5.min.js"></script>
-
-    <script src="~/Scripts/jquery-3.4.0/BlockUI/jquery.blockUI.min.js"></script>
-    <script src="~/Scripts/Controller/ProyectController.js"></script>
-    <script src="~/Scripts/GlobalFunc/URLController.js"></script>
-
-
-
 
 </head>
 <body>
@@ -43,7 +17,7 @@
                     <tr>
                         <th scope="col">Nombre Proyecto</th>
                         <th scope="col">Fecha Creación</th>
-                         <th scope="col">Fecha de Fin Real</th>
+                        <th scope="col">Fecha de Fin Real</th>
                         <th scope="col">Control</th>
                     </tr>
                 </thead>
@@ -92,7 +66,7 @@
     <div class="modal-dialog" role="document" style="max-width:80%">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title"  id="titleEditProyectModal">Editar Proyecto</h5>
+                <h5 class="modal-title" id="titleEditProyectModal">Editar Proyecto</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -129,7 +103,7 @@
                         </tr>
 
                     </table>
-                    <div class="card" >
+                    <div class="card">
                         <button class="btn btn-primary" id="btnAddRow" onclick="addRowTable();">Agregar Tarea</button>
                     </div>
                 </div>
@@ -195,9 +169,9 @@
                         </tr>
 
                     </table>
-                   
+
                 </div>
-        
+
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fas fa-window-close"></i> Cerrar</button>
@@ -210,3 +184,26 @@
 
 
 <!--End MODAL-->
+
+<link href="~/Scripts/AlertMessage/alertifyjs/css/alertify.css" rel="stylesheet" />
+<link href="~/Scripts/AlertMessage/alertifyjs/css/themes/default.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-3.4.0/jquery-3.4.0.min.js"></script>
+<script src="~/Scripts/bootstrap-4.2.1/js/bootstrap.min.js"></script>
+
+<script src="~/Scripts/fontawesome/all.js"></script>
+<script src="~/Scripts/AlertMessage/alertifyjs/alertify.js"></script>
+
+<!--DataTables-->
+<link href="~/Content/dataTables/DataTables-1.10.18/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="~/Content/dataTables/Buttons-1.5.6/buttons.dataTables.min.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-3.4.0/datatables/DataTables-1.10.18/jquery.dataTables.min.js"></script>
+<script src="~/Scripts/jquery-3.4.0/datatables/Buttons-1.5.6/dataTables.buttons.min.js"></script>
+<script src="~/Scripts/jquery-3.4.0/datatables/Buttons-1.5.6/jszip.min.js"></script>
+<script src="~/Scripts/jquery-3.4.0/datatables/Buttons-1.5.6/pdfmake.min.js"></script>
+<script src="~/Scripts/jquery-3.4.0/datatables/Buttons-1.5.6/vfs_fonts.js"></script>
+<script src="~/Scripts/jquery-3.4.0/datatables/Buttons-1.5.6/buttons.print.min.js"></script>
+<script src="~/Scripts/jquery-3.4.0/datatables/Buttons-1.5.6/buttons.html5.min.js"></script>
+
+<script src="~/Scripts/jquery-3.4.0/BlockUI/jquery.blockUI.min.js"></script>
+<script src="~/Scripts/Controller/ProyectController.js"></script>
+<script src="~/Scripts/GlobalFunc/URLController.js"></script>

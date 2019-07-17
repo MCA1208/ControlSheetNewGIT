@@ -3,21 +3,6 @@
     Layout = null;
 }
 
-<link href="~/Scripts/AlertMessage/alertifyjs/css/alertify.css" rel="stylesheet" />
-<link href="~/Scripts/AlertMessage/alertifyjs/css/themes/default.css" rel="stylesheet" />
-<link href="~/Scripts/bootstrap-4.2.1/css/bootstrap.min.css" rel="stylesheet" />
-
-<script src="~/Scripts/jquery-3.4.0/jquery-3.4.0.min.js"></script>
-<script src="~/Scripts/bootstrap-4.2.1/js/bootstrap.min.js"></script>
-<script src="~/Scripts/fontawesome/all.js"></script>
-<script src="~/Scripts/jquery-3.4.0/BlockUI/jquery.blockUI.min.js"></script>
-<script src="~/Scripts/Controller/LoginController.js"></script>
-<script src="~/Scripts/AlertMessage/alertifyjs/alertify.js"></script>
-<script src="~/Scripts/GlobalFunc/General.js"></script>
-<script src="~/Scripts/GlobalFunc/URLController.js"></script>
-
-
-
 
 <head>
     <title>Control Sheet</title>
@@ -25,29 +10,35 @@
 
 <body style=" background: #303030; color: white">
 
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        @*<a class="navbar-brand" href="#">Urban Champion</a>*@
-        <img class="navbar-brand" src="~/Image/Logo/LogoUC.png" style="width:60px" />
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="border: 0; border-top: 1px solid #777777;
+                    border-bottom: 1px solid #777777; background-color: #ffffff;">
+        <div class="container-fluid">
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="@Url.Action("Index","Home")">Inicio <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="@Url.Action("ControlSheet","Home")">Control Sheet</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="@Url.Action("Contact","Home")">Contacto</a>
-                </li>
-            </ul>
-            @*<form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-            </form>*@
+            <img class="navbar-brand" src="~/Image/Logo/LogoUC.png" style="width:60px" />
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <div class="container">
+                    <ul class="nav menu">
+                        <li class="nav-item active border border-success col-sm" style="border:2px solid silver; text-align:center">
+                            <a class="nav-link" href="@Url.Action("Index","Home")">Inicio </a>
+                        </li>
+                        <li class="nav-item border border-success col-sm" style="border:2px solid silver; text-align:center">
+                            <a class="nav-link" href="@Url.Action("ControlSheet","Home")">Control Sheet</a>
+                        </li>
+                        <li class="nav-item border border-success col-sm" style="border:2px solid silver; text-align:center">
+                            <a class="nav-link" href="@Url.Action("Contact","Home")">Contacto</a>
+                        </li>
+                    </ul>
+                </div>
+                <form class="form-inline my-2 my-lg-0">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                </form>
+
+            </div>
         </div>
     </nav>
     <div class="form-horizontal" style="text-align:center; ">
@@ -170,3 +161,22 @@
     </div>
 </div>
 <!--End MODAL-->
+<link href="~/Scripts/AlertMessage/alertifyjs/css/alertify.css" rel="stylesheet" />
+<link href="~/Scripts/AlertMessage/alertifyjs/css/themes/default.css" rel="stylesheet" />
+<link href="~/Scripts/bootstrap-4.2.1/css/bootstrap.min.css" rel="stylesheet" />
+
+<script src="~/Scripts/jquery-3.4.0/jquery-3.4.0.min.js"></script>
+<script src="~/Scripts/bootstrap-4.2.1/js/bootstrap.min.js"></script>
+<script src="~/Scripts/fontawesome/all.js"></script>
+<script src="~/Scripts/jquery-3.4.0/BlockUI/jquery.blockUI.min.js"></script>
+<script src="~/Scripts/Controller/LoginController.js"></script>
+<script src="~/Scripts/AlertMessage/alertifyjs/alertify.js"></script>
+<script src="~/Scripts/GlobalFunc/General.js"></script>
+<script src="~/Scripts/GlobalFunc/URLController.js"></script>
+
+<@*style>
+
+    .active {
+        background: #28a745;
+    }
+</style>*@

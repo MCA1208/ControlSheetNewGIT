@@ -63,7 +63,7 @@ namespace ControlSheet.Service
             return dt;
 
         }
-        public DataTable InsertProyectDetail(string moduleName, string proyectDescription, string hourEstimated, DateTime dateEstimatedEnd, int idProyect)
+        public DataTable InsertProyectDetail(string moduleName, string proyectDescription, string hourEstimated, DateTime dateEstimatedEnd, int idProyect, int idUser)
         {
             con = new SqlConnection(Connection.stringConn);
             comando = new SqlCommand(SPName.spInsertProyectDetail, con);
@@ -74,8 +74,9 @@ namespace ControlSheet.Service
             comando.Parameters.AddWithValue("@hourEstimated", hourEstimated);
             comando.Parameters.AddWithValue("@dateEstimatedEnd", dateEstimatedEnd);
             comando.Parameters.AddWithValue("@idProyect", idProyect);
+            comando.Parameters.AddWithValue("@idUser", idUser);
 
-             SqlDataAdapter da = new SqlDataAdapter(comando);
+            SqlDataAdapter da = new SqlDataAdapter(comando);
 
             da.Fill(dt);
 
