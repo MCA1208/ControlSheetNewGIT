@@ -16,11 +16,11 @@ function LoadProyect() {
             if (data.status !== "error") {
                 $('#tblProyect > tbody').html('');
                 var _html = '';
-                _html += '<tbody class="customtable">';
+                _html += '<tbody class="customtable" style= text-align:left;>';
                 data = JSON.parse(data.result);
                 $.each(data, function (key, value) {
                     
-                    _html += '<tr><td>' + value.proyectName + '</td><td>' + value.dateBegin + '</td><td>' + value.dateEnd + '</td><td>' + '<button type="button" class="btn btn-primary" onclick="showModalEditProyect(' + value.id + ');"><i class="fas fa-edit"></i> Editar </button>' + '</td>';
+                    _html += '<tr><td>' + value.proyectName + '</td><td data-type="date" data-format-string="Do MMMM YYYY">' + value.dateBegin + '</td><td>' + value.dateEnd + '</td><td>' + '<button type="button" class="btn btn-primary" onclick="showModalEditProyect(' + value.id + ');"><i class="fas fa-edit"></i> Editar </button>' + '</td>';
                     
                     
                 });
@@ -50,6 +50,9 @@ function LoadProyect() {
         })
         .fail(function (data) {
             alertify.error(data.statusText);
+        })
+        .always(function(){
+            $.unblockUI();
         });
 
 }
@@ -152,7 +155,7 @@ function addRowTable() {
 }
 
 function LoadProyectDetail(id) {
-
+    $.blockUI();
     param = {id: id};
 
     $.post(directories.controlSheet.LoadProyectDetail, param)
@@ -160,7 +163,7 @@ function LoadProyectDetail(id) {
             if (data.status !== "error") {
                 $('#tableAddRow > tbody').html('');
                 var _html = '';
-                _html += '<tbody class="customtable">';
+                _html += '<tbody class="customtable" style= text-align:left;>';
                 data = JSON.parse(data.result);
                 $.each(data, function (key, value) {
 
@@ -185,6 +188,9 @@ function LoadProyectDetail(id) {
         })
         .fail(function (data) {
             alertify.error(data.statusText);
+        })
+        .always(function(){
+            $.unblockUI();
         });
 
 }

@@ -170,7 +170,7 @@
     <Content Include="Image\Loading\loading2.gif" />
     <Content Include="Image\Logo\controlsheet.PNG" />
     <Content Include="Image\Logo\LogoUC.png" />
-    <Content Include="Image\Logo\LogoUrban.png" />
+    <Content Include="Image\Logo\LogoUC2.png" />
     <Content Include="Scripts\AlertMessage\alertifyjs\alertify.js" />
     <Content Include="Scripts\AlertMessage\alertifyjs\alertify.min.js" />
     <Content Include="Scripts\AlertMessage\alertifyjs\css\alertify.css" />
@@ -270,6 +270,8 @@
     <Content Include="Views\Home\ControlSheet.cshtml" />
     <Content Include="Views\ControlSheet\Proyect.cshtml" />
     <Content Include="Views\Report\PrincipalReport.cshtml" />
+    <Content Include="Views\Shared\_LayoutMaster.cshtml" />
+    <Content Include="Views\Shared\_LayoutTimeSheet.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

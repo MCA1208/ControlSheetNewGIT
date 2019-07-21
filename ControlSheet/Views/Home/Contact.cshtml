@@ -1,77 +1,41 @@
 ﻿
 
 @{
-    Layout = null;
+    Layout = "~/Views/Shared/_LayoutMaster.cshtml";
 }
+<script type="text/javascript">
 
-<head>
-    <title>Contacto</title>
-</head>
+    $(document).ready(function () {
 
-<body style=" background: #303030; color: white">
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="border: 0; border-top: 1px solid #777777;
-                    border-bottom: 1px solid #777777; background-color: #ffffff;">
-        <div class="container-fluid">
+        $('#liSheet').css('background-color', '');        
+        $('#liHome').css('background-color', '');
+        $('#liContact').css('background-color', '#000000');
 
-            <img class="navbar-brand" src="~/Image/Logo/LogoUC.png" style="width:60px" />
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+    });
 
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <div class="container">
-                    <ul class="navbar-nav mr-auto">
-                        <li class="nav-item active border border-success col-sm" style="border:2px solid silver; text-align:center">
-                            <a class="nav-link" href="@Url.Action("Index","Home")">Inicio </a>
-                        </li>
-                        <li class="nav-item border border-success col-sm" style="border:2px solid silver; text-align:center">
-                            <a class="nav-link" href="@Url.Action("ControlSheet","Home")">Control Sheet</a>
-                        </li>
-                        <li class="nav-item border border-success col-sm" style="border:2px solid silver; text-align:center">
-                            <a class="nav-link" href="@Url.Action("Contact","Home")">Contacto</a>
-                        </li>
-                    </ul>
-                </div>
-                <form class="form-inline my-2 my-lg-0">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-                </form>
+</script>
 
-            </div>
-        </div>
-    </nav>
+<div class="form-horizontal" style="text-align:center; ">
+    <div class="container body-content" style="text-align: center; height:60%">
 
 
-    <div class="form-horizontal" style="text-align:center; ">
+        <address>
+            Neuquen 1960<br />
+            Florencio Varela<br />
+            Telefono:
+            54 011 1558941956
+        </address>
 
+        <address>
+            <strong>Consulta:</strong>   <a href="info@urbanchampion.com">Support@example.com</a><br />
+            <strong>Soporte:</strong>   <a href="Soporte@urbanchampion.com">Support@example.com</a><br />
+        </address>
 
-        <div class="container body-content" style="text-align: center; height:60%">
-
-
-            <address>
-                Neuquen 1960<br />
-                Florencio Varela<br />
-                Telefono:
-                54 011 1558941956
-            </address>
-
-            <address>
-                <strong>Consulta:</strong>   <a href="info@urbanchampion.com">Support@example.com</a><br />
-                <strong>Soporte:</strong>   <a href="Soporte@urbanchampion.com">Support@example.com</a><br />
-            </address>
-
-        </div>
-
-
-        <div class="container body-content ">
-            <hr style="border-color:#494949" />
-            <footer>
-                <p>&copy; @DateTime.Now.Year - Urban Champion</p>
-            </footer>
-        </div>
     </div>
 
-</body>
+</div>
+
+
 
 
 <link href="~/Scripts/AlertMessage/alertifyjs/css/alertify.css" rel="stylesheet" />
@@ -85,8 +49,3 @@
 <script src="~/Scripts/AlertMessage/alertifyjs/alertify.js"></script>
 <script src="~/Scripts/GlobalFunc/General.js"></script>
 <script src="~/Scripts/GlobalFunc/URLController.js"></script>
-<style>
-    .active {
-        background: #28a745;
-    }
-</style>

@@ -1,23 +1,31 @@
-﻿<h2>Proyectos</h2>
+﻿
+@{
+    Layout = "~/Views/Shared/_LayoutTimeSheet.cshtml";
+}
+<script type="text/javascript">
 
-<head>
+    $(document).ready(function () {
 
-    <title>Proyectos</title>
+        $('#liTabled').css('background-color', '#000000');
+
+    });
+
+</script>
+<h2>Proyectos</h2>
 
 
-</head>
-<body>
+
     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#NewProyectModal"><i class="fas fa-edit"></i> Crear Nuevo </button>
 
 
     <div>
         <div class="table-responsive">
-            <table id="tblProyect" class="table">
+            <table id="tblProyect" class="table" style="color: black; text-align:left; ">
                 <thead class="thead-light">
                     <tr>
                         <th scope="col">Nombre Proyecto</th>
                         <th scope="col">Fecha Creación</th>
-                        <th scope="col">Fecha de Fin Real</th>
+                        <th scope="col">Fecha Fin</th>
                         <th scope="col">Control</th>
                     </tr>
                 </thead>
@@ -26,7 +34,7 @@
 
     </div>
 
-</body>
+
 
 
 <!--Begin MODAL-->
@@ -43,9 +51,10 @@
             </div>
             <div class="modal-body">
                 <div class="table-bordered">
-                    <table class="table">
+                    <table class="table-responsive" style="color:black;">
                         <tr>
                             <th>Nombre Proyecto</th>
+                            
                             <td>
                                 <input style="width:200px" id="txtProyectName" type="text" />
                             </td>
@@ -72,8 +81,8 @@
                 </button>
             </div>
             <div class="modal-body">
-                <div class="table-bordered">
-                    <table class="table">
+                <div class="table-responsive">
+                    <table class="table" style="color:black; text-align:left;">
                         <tr>
                             <th>Nombre módulo</th>
                             <td>
@@ -103,14 +112,17 @@
                         </tr>
 
                     </table>
-                    <div class="card">
-                        <button class="btn btn-primary" id="btnAddRow" onclick="addRowTable();">Agregar Tarea</button>
+
+                </div>
+                <div class="border border-primary">
+                    <div>                    
+                        <button class="btn btn-primary" id="btnAddRow" onclick="addRowTable();">Agregar Tarea</button> 
                     </div>
                 </div>
-                <div class="card">
-                    <table id="tableAddRow" class="table table-striped" style="color:black">
+                <div class="table-responsive">
+                    <table id="tableAddRow" class="table table-striped" style="color:black; text-align:left">
 
-                        <thead class="thead-light">
+                        <thead class="thead-light" style="text-align:left;">
                             <tr>
                                 <th scope="col">Nombre módulo</th>
                                 <th scope="col">Descripción</th>
@@ -144,8 +156,8 @@
                 </button>
             </div>
             <div class="modal-body">
-                <div class="table-bordered">
-                    <table class="table">
+                <div class="table-responsive">
+                    <table class="table" style="color: black; text-align:left; ">
                         <tr>
                             <th>Nombre Modulo</th>
                             <td>

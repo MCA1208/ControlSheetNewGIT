@@ -1,46 +1,23 @@
 ﻿
 
 @{
-    Layout = null;
+    Layout = "~/Views/Shared/_LayoutMaster.cshtml";
 }
 
+<script type="text/javascript">
 
-<head>
-    <title>About</title>
-</head>
+    $(document).ready(function () {
+
+        $('#liSheet').css('background-color', '');
+        $('#liContact').css('background-color', '');
+        $('#liHome').css('background-color', '#000000');
+
+    });
+
+</script>
 
 <body style=" background: #303030; color: white">
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="border: 0; border-top: 1px solid #777777;
-                    border-bottom: 1px solid #777777; background-color: #ffffff;">
-        <div class="container-fluid">
 
-            <img class="navbar-brand" src="~/Image/Logo/LogoUC.png" style="width:60px" />
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <div class="container">
-                    <ul class="navbar-nav mr-auto">
-                        <li class="nav-item active border border-success col-sm" style="border:2px solid silver; text-align:center">
-                            <a class="nav-link" href="@Url.Action("Index","Home")">Inicio </a>
-                        </li>
-                        <li class="nav-item border border-success col-sm" style="border:2px solid silver; text-align:center">
-                            <a class="nav-link" href="@Url.Action("ControlSheet","Home")">Control Sheet</a>
-                        </li>
-                        <li class="nav-item border border-success col-sm" style="border:2px solid silver; text-align:center">
-                            <a class="nav-link" href="@Url.Action("Contact","Home")">Contacto</a>
-                        </li>
-                    </ul>
-                </div>
-                <form class="form-inline my-2 my-lg-0">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-                </form>
-
-            </div>
-        </div>
-    </nav>
     <h2>URBAN CHAMPION</h2>
 </body>
 
@@ -56,9 +33,3 @@
 <script src="~/Scripts/GlobalFunc/General.js"></script>
 <script src="~/Scripts/GlobalFunc/URLController.js"></script>
 
-<style>
-
-    .active {
-        background: #28a745;
-    }
-</style>

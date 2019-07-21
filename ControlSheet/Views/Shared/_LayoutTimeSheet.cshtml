@@ -1,0 +1,114 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Time Sheet</title>
+    <script src="~/Scripts/jquery-3.4.0/jquery-3.4.0.min.js"></script>
+    <link href="~/Scripts/bootstrap-4.2.1/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/Site.css" rel="stylesheet" />
+
+    <style>
+        .preloader {
+            width: 100%;
+            height: 100%;
+            top: 0px;
+            position: fixed;
+            z-index: 99999;
+            background: radial-gradient(circle, #686868, #000000);
+        }
+
+        .lds-ripple {
+            display: inline-block;
+            position: relative;
+            width: 64px;
+            height: 64px;
+            position: absolute;
+            top: calc(50% - 3.5px);
+            left: calc(50% - 3.5px);
+        }
+
+            .lds-ripple .lds-pos {
+                position: absolute;
+                border: 2px solid dodgerblue;
+                opacity: 1;
+                border-radius: 50%;
+                -webkit-animation: lds-ripple 1s cubic-bezier(0, 0.1, 0.5, 1) infinite;
+                animation: lds-ripple 1s cubic-bezier(0, 0.1, 0.5, 1) infinite;
+            }
+
+                .lds-ripple .lds-pos:nth-child(2) {
+                    -webkit-animation-delay: -0.5s;
+                    animation-delay: -0.5s;
+                }
+    </style>
+</head>
+
+<body style=" background: #000000; color: white">
+
+    <nav class="navbar navbar-expand-lg navbar-dark" style=" background: #494848; color: white">
+        <img class="navbar-brand" src="~/Image/Logo/LogoUC2.png" style="width:60px" />
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <div id="menu" class="container">
+                <ul class="navbar-nav mr-auto">
+                    <li id="liTabled" class="col-sm" style="border:2px solid silver; text-align:left">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" >Tableros</a>
+                        <ul class="dropdown-menu">
+                            
+                            <li id="liProyect" class="nav-item rounded col-sm" style="border:2px solid silver; text-align:center">
+                                <a class="nav-link" href="@Url.Action("Proyect","ControlSheet")" style="color:dodgerblue; font-family:Georgia">Proyectos</a>
+                            </li>
+                            @if ((int)HttpContext.Current.Session["idUserProfile"] == 2)
+                            {
+                                <li>@Html.ActionLink("Historial", "Edit", "Log")</li>
+                            }
+                        </ul>
+                    </li>
+                    
+                    <li id="liReport" class="nav-item rounded col-sm" style="border:2px solid silver; text-align:left">
+                        <a class="nav-link" href="@Url.Action("Report","ControlSheet")" style="color:dodgerblue; font-family:Georgia">Reportes</a>
+                    </li>
+
+                    <li id="liSalir" class="nav-item rounded col-sm" style="border:2px solid silver; text-align:left">
+                        <a class="nav-link" href="@Url.Action("LogOut","ControlSheet")" style="color:dodgerblue; font-family:Georgia">Salir de ControlSheet</a>
+                    </li>
+          
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="preloader">
+        <div class="lds-ripple">
+            <div class="lds-pos"></div>
+            <div class="lds-pos"></div>
+        </div>
+    </div>
+    <div class="container body-content" style="text-align:center">
+        @RenderBody()
+        <hr style="background:white" />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - Urban Champion</p>
+        </footer>
+    </div>
+
+    <script>
+        $(".preloader").fadeOut();
+    </script>
+</body>
+</html>
+
+
+
+
+  

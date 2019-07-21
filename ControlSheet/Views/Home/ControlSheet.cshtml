@@ -1,111 +1,74 @@
 ﻿
 @{
-    Layout = null;
+    Layout = "~/Views/Shared/_LayoutMaster.cshtml";
 }
+<script type="text/javascript">
 
+    $(document).ready(function () {
+        
+        $('#liContact').css('background-color', '');
+        $('#liHome').css('background-color', '');
+        $('#liSheet').css('background-color', '#000000');
 
-<head>
-    <title>Control Sheet</title>
-</head>
+    });
 
-<body style=" background: #303030; color: white">
+</script>
 
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="border: 0; border-top: 1px solid #777777;
-                    border-bottom: 1px solid #777777; background-color: #ffffff;">
-        <div class="container-fluid">
+<div class="form-horizontal" style="text-align:center; ">
+    <div class="container body-content" style="text-align: center; height:60%">
+        <br /><br />
+        <label style="height:20%; font-size:xx-large">
+            Iniciar Sesión en Control Sheet
+        </label>
+        <br /><br />
 
-            <img class="navbar-brand" src="~/Image/Logo/LogoUC.png" style="width:60px" />
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+        <div class="auth-wrapper d-flex no-block justify-content-center align-items-center">
 
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <div class="container">
-                    <ul class="nav menu">
-                        <li class="nav-item active border border-success col-sm" style="border:2px solid silver; text-align:center">
-                            <a class="nav-link" href="@Url.Action("Index","Home")">Inicio </a>
-                        </li>
-                        <li class="nav-item border border-success col-sm" style="border:2px solid silver; text-align:center">
-                            <a class="nav-link" href="@Url.Action("ControlSheet","Home")">Control Sheet</a>
-                        </li>
-                        <li class="nav-item border border-success col-sm" style="border:2px solid silver; text-align:center">
-                            <a class="nav-link" href="@Url.Action("Contact","Home")">Contacto</a>
-                        </li>
-                    </ul>
-                </div>
-                <form class="form-inline my-2 my-lg-0">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-                </form>
-
-            </div>
-        </div>
-    </nav>
-    <div class="form-horizontal" style="text-align:center; ">
-
-
-        <div class="container body-content" style="text-align: center; height:60%">
-            <br /><br />
-            <label style="height:20%; font-size:xx-large">
-                Iniciar Sesión en Control Sheet
-            </label>
-            <br /><br />
-
-            <div class="auth-wrapper d-flex no-block justify-content-center align-items-center">
-
-                <div style="width:400px">
-                    <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text bg-info text-white" id="basic-addon1"><i class="fas fa-user"></i></span>
-                        </div>
-                        <input id="txtUser" type="text" class="form-control form-control-lg" placeholder="Usuario" aria-label="Username" aria-describedby="basic-addon1" value="" required" />
+            <div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text bg-info text-white" id="basic-addon1"><i class="fas fa-user"></i></span>
                     </div>
-                    <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text bg-warning text-white" id="basic-addon2"><i class="fas fa-lock"></i></span>
-                        </div>
-                        <input id="txtPass" type="password" class="form-control form-control-lg" placeholder="Contrase&ntilde;a" aria-label="Password" aria-describedby="basic-addon2" value="" required />
+                    <input id="txtUser" type="text" class="form-control form-control-lg" placeholder="Usuario" aria-label="Username" aria-describedby="basic-addon1" value="" required" />
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text bg-warning text-white" id="basic-addon2"><i class="fas fa-lock"></i></span>
                     </div>
-                </div>
-
-            </div>
-            <br />
-            <div class="col-xs-12">
-                <div class="center-block">
-                    <button class="btn btn-primary" id="btnLogin" onclick="Login();"><i class="fas fa-sign-in-alt"></i> Ingresar</button>
+                    <input id="txtPass" type="password" class="form-control form-control-lg" placeholder="Contrase&ntilde;a" aria-label="Password" aria-describedby="basic-addon2" value="" required />
                 </div>
             </div>
 
         </div>
-        <div class="container body-content">
+        <br />
+        <div class="col-xs-12">
+            <div class="center-block">
+                <button class="btn btn-primary" id="btnLogin" onclick="Login();"><i class="fas fa-sign-in-alt"></i> Ingresar</button>
+            </div>
+        </div>
+        <br />
+    </div>
+    <div class="container body-content">
 
-            <div class="row">
-                <div class="col-md-4">
+        <div class="row">
+            <div class="col-md-4">
 
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#CreateUserModal"><i class="fas fa-user-plus"></i> Registrarse </button>
-                </div>
-                <div class="col-md-4">
-                    <button class="btn btn-secondary" onclick="showMessage();"><i class="fas fa-unlock"></i> ¿Olvido su contraseña? </button>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#CreateUserModal"><i class="fas fa-user-plus"></i> Registrarse </button>
+            </div>
+            <div class="col-md-4">
+                <button class="btn btn-secondary" onclick="showMessage();"><i class="fas fa-unlock"></i> ¿Olvido su contraseña? </button>
 
-                </div>
-                <div class="col-md-4">
-                    <button class="btn btn-primary" onclick="Login();"><i class="fas fa-file-download"></i> Documento</button>
-                </div>
-
+            </div>
+            <div class="col-md-4">
+                <button class="btn btn-primary" onclick="Login();"><i class="fas fa-file-download"></i> Documento</button>
             </div>
 
         </div>
 
-        <div class="container body-content ">
-            <hr style="border-color:#494949" />
-            <footer>
-                <p>&copy; @DateTime.Now.Year - Urban Champion</p>
-            </footer>
-        </div>
     </div>
 
+</div>
 
-</body>
 
 <!--Begin MODAL-->
 <!-- Button trigger modal -->
@@ -174,9 +137,3 @@
 <script src="~/Scripts/GlobalFunc/General.js"></script>
 <script src="~/Scripts/GlobalFunc/URLController.js"></script>
 
-<@*style>
-
-    .active {
-        background: #28a745;
-    }
-</style>*@

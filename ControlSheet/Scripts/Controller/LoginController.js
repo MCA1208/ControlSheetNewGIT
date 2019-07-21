@@ -2,20 +2,7 @@
 
 $(document).ready(function () {
 
-    //$(function () {
 
-    //    // elementos de la lista
-    //    var menues = $(".nav li");
-
-    //    // manejador de click sobre todos los elementos
-    //    menues.click(function () {
-    //        // eliminamos active de todos los elementos
-    //        menues.removeClass("active");
-    //        // activamos el elemento clicado.
-    //        $(this).addClass("active");
-    //    });
-
-    //});
 
 });
 
@@ -44,9 +31,10 @@ function Login() {
             if (data.status !== "error") {
                 //alertify.success(data.message);
                 location = data.url;
-                $.unblockUI();
+                
             }
             else {
+
                 alertify.error(data.message);
                 
             }
@@ -54,6 +42,10 @@ function Login() {
         })
         .fail(function (data) {
             alertify.error(data.statusText);
+        })
+        .always(function () {
+
+            $.unblockUI();
         });
     
 }
