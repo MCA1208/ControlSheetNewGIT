@@ -64,13 +64,16 @@
                     <li id="liTabled" class="col-sm" style="border:2px solid silver; text-align:left">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" >Tableros</a>
                         <ul class="dropdown-menu">
-                            
+
                             <li id="liProyect" class="nav-item rounded col-sm" style="border:2px solid silver; text-align:center">
                                 <a class="nav-link" href="@Url.Action("Proyect","ControlSheet")" style="color:dodgerblue; font-family:Georgia">Proyectos</a>
                             </li>
                             @if ((int)HttpContext.Current.Session["idUserProfile"] == 2)
                             {
-                                <li>@Html.ActionLink("Historial", "Edit", "Log")</li>
+                                <li id="liProyect" class="nav-item rounded col-sm" style="border:2px solid silver; text-align:center">
+                                    <a class="nav-link" href="@Url.Action("Proyect","ControlSheet")" style="color:dodgerblue; font-family:Georgia">Proyectos</a>
+                                </li>
+                                
                             }
                         </ul>
                     </li>

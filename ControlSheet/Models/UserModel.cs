@@ -19,6 +19,7 @@ namespace ControlSheet.Models
             public string spInsertProyectDetail = "spInsertProyectDetail";
             public string spGetLoadEditProyectDetail = "spGetLoadEditProyectDetail";
             public string spEditProyectDetail = "spEditProyectDetail";
+            public string spDeleteProyect = "spDeleteProyect";
 
         }
         #endregion

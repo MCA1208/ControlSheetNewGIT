@@ -102,7 +102,7 @@ namespace ControlSheet.Service
 
         }
 
-        public DataTable EditProyectDetail(int idProyect, int idProyectDetail, string moduleName, string descriptions, float hourDedicated)
+        public DataTable EditProyectDetail(int idProyect, int idProyectDetail, string moduleName, string descriptions, DateTime? dateEstimated, float? hourEstimated, float? hourDedicated)
         {
             con = new SqlConnection(Connection.stringConn);
             comando = new SqlCommand(SPName.spEditProyectDetail, con);
@@ -112,7 +112,25 @@ namespace ControlSheet.Service
             comando.Parameters.AddWithValue("@idProyectDetail", idProyectDetail);
             comando.Parameters.AddWithValue("@moduleName", moduleName);
             comando.Parameters.AddWithValue("@descriptions", descriptions);
+            comando.Parameters.AddWithValue("@dateEstimated", dateEstimated);
+            comando.Parameters.AddWithValue("@hourEstimated", hourEstimated);
             comando.Parameters.AddWithValue("@hourDedicated", hourDedicated);
+
+            SqlDataAdapter da = new SqlDataAdapter(comando);
+
+            da.Fill(dt);
+
+            return dt;
+
+        }
+
+        public DataTable DeleteProyect(int idProyect)
+        {
+            con = new SqlConnection(Connection.stringConn);
+            comando = new SqlCommand(SPName.spDeleteProyect, con);
+
+            comando.CommandType = CommandType.StoredProcedure;
+            comando.Parameters.AddWithValue("@idProyect", idProyect);
 
             SqlDataAdapter da = new SqlDataAdapter(comando);
 

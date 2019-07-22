@@ -20,7 +20,9 @@ function LoadProyect() {
                 data = JSON.parse(data.result);
                 $.each(data, function (key, value) {
                     
-                    _html += '<tr><td>' + value.proyectName + '</td><td data-type="date" data-format-string="Do MMMM YYYY">' + value.dateBegin + '</td><td>' + value.dateEnd + '</td><td>' + '<button type="button" class="btn btn-primary" onclick="showModalEditProyect(' + value.id + ');"><i class="fas fa-edit"></i> Editar </button>' + '</td>';
+                    _html += '<tr><td>' + value.proyectName + '</td><td data-type="date" data-format-string="Do MMMM YYYY">' + value.dateBegin + '</td><td>' + value.dateEnd + '</td><td>' + '<button type="button" class="btn btn-primary" onclick="showModalEditProyect(' + value.id + ');"><i class="fas fa-edit"></i> Editar </button>' + '</td><td>'
+
+                        + '<button class="btn btn-danger" id="btnDeleteProyect" type="button" onclick="deleteProyect(' + value.id + ');"><i class="fas fa-trash-alt"></i> Eliminar </button>' + '</td>';
                     
                     
                 });
@@ -168,7 +170,7 @@ function LoadProyectDetail(id) {
                 $.each(data, function (key, value) {
 
                     _html += '<tr><td>' + value.moduleName + '</td><td>' + value.descriptions + '</td><td>' + value.hourEstimated + '</td><td>' + value.hourDedicated + '</td><td>' + value.dateEstimated + '</td><td>'
-                        + '<button class="btn btn-primary" id="btnEditProyect" type="button" onclick="showModalEditProyectDetail(' + $('#txtIdProyect').val() + ',' +  value.id +');"> Editar Tarea </button>' + '</td>';
+                        + '<button class="btn btn-primary" id="btnEditProyect" type="button" onclick="showModalEditProyectDetail(' + $('#txtIdProyect').val() + ',' + value.id + ');"><i class="fas fa-edit"></i> Editar Tarea </button>' + '</td>';
                     
                     
                 });
@@ -196,9 +198,8 @@ function LoadProyectDetail(id) {
 }
 function showModalEditProyectDetail(idProyect, idProyectDetail) {
 
-    $('#EditDetailProyectModal').modal('show');
+   $('#EditDetailProyectModal').modal('show');
 
-  
    loadEditProyectDetail(idProyect, idProyectDetail);
 
 
@@ -216,6 +217,8 @@ function loadEditProyectDetail(idProyect, idProyectDetail) {
                 $('#txtIdProyectDetail').val(result[0]["id"]);
                 $('#txtModuleNameD').val(result[0]["moduleName"]);
                 $('#txtModuleDescription').val(result[0]["descriptions"]);
+                $('#txtHourEstimated').val(result[0]["hourEstimated"]);
+                $('#txtDateEstimatedEdit').val(result[0]["dateEstimated"]);
                 $('#txtHourConsumed').val(result[0]["hourDedicated"]);
 
             }
@@ -235,7 +238,7 @@ function editDetailproyect() {
 
     param = {
         idProyect: $('#txtIdProyect').val(), idProyectDetail: $('#txtIdProyectDetail').val(),
-        moduleName: $('#txtModuleNameD').val(), descriptions: $('#txtModuleDescription').val(), hourDedicated: $('#txtHourConsumed').val()
+        moduleName: $('#txtModuleNameD').val(), descriptions: $('#txtModuleDescription').val(), dateEstimated: $('#txtDateEstimatedEdit').val(), hourEstimated: $('#txtHourEstimated').val(), hourDedicated: $('#txtHourConsumed').val()
     };
 
     $.post(directories.controlSheet.EditProyectDetail, param)
@@ -243,7 +246,10 @@ function editDetailproyect() {
             if (data.status !== "error") {
 
                 alertify.success("Se edito correctamente");
-
+                $('#EditDetailProyectModal').modal('hide');
+                //loadEditProyectDetail($('#txtIdProyect').val(), $('#txtIdProyectDetail').val());
+                //showModalEditProyectDetail($('#txtIdProyect').val(), $('#txtIdProyectDetail').val());
+                LoadProyectDetail($('#txtIdProyect').val());
             }
             else {
                 alertify.error(data.message);
@@ -254,5 +260,55 @@ function editDetailproyect() {
         .fail(function (data) {
             alertify.error(data.statusText);
         });
+
+}
+
+function deleteProyect(idProyect) {
+
+    alertify.confirm('Confirm Title', 'Confirm Message', function () {
+        alertify.success('Ok')
+    }
+        , function () {
+            alertify.error('Cancel')
+        });
+ 
+
+
+    alertify.confirm('Proyectos','Confirma Eliminar el Proyecto?', function ()
+    {
+
+        param = {
+            idProyect: idProyect 
+        };
+
+        $.post(directories.controlSheet.DeleteProyect, param)
+            .done(function (data) {
+                if (data.status !== "error") {
+
+                    if (data.result === "1") {
+                        alertify.success("Se eliminó correctamente");
+                        LoadProyect();
+                    }
+                    else {
+
+                        alertify.error("No se pudo eliminar el proyecto");
+                    }
+                
+
+                }
+                else {
+                    alertify.error(data.message);
+
+                }
+
+            })
+            .fail(function (data) {
+                alertify.error(data.statusText);
+            });
+
+    }
+    , function () {
+        alertify.error('Se canceló la operación');
+    });
 
 }

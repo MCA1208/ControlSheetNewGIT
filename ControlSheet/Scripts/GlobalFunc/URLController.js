@@ -12,7 +12,8 @@
         LoadProyectDetail: 'LoadProyectDetail',
         InsertProyectDetail: 'InsertProyectDetail',
         LoadEditProyectDetail: 'LoadEditProyectDetail',
-        EditProyectDetail: 'EditProyectDetail'
+        EditProyectDetail: 'EditProyectDetail',
+        DeleteProyect: 'DeleteProyect'
     }
 
 

@@ -15,7 +15,7 @@
 
 
 
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#NewProyectModal"><i class="fas fa-edit"></i> Crear Nuevo </button>
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#NewProyectModal"><i class="fas fa-arrow-circle-right"></i> Crear Nuevo </button>
 
 
     <div>
@@ -26,7 +26,8 @@
                         <th scope="col">Nombre Proyecto</th>
                         <th scope="col">Fecha Creación</th>
                         <th scope="col">Fecha Fin</th>
-                        <th scope="col">Control</th>
+                        <th scope="col">Editar</th>
+                        <th scope="col">Eliminar</th>
                     </tr>
                 </thead>
             </table>
@@ -114,9 +115,9 @@
                     </table>
 
                 </div>
-                <div class="border border-primary">
+                <div class="card-body">
                     <div>                    
-                        <button class="btn btn-primary" id="btnAddRow" onclick="addRowTable();">Agregar Tarea</button> 
+                        <button class="btn btn-primary" id="btnAddRow" onclick="addRowTable();"><i class="fas fa-arrow-circle-right"></i> Agregar Tarea</button> 
                     </div>
                 </div>
                 <div class="table-responsive">
@@ -173,6 +174,22 @@
                                 <input style="width:200px" id="txtModuleDescription" type="text" />
                             </td>
                         </tr>
+                        @if ((int)HttpContext.Current.Session["idUserProfile"] == 1)
+                        {
+
+                            <tr>
+                                <th>Horas Estimada</th>
+                                <td>
+                                    <input style="width:200px" id="txtHourEstimated" type="text" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Fecha Fin Estimada</th>
+                                <td>
+                                    <input style="width:200px" id="txtDateEstimatedEdit" type="date" />
+                                </td>
+                            </tr>
+                        }
                         <tr>
                             <th>Horas Consumidas</th>
                             <td>

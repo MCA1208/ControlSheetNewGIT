@@ -144,12 +144,31 @@ namespace ControlSheet.Controllers
             return Json(data, JsonRequestBehavior.AllowGet);
 
         }
-        public JsonResult EditProyectDetail(int idProyect, int idProyectDetail, string moduleName, string descriptions, float hourDedicated)
+        public JsonResult EditProyectDetail(int idProyect, int idProyectDetail, string moduleName, string descriptions, DateTime? dateEstimated , float? hourEstimated, float? hourDedicated)
         {
             try
             {
-                dt = ProyectService.EditProyectDetail(idProyect, idProyectDetail, moduleName, descriptions, hourDedicated);
+                dt = ProyectService.EditProyectDetail(idProyect, idProyectDetail, moduleName, descriptions, dateEstimated, hourEstimated, hourDedicated);
                 data.result = JsonConvert.SerializeObject(dt, Formatting.Indented);
+            }
+            catch (Exception ex)
+            {
+                data.message = ex.Message;
+                data.status = "error";
+                return Json(data, JsonRequestBehavior.AllowGet);
+
+            }
+
+            return Json(data, JsonRequestBehavior.AllowGet);
+
+        }
+
+        public JsonResult DeleteProyect (int idProyect)
+        {
+            try
+            {
+                dt = ProyectService.DeleteProyect(idProyect);
+                data.result = JsonConvert.SerializeObject(dt.Rows[0]["result"], Formatting.Indented);
             }
             catch (Exception ex)
             {
