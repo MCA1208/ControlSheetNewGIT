@@ -14,8 +14,12 @@
         LoadEditProyectDetail: 'LoadEditProyectDetail',
         EditProyectDetail: 'EditProyectDetail',
         DeleteProyect: 'DeleteProyect'
-    }
+    },
 
+    reports: {
+        LoadReportPrincipal: 'LoadReportPrincipal',
+        LoadReportSumHour: 'LoadReportSumHour'
+    }
 
 
 

@@ -16,16 +16,25 @@ namespace ControlSheet.Controllers
         ResultModel data = new ResultModel();
         Service.ProyectService ProyectService = new Service.ProyectService();
         DataTable dt = null;
+        public int  idUser = (int)System.Web.HttpContext.Current.Session["idUser"];
+        public int idCompany = (int)System.Web.HttpContext.Current.Session["idcompany"];
 
         public ActionResult Index()
         {
+           
             return View();
         }
         public ActionResult Proyect()
         {
-
+            
             return View();
         }
+
+        public ActionResult ProyectAdmin()
+        {
+            return View();
+        }
+
         public ActionResult Report()
         {
             ViewBag.Message = "Your application description page.";
@@ -51,7 +60,17 @@ namespace ControlSheet.Controllers
         {
             try
             {
-                dt =  ProyectService.GetLoadProyectActive();
+                int? idUs = null;
+                var idP = (int)System.Web.HttpContext.Current.Session["idUserProfile"];
+
+                if (idP != 1)
+                {
+                    idUs = idUser;
+                }
+
+                dt =  ProyectService.GetLoadProyectActive(idCompany, idUs);
+                dt.Columns.Add("idProfile", typeof(System.Int32));
+                dt.Columns["idProfile"].Expression = idP.ToString();
                 data.result = JsonConvert.SerializeObject(dt, Formatting.Indented);
             }
             catch(Exception ex)
@@ -69,9 +88,8 @@ namespace ControlSheet.Controllers
         {
             try
             {
-                var userId = (int)System.Web.HttpContext.Current.Session["idUser"];
 
-                dt = ProyectService.CreateNewProyect(proyectName, userId);
+                dt = ProyectService.CreateNewProyect(proyectName, idUser, idCompany);
                 data.result = JsonConvert.SerializeObject(dt, Formatting.Indented);
             }
             catch (Exception ex)

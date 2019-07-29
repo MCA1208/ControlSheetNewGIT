@@ -1,0 +1,243 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_LayoutTimeSheet.cshtml";
+}
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+        $('#liTabled').css('background-color', '#000000');
+
+    });
+
+</script>
+
+
+<div class="card">
+    <div class="card-body" style="color:black; background-color:aqua; font-family:fantasy; font-size:xx-large">
+        Proyectos
+    </div>
+</div>
+
+
+<div class="card-body">
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#NewProyectModal"><i class="fas fa-arrow-circle-right"></i> Crear Nuevo </button>
+</div>
+
+<div>
+    <div class="table-responsive">
+        <table id="tblProyect" class="table" style="color: black; text-align:left; ">
+            <thead class="thead-light">
+                <tr>
+                    <th scope="col">Nombre Proyecto</th>
+                    <th scope="col">Fecha Creación</th>
+                    <th scope="col">Fecha Fin</th>
+                    <th scope="col">Usuario</th>
+                    <th scope="col">Editar</th>
+                    <th scope="col">Eliminar</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+
+</div>
+
+
+
+
+<!--Begin MODAL-->
+<!-- Modal Crear Proyect-->
+
+<div class="modal fade" id="NewProyectModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="">Agregar Proyecto</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="table-bordered">
+                    <table class="table-responsive" style="color:black;">
+                        <tr>
+                            <th>Nombre Proyecto</th>
+
+                            <td>
+                                <input style="width:200px" id="txtProyectName" type="text" />
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fas fa-window-close"></i> Cerrar</button>
+                <button type="button" class="btn btn-primary" onclick="createNewProyect();"><i class="fas fa-save"></i> Guardar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Editar Proyect-->
+<div class="modal fade" id="EditProyectModal">
+    <div class="modal-dialog" role="document" style="max-width:80%">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="titleEditProyectModal" style="color:black"></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="table-responsive">
+                    <table class="table" style="color:black; text-align:left;">
+                        <tr>
+                            <th>Nombre módulo</th>
+                            <td>
+                                <input style="width:200px" id="txtModuleName" type="text" />
+                            </td>
+                            <td>
+                                <input style="width:200px; display:none" id="txtIdProyect" type="text" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Descripción</th>
+                            <td>
+                                <input style="width:200px" id="txtProyectDescription" type="text" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Horas estimadas</th>
+                            <td>
+                                <input style="width:200px" id="txtHourEstimatedProyect" type="number" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Fecha Estimada fin por tarea</th>
+                            <td>
+                                <input style="width:200px" id="txtDateEstimated" type="date" />
+                            </td>
+                        </tr>
+
+                    </table>
+
+                </div>
+                <div class="card-body">
+                    <div>
+                        <button class="btn btn-primary" id="btnAddRow" onclick="addRowTable();"><i class="fas fa-arrow-circle-right"></i> Agregar Tarea</button>
+                    </div>
+                </div>
+                <div class="table-responsive">
+                    <table id="tableAddRow" class="table table-striped" style="color:black; text-align:left">
+
+                        <thead class="thead-light" style="text-align:left;">
+                            <tr>
+                                <th scope="col">Nombre módulo</th>
+                                <th scope="col">Descripción</th>
+                                <th scope="col">Horas estimadas</th>
+                                <th scope="col">Horas Consumidas</th>
+                                <th scope="col">Fecha Fin </th>
+                                <th scope="col">Control</th>
+                            </tr>
+                        </thead>
+
+                    </table>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fas fa-window-close"></i> Cerrar</button>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Editar detalle Proyect-->
+
+<div class="modal fade" id="EditDetailProyectModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="">Editar Detalle Proyecto</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="table-responsive">
+                    <table class="table" style="color: black; text-align:left; ">
+                        <tr>
+                            <th>Nombre Modulo</th>
+                            <td>
+                                <input style="width:200px" id="txtModuleNameD" type="text" />
+                            </td>
+                            <td>
+                                <input style="width:200px; display:none" id="txtIdProyectDetail" type="text" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Descripción</th>
+                            <td>
+                                <input style="width:200px" id="txtModuleDescription" type="text" />
+                            </td>
+                        </tr>
+                     
+                        <tr>
+                            <th>Horas Estimada</th>
+                            <td>
+                                <input style="width:200px" id="txtHourEstimated" type="text" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Fecha Fin Estimada</th>
+                            <td>
+                                <input style="width:200px" id="txtDateEstimatedEdit" type="date" />
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <th>Horas Consumidas</th>
+                            <td>
+                                <input style="width:200px" id="txtHourConsumed" type="number" />
+                            </td>
+                        </tr>
+
+                    </table>
+
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fas fa-window-close"></i> Cerrar</button>
+                <button type="button" class="btn btn-primary" onclick="editDetailproyect();"><i class="fas fa-save"></i> Guardar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!--End MODAL-->
+
+<link href="~/Scripts/AlertMessage/alertifyjs/css/alertify.css" rel="stylesheet" />
+<link href="~/Scripts/AlertMessage/alertifyjs/css/themes/default.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-3.4.0/jquery-3.4.0.min.js"></script>
+<script src="~/Scripts/bootstrap-4.2.1/js/bootstrap.min.js"></script>
+
+<script src="~/Scripts/fontawesome/all.js"></script>
+<script src="~/Scripts/AlertMessage/alertifyjs/alertify.js"></script>
+
+<!--DataTables-->
+<link href="~/Content/dataTables/DataTables-1.10.18/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="~/Content/dataTables/Buttons-1.5.6/buttons.dataTables.min.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-3.4.0/datatables/DataTables-1.10.18/jquery.dataTables.min.js"></script>
+<script src="~/Scripts/jquery-3.4.0/datatables/Buttons-1.5.6/dataTables.buttons.min.js"></script>
+<script src="~/Scripts/jquery-3.4.0/datatables/Buttons-1.5.6/jszip.min.js"></script>
+<script src="~/Scripts/jquery-3.4.0/datatables/Buttons-1.5.6/pdfmake.min.js"></script>
+<script src="~/Scripts/jquery-3.4.0/datatables/Buttons-1.5.6/vfs_fonts.js"></script>
+<script src="~/Scripts/jquery-3.4.0/datatables/Buttons-1.5.6/buttons.print.min.js"></script>
+<script src="~/Scripts/jquery-3.4.0/datatables/Buttons-1.5.6/buttons.html5.min.js"></script>
+
+<script src="~/Scripts/jquery-3.4.0/BlockUI/jquery.blockUI.min.js"></script>
+<script src="~/Scripts/Controller/ProyectAdminController.js"></script>
+<script src="~/Scripts/GlobalFunc/URLController.js"></script>

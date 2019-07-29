@@ -3,7 +3,7 @@ $(document).ready(function () {
 
     LoadProyect();
 
-   
+
 });
 
 var param = "";
@@ -20,8 +20,11 @@ function LoadProyect() {
                 data = JSON.parse(data.result);
                 $.each(data, function (key, value) {
 
-                    _html += '<tr><td>' + value.proyectName + '</td><td data-type="date" data-format-string="Do MMMM YYYY">' + value.dateBegin + '</td><td>' + value.dateEnd + '</td><td>' + '<button type="button" class="btn btn-primary" onclick="showModalEditProyect(' + value.id + ',' + `'${value.proyectName}'` + ');"><i class="fas fa-edit"></i> Editar </button>' + '</td>';
- 
+                    _html += '<tr><td>' + value.proyectName + '</td><td data-type="date" data-format-string="Do MMMM YYYY">' + value.dateBegin + '</td><td>' + value.dateEnd + '</td><td>' + value.email + '</td><td>' +'<button type="button" class="btn btn-primary" onclick="showModalEditProyect(' + value.id + ',' + `'${value.proyectName}'` + ');"><i class="fas fa-edit"></i> Editar </button>' + '</td><td>'
+
+                        + '<button class="btn btn-danger" id="btnDeleteProyect" type="button" onclick="deleteProyect(' + value.id + ');"><i class="fas fa-trash-alt"></i> Eliminar </button>' + '</td>';
+
+
                 });
 
                 _html += '</tbody >';
@@ -33,13 +36,13 @@ function LoadProyect() {
                     retrieve: true,
                     dom: 'Bfrtip',
                     buttons: [
-                        { "extend": 'excel', "text":    '<span data-toggle="tooltip" data-placement="top" title="Exportar Excel" class="fas fa-file-excel fa-2x"></span>' },
-                        { "extend": 'pdf', "text":      '<span data-toggle="tooltip" data-placement="top" title="Exportar PDF" class="fas fa-file-pdf fa-2x" ></span>' },
-                        { "extend": 'print', "text":    '<span data-toggle="tooltip" data-placement="top" title="Imprimir" class="fas fa-print fa-2x"></span>' }
+                        { "extend": 'excel', "text": '<span data-toggle="tooltip" data-placement="top" title="Exportar Excel" class="fas fa-file-excel fa-2x"></span>' },
+                        { "extend": 'pdf', "text": '<span data-toggle="tooltip" data-placement="top" title="Exportar PDF" class="fas fa-file-pdf fa-2x" ></span>' },
+                        { "extend": 'print', "text": '<span data-toggle="tooltip" data-placement="top" title="Imprimir" class="fas fa-print fa-2x"></span>' }
                     ]
-  
+
                 });
-              
+
             }
             else {
                 alertify.error(data.message);
@@ -50,18 +53,17 @@ function LoadProyect() {
         .fail(function (data) {
             alertify.error(data.statusText);
         })
-        .always(function(){
+        .always(function () {
             $.unblockUI();
         });
 
 }
 
-function showModalEditProyect(id, proyectName)
-{
+function showModalEditProyect(id, proyectName) {
 
     $('#EditProyectModal').modal('show');
     $('#txtIdProyect').val(id);
-    $('#titleEditProyectModal').text('Editar Proyecto: ' + proyectName );
+    $('#titleEditProyectModal').text('Editar Proyecto: ' + proyectName);
     LoadProyectDetail(id);
 
 }
@@ -82,7 +84,7 @@ function createNewProyect() {
     $.post(directories.controlSheet.CreateNewProyect, param)
         .done(function (data) {
             if (data.status !== "error") {
-               
+
                 alertify.success("Se creo el proyecto");
 
                 LoadProyect();
@@ -97,7 +99,7 @@ function createNewProyect() {
         .fail(function (data) {
             alertify.error(data.statusText);
         });
-    
+
 }
 
 function addRowTable() {
@@ -105,7 +107,7 @@ function addRowTable() {
     if ($('#txtModuleName').val() === "" || $('#txtProyectDescription').val() === ""
         || $('#txtHourEstimatedProyect').val() === "" || $('#txtDateEstimated').val() === "") {
 
-        alertify.alert("Crear detalle módulo","Todos los campos son obligatorios");
+        alertify.alert("Crear detalle módulo", "Todos los campos son obligatorios");
         return;
     }
 
@@ -156,7 +158,7 @@ function addRowTable() {
 
 function LoadProyectDetail(id) {
     $.blockUI();
-    param = {id: id};
+    param = { id: id };
 
     $.post(directories.controlSheet.LoadProyectDetail, param)
         .done(function (data) {
@@ -169,8 +171,8 @@ function LoadProyectDetail(id) {
 
                     _html += '<tr><td>' + value.moduleName + '</td><td>' + value.descriptions + '</td><td>' + value.hourEstimated + '</td><td>' + value.hourDedicated + '</td><td>' + value.dateEstimated + '</td><td>'
                         + '<button class="btn btn-primary" id="btnEditProyect" type="button" onclick="showModalEditProyectDetail(' + $('#txtIdProyect').val() + ',' + value.id + ');"><i class="fas fa-edit"></i> Editar Tarea </button>' + '</td>';
-                    
-                    
+
+
                 });
                 //id, moduleName, descriptions, hourEstimated, hourDedicated, dateCreate, dateEnd
                 _html += '</tbody >';
@@ -189,16 +191,16 @@ function LoadProyectDetail(id) {
         .fail(function (data) {
             alertify.error(data.statusText);
         })
-        .always(function(){
+        .always(function () {
             $.unblockUI();
         });
 
 }
 function showModalEditProyectDetail(idProyect, idProyectDetail) {
 
-   $('#EditDetailProyectModal').modal('show');
+    $('#EditDetailProyectModal').modal('show');
 
-   loadEditProyectDetail(idProyect, idProyectDetail);
+    loadEditProyectDetail(idProyect, idProyectDetail);
 
 
 }
@@ -215,6 +217,8 @@ function loadEditProyectDetail(idProyect, idProyectDetail) {
                 $('#txtIdProyectDetail').val(result[0]["id"]);
                 $('#txtModuleNameD').val(result[0]["moduleName"]);
                 $('#txtModuleDescription').val(result[0]["descriptions"]);
+                $('#txtHourEstimated').val(result[0]["hourEstimated"]);
+                $('#txtDateEstimatedEdit').val(result[0]["dateEstimated"]);
                 $('#txtHourConsumed').val(result[0]["hourDedicated"]);
 
             }
@@ -234,7 +238,7 @@ function editDetailproyect() {
 
     param = {
         idProyect: $('#txtIdProyect').val(), idProyectDetail: $('#txtIdProyectDetail').val(),
-        moduleName: $('#txtModuleNameD').val(), descriptions: $('#txtModuleDescription').val(), dateEstimated: null, hourEstimated: null, hourDedicated: $('#txtHourConsumed').val()
+        moduleName: $('#txtModuleNameD').val(), descriptions: $('#txtModuleDescription').val(), dateEstimated: $('#txtDateEstimatedEdit').val(), hourEstimated: $('#txtHourEstimated').val(), hourDedicated: $('#txtHourConsumed').val()
     };
 
     $.post(directories.controlSheet.EditProyectDetail, param)
@@ -267,14 +271,13 @@ function deleteProyect(idProyect) {
         , function () {
             alertify.error('Cancel')
         });
- 
 
 
-    alertify.confirm('Proyectos','Confirma Eliminar el Proyecto?', function ()
-    {
+
+    alertify.confirm('Proyectos', 'Confirma Eliminar el Proyecto?', function () {
 
         param = {
-            idProyect: idProyect 
+            idProyect: idProyect
         };
 
         $.post(directories.controlSheet.DeleteProyect, param)
@@ -289,7 +292,7 @@ function deleteProyect(idProyect) {
 
                         alertify.error("No se pudo eliminar el proyecto");
                     }
-                
+
 
                 }
                 else {
@@ -303,8 +306,8 @@ function deleteProyect(idProyect) {
             });
 
     }
-    , function () {
-        alertify.error('Se canceló la operación');
-    });
+        , function () {
+            alertify.error('Se canceló la operación');
+        });
 
 }

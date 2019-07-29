@@ -51,8 +51,8 @@
 
 <body style=" background: #000000; color: white">
 
-    <nav class="navbar navbar-expand-lg navbar-dark" style=" background: #494848; color: white">
-        <img class="navbar-brand" src="~/Image/Logo/LogoUC2.png" style="width:60px" />
+    <nav class="navbar navbar-expand-lg navbar-dark" style=" background: #1E1E1E; color: white">
+        <img class="navbar-brand" src="~/Image/Logo/ControlSheet2.png" style="width:80px" />
 
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -62,34 +62,66 @@
             <div id="menu" class="container">
                 <ul class="navbar-nav mr-auto">
                     <li id="liTabled" class="col-sm" style="border:2px solid silver; text-align:left">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" >Tableros</a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Tableros</a>
                         <ul class="dropdown-menu">
 
-                            <li id="liProyect" class="nav-item rounded col-sm" style="border:2px solid silver; text-align:center">
+                            <li id="liProyect" class="nav-item rounded col-sm" style="border:2px solid silver; text-align:left">
                                 <a class="nav-link" href="@Url.Action("Proyect","ControlSheet")" style="color:dodgerblue; font-family:Georgia">Proyectos</a>
                             </li>
-                            @if ((int)HttpContext.Current.Session["idUserProfile"] == 2)
+                            @if ((int)HttpContext.Current.Session["idUserProfile"] == 1)
                             {
-                                <li id="liProyect" class="nav-item rounded col-sm" style="border:2px solid silver; text-align:center">
-                                    <a class="nav-link" href="@Url.Action("Proyect","ControlSheet")" style="color:dodgerblue; font-family:Georgia">Proyectos</a>
+                                <li id="liProyect" class="nav-item rounded col-sm" style="border:2px solid silver; text-align:left">
+                                    <a class="nav-link" href="@Url.Action("ProyectAdmin","ControlSheet")" style="color:dodgerblue; font-family:Georgia">Proyectos Admin</a>
                                 </li>
-                                
+
                             }
                         </ul>
                     </li>
-                    
-                    <li id="liReport" class="nav-item rounded col-sm" style="border:2px solid silver; text-align:left">
-                        <a class="nav-link" href="@Url.Action("Report","ControlSheet")" style="color:dodgerblue; font-family:Georgia">Reportes</a>
+
+                    <li id="liReport" class="col-sm" style="border:2px solid silver; text-align:left">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Reportes</a>
+                        <ul class="dropdown-menu">
+
+                            <li id="liReportPrincipal" style="border:2px solid silver;text-align:left">
+                                <a class="nav-link" href="@Url.Action("ReportPrincipal","Report")" style="color:dodgerblue; font-family:Georgia">Principal</a>
+                            </li>
+
+                            <li id="liReportSumHour" style="border:2px solid silver;text-align:left">
+                                <a class="nav-link" href="@Url.Action("ReportSumHour","Report")" style="color:dodgerblue; font-family:Georgia">Consumo de horas</a>
+                            </li>
+
+
+                        </ul>
                     </li>
 
-                    <li id="liSalir" class="nav-item rounded col-sm" style="border:2px solid silver; text-align:left">
-                        <a class="nav-link" href="@Url.Action("LogOut","ControlSheet")" style="color:dodgerblue; font-family:Georgia">Salir de ControlSheet</a>
+                    <li id="liConfig" class="nav-item rounded col-sm" style="border:2px solid silver; text-align:left">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Configuración</a>
+                        <ul class="dropdown-menu">
+
+                            <li id="liProfiler" style="border:2px solid silver;text-align:left">
+                                <a class="nav-link" href="@Url.Action("","")" style="color:dodgerblue; font-family:Georgia">Perfil</a>
+                            </li>
+
+                            <li id="liUserAdmin" style="border:2px solid silver;text-align:left">
+                                <a class="nav-link" href="@Url.Action("","")" style="color:dodgerblue; font-family:Georgia">Administración Usuarios</a>
+                            </li>
+                            <li id="liAddUser" style="border:2px solid silver;text-align:left">
+                                <a class="nav-link" href="@Url.Action("","")" style="color:dodgerblue; font-family:Georgia">Agregar Usuario</a>
+                            </li>
+
+
+                        </ul>
+                       
                     </li>
-          
+
 
                 </ul>
+
             </div>
         </div>
+
+        <button type="button" class="btn btn-info" onclick="location.href='@Url.Action("LogOut","ControlSheet")'"><i class="fas fa-sign-out-alt"></i> Salir</button>
+
     </nav>
     <div class="preloader">
         <div class="lds-ripple">

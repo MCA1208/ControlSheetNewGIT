@@ -13,16 +13,17 @@ namespace ControlSheet.Service
         DataTable dt = new DataTable();
         SqlConnection con;
         SqlCommand comando;
-        SqlTransaction transaction;
         UserModel.SPName SPName = new UserModel.SPName();
         readonly ConnectionModel Connection = new ConnectionModel();
 
-        public DataTable GetLoadProyectActive()
+        public DataTable GetLoadProyectActive(int idCompany, int? idUser)
         {
             con = new SqlConnection(Connection.stringConn);
             comando = new SqlCommand(SPName.spGetLoadProyectActive, con);
 
             comando.CommandType = System.Data.CommandType.StoredProcedure;
+            comando.Parameters.AddWithValue("@idCompany", idCompany);
+            comando.Parameters.AddWithValue("@iduser", idUser);
 
             SqlDataAdapter da = new SqlDataAdapter(comando);
 
@@ -32,14 +33,15 @@ namespace ControlSheet.Service
 
         }
 
-        public DataTable CreateNewProyect(string proyectName, int userId)
+        public DataTable CreateNewProyect(string proyectName, int iduser,int idCompany)
         {
             con = new SqlConnection(Connection.stringConn);
             comando = new SqlCommand(SPName.spCreateNewProyect, con);
 
             comando.CommandType = System.Data.CommandType.StoredProcedure;
             comando.Parameters.AddWithValue("@proyectName", proyectName);
-            comando.Parameters.AddWithValue("@userId", userId);
+            comando.Parameters.AddWithValue("@idUser", iduser);
+            comando.Parameters.AddWithValue("@idCompany", idCompany);
             SqlDataAdapter da = new SqlDataAdapter(comando);
 
             da.Fill(dt);

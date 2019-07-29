@@ -21,6 +21,11 @@ namespace ControlSheet.Models
             public string spEditProyectDetail = "spEditProyectDetail";
             public string spDeleteProyect = "spDeleteProyect";
 
+            //Report
+            public string spReportPrincipal = "spReportPrincipal";
+            public string spReportSumHour = "spReportSumHour";
+
+
         }
         #endregion
     }

@@ -15,6 +15,10 @@ namespace ControlSheet.Controllers
 
         UserService Userservice = new UserService();
         SendMailService MailService = new SendMailService();
+        Encrypting ServiceEncryp = new Encrypting();
+        public string EncryptPass = null;
+        public string DesCryptPass = null;
+
 
         // GET: Login
         public ActionResult Index()
@@ -40,8 +44,9 @@ namespace ControlSheet.Controllers
 
             try
             {
+                EncryptPass = ServiceEncryp.Encryp(pass);
 
-                DataTable dt =  Userservice.spGetUse(user, pass);
+                DataTable dt =  Userservice.spGetUse(user, EncryptPass);
 
                 if(dt.Rows.Count == 0)
                 {
@@ -107,7 +112,9 @@ namespace ControlSheet.Controllers
 
                 }
 
-                Userservice.CreateUserAdmin(nameCompany, eMail, pass);
+                EncryptPass = ServiceEncryp.Encryp(pass);
+
+                Userservice.CreateUserAdmin(nameCompany, eMail, EncryptPass);
 
             }
             catch (Exception ex)
