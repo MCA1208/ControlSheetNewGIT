@@ -61,7 +61,7 @@
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#CreateUserModal"><i class="fas fa-user-plus"></i> Registrarse </button>
             </div>
             <div class="col-md-4">
-                <button class="btn btn-secondary" onclick="showMessage();"><i class="fas fa-unlock"></i> ¿Olvido su contraseña? </button>
+                <button class="btn btn-secondary"  data-toggle="modal" data-target="#RocoveryPassModal"  onclick="showMessage();"><i class="fas fa-unlock"></i> ¿Olvido su contraseña? </button>
 
             </div>
             <div class="col-md-4">
@@ -123,7 +123,39 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fas fa-window-close"></i> Cerrar</button>
-                <button type="button" class="btn btn-primary" onclick="createUserAdmin();"><i class="fas fa-save"></i> Guardar</button>
+                <button type="button" class="btn btn-primary" onclick="createUserAdmin();"><i class="fas fa-user-alt"></i> Crear</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="RocoveryPassModal">
+    <div class="modal-dialog" >
+        <div class="modal-content" style="color:black; font-family:Lucida Console">
+            <div class="modal-header">
+                <h5 class="modal-title" id="" >ControlSheet - Recuperar Contraseña</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="table-responsive">
+                <table class="table" style="color:black">
+                    <tr>
+                        <th>Ingresar EMail</th>
+                        <td>
+                            <input style="width:300px" id="txtEmailRecoveryPass" type="text" />
+                        </td>
+
+                    </tr>
+                </table>
+                <div class="card-body">
+                    <label>Se enviara la nueva contraseña por mail</label>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fas fa-window-close"></i> Cerrar</button>
+                <button type="button" class="btn btn-primary" onclick="SendPasswordMail();"><i class="fas fa-paper-plane"></i> Enviar</button>
             </div>
         </div>
     </div>

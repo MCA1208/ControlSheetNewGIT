@@ -3,7 +3,8 @@
     home: {
         loginUser: 'LoginUser',
         createUserAdmin: 'CreateUserAdmin',
-        LoadProyectActive: 'LoadProyectActive'
+        LoadProyectActive: 'LoadProyectActive',
+        SendRecoveryPassword: 'SendRecoveryPassword'
     },
 
     controlSheet: {

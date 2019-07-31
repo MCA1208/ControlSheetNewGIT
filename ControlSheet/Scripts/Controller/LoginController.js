@@ -92,3 +92,31 @@ function createUserAdmin() {
 
 }
 
+function SendPasswordMail() {
+
+    if ($('#txtEmailRecoveryPass').val() === "") {
+        alertify.alert("Usuario", "Es requerido el campo Email", "");
+        return;
+    }
+
+    data = {
+        EMail: $('#txtEmailRecoveryPass').val()
+    };
+
+    $.post(directories.home.SendRecoveryPassword, data)
+        .done(function (data) {
+
+            if (data.status !== "error") {
+                alertify.success('Se creo con exito el usuario Administrador');
+            }
+            else {
+                alertify.error(data.message);
+            }
+
+        })
+        .fail(function (data) {
+
+            alertify.error(data.statusText);
+        });
+
+}

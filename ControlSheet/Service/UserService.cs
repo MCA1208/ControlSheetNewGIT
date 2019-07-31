@@ -46,14 +46,13 @@ namespace ControlSheet.Service
             }
         }
 
-        public DataTable spGetUse(string user, string pass)
+        public DataTable spGetUse(string user)
         {
             con = new SqlConnection(Connection.stringConn);
             comando = new SqlCommand(SPName.spGetUser, con);
 
             comando.CommandType = System.Data.CommandType.StoredProcedure;
             comando.Parameters.AddWithValue("@userName", user);
-            comando.Parameters.AddWithValue("@pass", pass);
 
             SqlDataAdapter da = new SqlDataAdapter(comando);
 
@@ -75,6 +74,24 @@ namespace ControlSheet.Service
             da.Fill(dt);
 
             return dt;
+
+        }
+
+        public DataTable SpRecoveryPassword(string Email, string Password)
+        {
+            con = new SqlConnection(Connection.stringConn);
+            comando = new SqlCommand(SPName.spRecoveryPassword, con);
+
+            comando.CommandType = System.Data.CommandType.StoredProcedure;
+            comando.Parameters.AddWithValue("@Email", Email);
+            comando.Parameters.AddWithValue("@Password", Password);
+
+            SqlDataAdapter da = new SqlDataAdapter(comando);
+
+            da.Fill(dt);
+
+            return dt;
+
 
         }
 

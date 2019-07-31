@@ -9,17 +9,17 @@ namespace ControlSheet.Service
 {
     public class SendMailService
     {
-        public void sendMail(string email)
+        public void SendMail(string email, string title,string Message)
         {
-            IsEmail("milton.amado10@gmail.com");
+            //IsEmail("milton.amado10@gmail.com");
 
             MailMessage mail = new MailMessage();
             SmtpClient SmtpServer = new SmtpClient();
 
             mail.From = new MailAddress("urbanchampion10@gmail.com");
-            mail.To.Add("milton.amado10@gmail.com");
-            mail.Subject = "Test Mail";
-            mail.Body = "Esto es una prueba para validación de email";
+            mail.To.Add(email);
+            mail.Subject = title;
+            mail.Body = "Nueva Contraseña: " + Message;
 
             SmtpServer.Port = 587;
             SmtpServer.Host = "smtp.gmail.com";
