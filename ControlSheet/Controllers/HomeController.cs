@@ -168,7 +168,7 @@ namespace ControlSheet.Controllers
 
                     if (recPass.Rows[0][0].ToString() == "OK")
                     {
-                        MailService.SendMail(EMail,"Recuperación de contraseña", EncryptPass);
+                        MailService.SendMail(EMail,"Recuperación de contraseña","Nueva Contraseña: " + EncryptPass);
                     }
                     else
                     {

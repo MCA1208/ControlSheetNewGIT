@@ -145,6 +145,7 @@
     <Compile Include="Controllers\ControlSheetController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ReportController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -223,6 +224,7 @@
     <Content Include="Scripts\Controller\ProyectController.js" />
     <Content Include="Scripts\Controller\ReportSumHourController.js" />
     <Content Include="Scripts\Controller\ReportPrincipalController.js" />
+    <Content Include="Scripts\Controller\UserController.js" />
     <Content Include="Scripts\fontawesome\all.js" />
     <Content Include="Scripts\GlobalFunc\General.js" />
     <Content Include="Scripts\GlobalFunc\URLController.js" />
@@ -281,6 +283,8 @@
     <Content Include="Views\Report\ReportSumHour.cshtml" />
     <Content Include="Views\Report\ReportPrincipal.cshtml" />
     <Content Include="Views\ControlSheet\ProyectAdmin.cshtml" />
+    <Content Include="Views\User\Profiler.cshtml" />
+    <Content Include="Views\User\CreateUserOperator.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

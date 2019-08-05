@@ -19,7 +19,7 @@ namespace ControlSheet.Service
             mail.From = new MailAddress("urbanchampion10@gmail.com");
             mail.To.Add(email);
             mail.Subject = title;
-            mail.Body = "Nueva Contraseña: " + Message;
+            mail.Body = Message;
 
             SmtpServer.Port = 587;
             SmtpServer.Host = "smtp.gmail.com";
@@ -43,6 +43,8 @@ namespace ControlSheet.Service
             else
                 return (false);
         }
+
+
 
     }
 }

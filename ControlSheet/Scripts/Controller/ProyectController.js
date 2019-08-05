@@ -20,7 +20,7 @@ function LoadProyect() {
                 data = JSON.parse(data.result);
                 $.each(data, function (key, value) {
 
-                    _html += '<tr><td>' + value.proyectName + '</td><td data-type="date" data-format-string="Do MMMM YYYY">' + value.dateBegin + '</td><td>' + value.dateEnd + '</td><td>' + '<button type="button" class="btn btn-primary" onclick="showModalEditProyect(' + value.id + ',' + `'${value.proyectName}'` + ');"><i class="fas fa-edit"></i> Editar </button>' + '</td>';
+                    _html += '<tr><td>' + value.proyectName + '</td><td>' + value.typeRequirement + '</td><td data-type="date">' + value.dateBegin + '</td><td>' + value.dateEnd + '</td><td>' + '<button type="button" class="btn btn-primary" onclick="showModalEditProyect(' + value.id + ',' + `'${value.proyectName}'` + ');"><i class="fas fa-edit"></i> Editar </button>' + '</td>';
  
                 });
 
@@ -68,15 +68,16 @@ function showModalEditProyect(id, proyectName)
 
 function createNewProyect() {
 
-    if ($('#txtProyectName').val() === "") {
+    if ($('#txtProyectName').val() === "" || $('#TipoReq').val() ==="") {
 
-        alertify.alert("Ingrese el Nombre del Proyecto");
+        alertify.alert("Todos los campos son requeridos");
 
         return;
     }
 
     param = {
-        proyectName: $('#txtProyectName').val()
+        proyectName: $('#txtProyectName').val(),
+        tipoReq: $('#TipoReq').val()
     };
 
     $.post(directories.controlSheet.CreateNewProyect, param)

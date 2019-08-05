@@ -16,22 +16,30 @@ namespace ControlSheet.Controllers
         ResultModel data = new ResultModel();
         Service.ProyectService ProyectService = new Service.ProyectService();
         DataTable dt = null;
-        public int  idUser = (int)System.Web.HttpContext.Current.Session["idUser"];
-        public int idCompany = (int)System.Web.HttpContext.Current.Session["idcompany"];
+        public int  idUser = 0;
+        public int idCompany = 0;
 
         public ActionResult Index()
         {
-           
+
             return View();
         }
         public ActionResult Proyect()
         {
-            
+            if (System.Web.HttpContext.Current.Session["idUser"] == null)
+            {
+                return RedirectToAction("index", "Home");
+            }
+
             return View();
         }
 
         public ActionResult ProyectAdmin()
         {
+            if (System.Web.HttpContext.Current.Session["idUser"] == null)
+            {
+                return RedirectToAction("index", "Home");
+            }
             return View();
         }
 
@@ -60,6 +68,9 @@ namespace ControlSheet.Controllers
         {
             try
             {
+                idUser = (int)System.Web.HttpContext.Current.Session["idUser"];
+                idCompany = (int)System.Web.HttpContext.Current.Session["idcompany"];
+
                 int? idUs = null;
                 var idP = (int)System.Web.HttpContext.Current.Session["idUserProfile"];
 
@@ -84,12 +95,14 @@ namespace ControlSheet.Controllers
             return Json(data, JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult CreateNewProyect(string proyectName)
+        public JsonResult CreateNewProyect(string proyectName, int tipoReq)
         {
             try
             {
+                idUser = (int)System.Web.HttpContext.Current.Session["idUser"];
+                idCompany = (int)System.Web.HttpContext.Current.Session["idcompany"];
 
-                dt = ProyectService.CreateNewProyect(proyectName, idUser, idCompany);
+                dt = ProyectService.CreateNewProyect(proyectName, tipoReq, idUser, idCompany);
                 data.result = JsonConvert.SerializeObject(dt, Formatting.Indented);
             }
             catch (Exception ex)

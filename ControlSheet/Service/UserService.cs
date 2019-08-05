@@ -95,5 +95,52 @@ namespace ControlSheet.Service
 
         }
 
+        public DataTable SpCreateUserOperator(string Email, int  idCompany, string pass)
+        {
+            con = new SqlConnection(Connection.stringConn);
+            comando = new SqlCommand(SPName.spCreateUserOperator, con);
+
+            comando.CommandType = System.Data.CommandType.StoredProcedure;
+            comando.Parameters.AddWithValue("@Email", Email);
+            comando.Parameters.AddWithValue("@idCompany", idCompany);
+            comando.Parameters.AddWithValue("@pass", pass);
+
+            SqlDataAdapter da = new SqlDataAdapter(comando);
+
+            da.Fill(dt);
+
+            return dt;
+
+
+        }
+
+        public string GenerateCode()
+        {
+            Guid miGuid = Guid.NewGuid();
+            string _token = Convert.ToBase64String(miGuid.ToByteArray());
+            _token = _token.Replace("=", "").Replace("+", "");
+            _token = _token.Substring(0, 4);
+
+            return _token;
+        }
+        public DataTable SpChangePassword(int idUser, string pass)
+        {
+            con = new SqlConnection(Connection.stringConn);
+            comando = new SqlCommand(SPName.SpChangePassword, con);
+
+            comando.CommandType = System.Data.CommandType.StoredProcedure;
+            comando.Parameters.AddWithValue("@idUser", idUser);
+            comando.Parameters.AddWithValue("@pass", pass);
+
+            SqlDataAdapter da = new SqlDataAdapter(comando);
+
+            da.Fill(dt);
+
+            return dt;
+
+
+        }
+
+
     }
 }

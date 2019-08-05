@@ -99,24 +99,32 @@
                         <ul class="dropdown-menu">
 
                             <li id="liProfiler" style="border:2px solid silver;text-align:left">
-                                <a class="nav-link" href="@Url.Action("","")" style="color:dodgerblue; font-family:Georgia">Perfil</a>
+                                <a class="nav-link" href="@Url.Action("Profiler","User")" style="color:dodgerblue; font-family:Georgia">Perfil</a>
                             </li>
 
                             <li id="liUserAdmin" style="border:2px solid silver;text-align:left">
-                                <a class="nav-link" href="@Url.Action("","")" style="color:dodgerblue; font-family:Georgia">Administración Usuarios</a>
+                                <a class="nav-link" href="@Url.Action("CreateUserOperator","User")" style="color:dodgerblue; font-family:Georgia">Administración Usuarios</a>
                             </li>
 
                         </ul>
-                       
+
                     </li>
 
 
                 </ul>
 
             </div>
+
+        </div>
+        <div class="card-columns" style="width:150px">
+            <label>@System.Web.HttpContext.Current.Session["email"]</label>
         </div>
 
+
+
         <button type="button" class="btn btn-info" onclick="location.href='@Url.Action("LogOut","ControlSheet")'"><i class="fas fa-sign-out-alt"></i> Salir</button>
+
+
 
     </nav>
     <div class="preloader">

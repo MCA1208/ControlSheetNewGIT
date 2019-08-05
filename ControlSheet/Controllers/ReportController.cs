@@ -14,17 +14,25 @@ namespace ControlSheet.Controllers
         ResultModel data = new ResultModel();
         Service.ReportsService ReportService = new Service.ReportsService();
         DataTable dt = null;
-        public int? idUser = (int)System.Web.HttpContext.Current.Session["idUser"];
-        public int idCompany = (int)System.Web.HttpContext.Current.Session["idcompany"];
-        public int idUserProfile = (int)System.Web.HttpContext.Current.Session["idUserProfile"];
+        public int? idUser = 0;
+        public int idCompany = 0;
+        public int idUserProfile = 0;
         // GET: Report
         public ActionResult Index()
         {
+            if (System.Web.HttpContext.Current.Session["idUser"] == null)
+            {
+                return RedirectToAction("index", "Home");
+            }
             return View();
         }
 
         public ActionResult ReportPrincipal()
         {
+            if (System.Web.HttpContext.Current.Session["idUser"] == null)
+            {
+                return RedirectToAction("index", "Home");
+            }
             return View();
         }
         public ActionResult ReportSumHour()
@@ -36,6 +44,10 @@ namespace ControlSheet.Controllers
         {
             try
             {
+                idUser = (int)System.Web.HttpContext.Current.Session["idUser"];
+                idCompany = (int)System.Web.HttpContext.Current.Session["idcompany"];
+                idUserProfile = (int)System.Web.HttpContext.Current.Session["idUserProfile"];
+
                 if (idUserProfile == 1)
                 {
                     idUser = null;
@@ -60,6 +72,10 @@ namespace ControlSheet.Controllers
         {
             try
             {
+                idUser = (int)System.Web.HttpContext.Current.Session["idUser"];
+                idCompany = (int)System.Web.HttpContext.Current.Session["idcompany"];
+                idUserProfile = (int)System.Web.HttpContext.Current.Session["idUserProfile"];
+
                 if (idUserProfile == 1)
                 {
                     idUser = null;

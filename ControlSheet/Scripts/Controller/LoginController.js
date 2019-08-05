@@ -20,7 +20,8 @@ function Login() {
     }
 
     var data = {
-        user: $('#txtUser').val(), pass: $('#txtPass').val()
+        user: $('#txtUser').val(),
+        pass: $('#txtPass').val()
 
     };
 

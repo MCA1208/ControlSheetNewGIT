@@ -30,6 +30,7 @@
                 <thead class="thead-light">
                     <tr>
                         <th scope="col">Nombre Proyecto</th>
+                        <th scope="col">Tipo Requerimiento</th>
                         <th scope="col">Fecha Creación</th>
                         <th scope="col">Fecha Fin</th>
                         <th scope="col">Editar</th>
@@ -56,13 +57,24 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <div class="table-bordered">
-                        <table class="table-responsive" style="color:black;">
+                    <div class="table-responsive">
+                        <table class="table" style="color:black; text-align:left">
                             <tr>
                                 <th>Nombre Proyecto</th>
-
                                 <td>
                                     <input style="width:200px" id="txtProyectName" type="text" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Tipo Requerimiento</th>
+                                <td>
+                                    <select name="TipoReq" id="TipoReq">
+                                        <option value="" disabled selected>Seleccione el estado...</option>
+                                        <option value="1">Desarrollo</option>
+                                        <option value="2">Incidencia</option>
+                                        <option value="3">Mejora</option>
+                                        <option value="4">Administración</option>
+                                    </select>
                                 </td>
                             </tr>
                         </table>

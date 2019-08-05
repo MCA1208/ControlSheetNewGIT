@@ -20,6 +20,11 @@
     reports: {
         LoadReportPrincipal: 'LoadReportPrincipal',
         LoadReportSumHour: 'LoadReportSumHour'
+    },
+
+    user: {
+        CreateNewUserOperator: 'CreateNewUserOperator',
+        ChangePassword: 'ChangePassword'
     }
 
 

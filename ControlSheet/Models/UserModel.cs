@@ -26,6 +26,8 @@ namespace ControlSheet.Models
             public string spReportSumHour = "spReportSumHour";
             //User
             public string spRecoveryPassword = "spRecoveryPassword";
+            public string spCreateUserOperator = "spCreateUserOperator";
+            public string SpChangePassword = "SpChangePassword";
 
 
 

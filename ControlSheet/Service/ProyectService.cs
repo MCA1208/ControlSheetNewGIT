@@ -33,13 +33,14 @@ namespace ControlSheet.Service
 
         }
 
-        public DataTable CreateNewProyect(string proyectName, int iduser,int idCompany)
+        public DataTable CreateNewProyect(string proyectName,int tipoReq, int iduser,int idCompany)
         {
             con = new SqlConnection(Connection.stringConn);
             comando = new SqlCommand(SPName.spCreateNewProyect, con);
 
             comando.CommandType = System.Data.CommandType.StoredProcedure;
             comando.Parameters.AddWithValue("@proyectName", proyectName);
+            comando.Parameters.AddWithValue("@tipoReq", tipoReq);
             comando.Parameters.AddWithValue("@idUser", iduser);
             comando.Parameters.AddWithValue("@idCompany", idCompany);
             SqlDataAdapter da = new SqlDataAdapter(comando);
