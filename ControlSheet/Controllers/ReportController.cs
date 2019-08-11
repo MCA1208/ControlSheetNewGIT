@@ -40,6 +40,11 @@ namespace ControlSheet.Controllers
             return View();
         }
 
+        public ActionResult ReportGraphicByType()
+        {
+            return View();
+        }
+
         public JsonResult LoadReportPrincipal(DateTime? dateBegin, DateTime? dateEnd, int? Estado)
         {
             try
@@ -96,6 +101,34 @@ namespace ControlSheet.Controllers
 
         }
 
+
+        public JsonResult LoadReportGraphicByType(DateTime? dateBegin, DateTime? dateEnd, int? Estado)
+        {
+            try
+            {
+                idUser = (int)System.Web.HttpContext.Current.Session["idUser"];
+                idCompany = (int)System.Web.HttpContext.Current.Session["idcompany"];
+                idUserProfile = (int)System.Web.HttpContext.Current.Session["idUserProfile"];
+
+                if (idUserProfile == 1)
+                {
+                    idUser = null;
+                }
+
+                dt = ReportService.GetLoadReportGraphicType(dateBegin, dateEnd, Estado, idCompany, idUser);
+                data.result = JsonConvert.SerializeObject(dt, Formatting.Indented);
+            }
+            catch (Exception ex)
+            {
+                data.message = ex.Message;
+                data.status = "error";
+                return Json(data, JsonRequestBehavior.AllowGet);
+
+            }
+
+            return Json(data, JsonRequestBehavior.AllowGet);
+
+        }
 
     }
 }

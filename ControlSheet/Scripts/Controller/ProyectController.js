@@ -220,7 +220,7 @@ function loadEditProyectDetail(idProyect, idProyectDetail) {
 
             }
             else {
-                alertify.error(data.message);
+                alertify.error(data.message); tableAddRow
 
             }
 

@@ -19,12 +19,15 @@
 
     reports: {
         LoadReportPrincipal: 'LoadReportPrincipal',
-        LoadReportSumHour: 'LoadReportSumHour'
+        LoadReportSumHour: 'LoadReportSumHour',
+        LoadReportGraphicByType: 'LoadReportGraphicByType'
     },
 
     user: {
         CreateNewUserOperator: 'CreateNewUserOperator',
-        ChangePassword: 'ChangePassword'
+        ChangePassword: 'ChangePassword',
+        LoadUser: 'LoadUser',
+        DeleteUser: 'DeleteUser'
     }
 
 

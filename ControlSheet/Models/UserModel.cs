@@ -24,10 +24,14 @@ namespace ControlSheet.Models
             //Report
             public string spReportPrincipal = "spReportPrincipal";
             public string spReportSumHour = "spReportSumHour";
+            public string spReportGraphicByType = "spReportGraphicByType";
             //User
             public string spRecoveryPassword = "spRecoveryPassword";
             public string spCreateUserOperator = "spCreateUserOperator";
             public string SpChangePassword = "SpChangePassword";
+            public string spCountLicense = "spCountLicense";
+            public string spDeleteUser = "spDeleteUser";
+            public string spGetUserForIdCompany = "spGetUserForIdCompany";
 
 
 

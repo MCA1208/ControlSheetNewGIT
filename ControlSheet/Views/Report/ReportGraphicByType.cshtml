@@ -1,67 +1,64 @@
-﻿
-@{
+﻿@{
     Layout = "~/Views/Shared/_LayoutTimeSheet.cshtml";
 }
+
+
+
 <script type="text/javascript">
 
     $(document).ready(function () {
 
-        $('#liConfig').css('background-color', '#000000');
+        $('#liReport').css('background-color', '#000000');
 
     });
 
 </script>
 
-
 <div class="card">
-    <div class="card-body" style="color:black; background-color:aqua; font-family:fantasy; font-size:xx-large">
-        Crear Usuarios al Grupo de Actividad
+    <div class="card-body" style="color:black; background-color:seagreen; font-family:fantasy; font-size:xx-large">
+        Grafico Por Tipo de Requerimiento
     </div>
 </div>
-<div class="card" style="color:white;background-color:#212F3C; ">
+
+<div class="row">
+    <div class="col-md-4 card-body">
+        <label>Fecha Desde: </label>
+        <input id="dateBegin" type="date" name="Fecha desde" />
+    </div>
+    <div class="col-md-4 card-body">
+        <label>Fecha Hasta: </label>
+        <input id="dateEnd" type="date" name="Fecha hasta" />
+    </div>
+    <div class="col-md-4">
+        <div class="card-body">
+            <label>Estado: </label>
+            <select name="Estado" id="Estado">
+                <option value="" disabled selected>Seleccione el estado...</option>
+                <option value="1">Activos</option>
+                <option value="0">Finalizados</option>
+                <option value="">Todos</option>
+            </select>
+        </div>
+    </div>
+</div>
+<div class="row">
     <div class="card-body">
-        <div class="table-responsive">
-            <table class="table" style="text-align:left;  border: 1px solid black;">
-                <tr>
-                    <th>EMail</th>
-                    <td>
-                        <input style="width:200px" id="txtEmail" type="text" />
-                    </td>
-                </tr>
-            </table>
-
-        </div>
-        <div class="card-body">
-            <button type="button" class="btn btn-primary" onclick="createNewUserOperator();"><i class="fas fa-users"></i> Crear</button>
-        </div>
-        <div class="card-body">
-            <h5 class="modal-title">El usuario recibira la confirmación y contraseña por email  </h5>
-        </div>
-
+        <button type="button" class="btn btn-primary" onclick="GetGraphicByType();"><i class="fas fa-search"></i> Buscar</button>
     </div>
-
 </div>
-<div class="card-body">
-    <div class="table-responsive">
-        <table id="tblUser" class="table" style="color: black; text-align:left; ">
-            <thead class="thead-light">
-                <tr>
-                    <th scope="col">Usuario</th>
-                    <th scope="col">Fecha Creación</th>
-                    <th scope="col">Eliminar</th>
-
-                </tr>
-            </thead>
-
-        </table>
-    </div>
-
+<div class="table-responsive">
+    <canvas id="oilChart" width="600" height="400"></canvas>
 </div>
+
+
+
 
 <link href="~/Scripts/AlertMessage/alertifyjs/css/alertify.css" rel="stylesheet" />
 <link href="~/Scripts/AlertMessage/alertifyjs/css/themes/default.css" rel="stylesheet" />
 <script src="~/Scripts/jquery-3.4.0/jquery-3.4.0.min.js"></script>
 <script src="~/Scripts/bootstrap-4.2.1/js/bootstrap.min.js"></script>
+<script src="~/Scripts/chart/chart.js"></script>
+
 
 <script src="~/Scripts/fontawesome/all.js"></script>
 <script src="~/Scripts/AlertMessage/alertifyjs/alertify.js"></script>
@@ -78,6 +75,5 @@
 <script src="~/Scripts/jquery-3.4.0/datatables/Buttons-1.5.6/buttons.html5.min.js"></script>
 
 <script src="~/Scripts/jquery-3.4.0/BlockUI/jquery.blockUI.min.js"></script>
-<script src="~/Scripts/Controller/UserController.js"></script>
+<script src="~/Scripts/Controller/ReportGraphicByTypeController.js"></script>
 <script src="~/Scripts/GlobalFunc/URLController.js"></script>
-

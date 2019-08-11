@@ -56,6 +56,26 @@ namespace ControlSheet.Service
 
         }
 
+        public DataTable GetLoadReportGraphicType(DateTime? dateBegin, DateTime? dateEnd, int? Estado, int? idCompany, int? idUser)
+        {
+            con = new SqlConnection(Connection.stringConn);
+            comando = new SqlCommand(SPName.spReportGraphicByType, con);
+
+            comando.CommandType = System.Data.CommandType.StoredProcedure;
+            comando.Parameters.AddWithValue("@dateBegin", dateBegin);
+            comando.Parameters.AddWithValue("@dateEnd", dateEnd);
+            comando.Parameters.AddWithValue("@active", Estado);
+            comando.Parameters.AddWithValue("@idCompany", idCompany);
+            comando.Parameters.AddWithValue("@idUser", idUser);
+
+            SqlDataAdapter da = new SqlDataAdapter(comando);
+
+            da.Fill(dt);
+
+            return dt;
+
+        }
+
 
     }
 }

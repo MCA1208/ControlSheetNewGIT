@@ -219,9 +219,11 @@
     <Content Include="Scripts\bootstrap-4.2.1\js\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap-4.2.1\js\bootstrap.js" />
     <Content Include="Scripts\bootstrap-4.2.1\js\bootstrap.min.js" />
+    <Content Include="Scripts\chart\chart.js" />
     <Content Include="Scripts\Controller\LoginController.js" />
     <Content Include="Scripts\Controller\ProyectAdminController.js" />
     <Content Include="Scripts\Controller\ProyectController.js" />
+    <Content Include="Scripts\Controller\ReportGraphicByTypeController.js" />
     <Content Include="Scripts\Controller\ReportSumHourController.js" />
     <Content Include="Scripts\Controller\ReportPrincipalController.js" />
     <Content Include="Scripts\Controller\UserController.js" />
@@ -277,7 +279,6 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\ControlSheet.cshtml" />
     <Content Include="Views\ControlSheet\Proyect.cshtml" />
-    <Content Include="Views\Report\PrincipalReport.cshtml" />
     <Content Include="Views\Shared\_LayoutMaster.cshtml" />
     <Content Include="Views\Shared\_LayoutTimeSheet.cshtml" />
     <Content Include="Views\Report\ReportSumHour.cshtml" />
@@ -285,6 +286,7 @@
     <Content Include="Views\ControlSheet\ProyectAdmin.cshtml" />
     <Content Include="Views\User\Profiler.cshtml" />
     <Content Include="Views\User\CreateUserOperator.cshtml" />
+    <Content Include="Views\Report\ReportGraphicByType.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

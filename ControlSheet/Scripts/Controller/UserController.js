@@ -1,4 +1,12 @@
 ﻿
+
+$(document).ready(function () {
+
+    LoadUser();
+
+});
+
+
 var param = "";
 
 
@@ -20,6 +28,7 @@ function createNewUserOperator(){
 
                 alertify.success(data.message);
                 $('#txtEmail').val("");
+                LoadUser();
 
             }
             else {
@@ -65,5 +74,70 @@ function changePassword() {
         .fail(function (data) {
             alertify.error(data.statusText);
         });
+
+}
+function LoadUser() {
+
+    $.post(directories.user.LoadUser)
+        .done(function (data) {
+            if (data.status !== "error") {
+
+                $('#tblUser > tbody').html('');
+                var _html = '';
+                _html += '<tbody class="customtable" style= text-align:left;>';
+                data = JSON.parse(data.result);
+                $.each(data, function (key, value) {
+
+                    _html += '<tr><td>' + value.email + '</td><td>' + value.creationDate + '</td><td>' + '<button type="button" class="btn btn-primary" onclick="deleteUser(' + value.id + ');"><i class="fas fa-trash-alt"></i> Eliminar </button>' + '</td>';
+
+                });
+
+                _html += '</tbody >';
+
+                $('#tblUser').append(_html);
+                $('#tblUser').DataTable();
+
+            }
+            else {
+                alertify.error(data.message);
+
+            }
+
+        })
+        .fail(function (data) {
+            alertify.error(data.statusText);
+        });
+
+}
+
+
+function deleteUser(idUser) {
+
+    alertify.confirm('Usuario', 'Confirma Eliminar el usuario?', function () {
+
+        param = {
+            idUser: idUser
+        };
+
+        $.post(directories.user.DeleteUser, param)
+            .done(function (data) {
+                if (data.status !== "error") {
+
+                    alertify.success(data.message);
+                    LoadUser();
+                }
+                else {
+                    alertify.error(data.message);
+
+                }
+
+            })
+            .fail(function (data) {
+                alertify.error(data.statusText);
+            });
+    },
+    function () {
+        alertify.error('Se canceló la operación');
+    });
 
 }

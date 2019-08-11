@@ -141,6 +141,57 @@ namespace ControlSheet.Service
 
         }
 
+        public DataTable SpCountLicense(int idCompany)
+        {
+            con = new SqlConnection(Connection.stringConn);
+            comando = new SqlCommand(SPName.spCountLicense, con);
+
+            comando.CommandType = System.Data.CommandType.StoredProcedure;
+            comando.Parameters.AddWithValue("@idCompany", idCompany);
+
+            SqlDataAdapter da = new SqlDataAdapter(comando);
+
+            da.Fill(dt);
+
+            return dt;
+
+
+        }
+
+        public DataTable SpdeleteUser(int idUser)
+        {
+            con = new SqlConnection(Connection.stringConn);
+            comando = new SqlCommand(SPName.spDeleteUser, con);
+
+            comando.CommandType = System.Data.CommandType.StoredProcedure;
+            comando.Parameters.AddWithValue("@idUser", idUser);
+
+            SqlDataAdapter da = new SqlDataAdapter(comando);
+
+            da.Fill(dt);
+
+            return dt;
+
+
+        }
+
+        public DataTable spGetUserForIdCompany(int idCompany)
+        {
+            con = new SqlConnection(Connection.stringConn);
+            comando = new SqlCommand(SPName.spGetUserForIdCompany, con);
+
+            comando.CommandType = System.Data.CommandType.StoredProcedure;
+            comando.Parameters.AddWithValue("@idCompany", idCompany);
+
+            SqlDataAdapter da = new SqlDataAdapter(comando);
+
+            da.Fill(dt);
+
+            return dt;
+
+
+        }
+
 
     }
 }

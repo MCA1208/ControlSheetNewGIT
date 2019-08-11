@@ -1,5 +1,6 @@
 ﻿using ControlSheet.Models;
 using ControlSheet.Service;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -48,6 +49,17 @@ namespace ControlSheet.Controllers
                 else
                 {
                     idCompany = (int)System.Web.HttpContext.Current.Session["idcompany"];
+
+                    var countLic = (int)UserService.SpCountLicense(idCompany).Rows[0][0];
+
+                    if (countLic == 0)
+                    {
+                        data.message = "Se puede crear hasta 4 usuarios";
+                        data.status = "error";
+                        return Json(data, JsonRequestBehavior.AllowGet);
+                    }
+
+                    
                     var GeneratePass =  UserService.GenerateCode();
                     EncryptPass = ServiceEncryp.Encryp(GeneratePass);
 
@@ -96,6 +108,53 @@ namespace ControlSheet.Controllers
             return Json(data, JsonRequestBehavior.AllowGet);
 
         }
+
+
+        public JsonResult LoadUser()
+        {
+            try
+            {
+                idCompany = (int)System.Web.HttpContext.Current.Session["idcompany"];
+
+                dt = UserService.spGetUserForIdCompany(idCompany);
+                data.result = JsonConvert.SerializeObject(dt, Formatting.Indented);
+
+            }
+            catch (Exception ex)
+            {
+                data.message = ex.Message;
+                data.status = "error";
+                return Json(data, JsonRequestBehavior.AllowGet);
+
+            }
+
+            return Json(data, JsonRequestBehavior.AllowGet);
+
+        }
+
+        public JsonResult DeleteUser(int idUser)
+        {
+            try
+            {
+
+
+                dt = UserService.SpdeleteUser(idUser);
+
+                data.message = "Se eliminó el usuario con exito";
+
+            }
+            catch (Exception ex)
+            {
+                data.message = ex.Message;
+                data.status = "error";
+                return Json(data, JsonRequestBehavior.AllowGet);
+
+            }
+
+            return Json(data, JsonRequestBehavior.AllowGet);
+
+        }
+
 
     }
 }
