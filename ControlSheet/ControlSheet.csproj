@@ -144,6 +144,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\ControlSheetController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\PaperBag\PaperBagController.cs" />
     <Compile Include="Controllers\ReportController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
@@ -287,6 +288,7 @@
     <Content Include="Views\User\Profiler.cshtml" />
     <Content Include="Views\User\CreateUserOperator.cshtml" />
     <Content Include="Views\Report\ReportGraphicByType.cshtml" />
+    <Content Include="Views\PaperBag\Principal.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
