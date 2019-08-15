@@ -22,7 +22,7 @@
 
 
 <div class="card-body">
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModifyProfileModal"><i class="fas fa-arrow-circle-right"></i> Modifical Perfil </button>
+    <button id="btnModal" type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModifyProfileModal"><i class="fas fa-arrow-circle-right"></i> Modifical Perfil </button>
 </div>
 
 <div>
@@ -55,37 +55,46 @@
                 </button>
             </div>
             <div class="modal-body">
-                <table class="table table-striped" style="color:black">
-                    <tr>
-                        <th>Foto - Perfil</th>
-                        <td>
-                            <input style="width:300px" id="txtCompany" type="file" />
-                        </td>
+                <div class="table-responsive">
+                    <table id="tblModify" class="table table" style="color:black">
+                        <tr>
+                            <th>Foto - Perfil</th>
+                            <td>
+                                <input style="width:300px" id="file-perfil" name="file-perfil" type="file" />
+                            </td>
+                            <td>
+                                <img id="imgSalida" width="50%" height="50%" src="" />
+                            </td>
 
-                    </tr>
-                    <tr>
-                        <th>Foto - Una pasión</th>
-                        <td>
-                            <input style="width:300px" id="txtNewEmail" type="file" />
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>Foto - Algo que me gusta</th>
-                        <td>
-                            <input style="width:300px" id="txtNewPass" type="file" />
-                        </td>
+                        </tr>
+                        <tr>
+                            <th>Foto - Una pasión</th>
+                            <td>
+                                <input style="width:300px" id="txtNewEmail" type="file" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Foto - Algo que me gusta</th>
+                            <td>
+                                <input style="width:300px" id="txtNewPass" type="file" />
+                            </td>
 
-                    </tr>
-                    <tr>
-                        <th>Datos Personales</th>
-                        <td>
-                            <input style="width:300px" id="txtNewPassRepeat" type="password" />
-                        </td>
+                        </tr>
+                        <tr>
+                            <th>Datos Personales</th>
+                            <td>
+                                <input style="width:300px" id="txtNewPassRepeat" type="password" />
+                            </td>
 
-                    </tr>
+                        </tr>
+                        <tr>
+                            <td>
+                                <img id="imgSalida" width="50%" height="50%" src="" />
+                            </td>
+                        </tr>
 
-                </table>
-                @*</div>*@
+                    </table>                
+                </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fas fa-window-close"></i> Cerrar</button>
@@ -95,15 +104,34 @@
     </div>
 </div>
 
+<!--End MODAL-->
+
+
+
 <link href="~/Scripts/AlertMessage/alertifyjs/css/alertify.css" rel="stylesheet" />
 <link href="~/Scripts/AlertMessage/alertifyjs/css/themes/default.css" rel="stylesheet" />
-<link href="~/Scripts/bootstrap-4.2.1/css/bootstrap.min.css" rel="stylesheet" />
-
 <script src="~/Scripts/jquery-3.4.0/jquery-3.4.0.min.js"></script>
 <script src="~/Scripts/bootstrap-4.2.1/js/bootstrap.min.js"></script>
+
 <script src="~/Scripts/fontawesome/all.js"></script>
-<script src="~/Scripts/jquery-3.4.0/BlockUI/jquery.blockUI.min.js"></script>
-<script src="~/Scripts/Controller/LoginController.js"></script>
 <script src="~/Scripts/AlertMessage/alertifyjs/alertify.js"></script>
-<script src="~/Scripts/GlobalFunc/General.js"></script>
+
+<!--DataTables-->
+<link href="~/Content/dataTables/DataTables-1.10.18/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="~/Content/dataTables/Buttons-1.5.6/buttons.dataTables.min.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-3.4.0/datatables/DataTables-1.10.18/jquery.dataTables.min.js"></script>
+<script src="~/Scripts/jquery-3.4.0/datatables/Buttons-1.5.6/dataTables.buttons.min.js"></script>
+<script src="~/Scripts/jquery-3.4.0/datatables/Buttons-1.5.6/jszip.min.js"></script>
+<script src="~/Scripts/jquery-3.4.0/datatables/Buttons-1.5.6/pdfmake.min.js"></script>
+<script src="~/Scripts/jquery-3.4.0/datatables/Buttons-1.5.6/vfs_fonts.js"></script>
+<script src="~/Scripts/jquery-3.4.0/datatables/Buttons-1.5.6/buttons.print.min.js"></script>
+<script src="~/Scripts/jquery-3.4.0/datatables/Buttons-1.5.6/buttons.html5.min.js"></script>
+
+<script src="~/Scripts/Controller/PaperBag/PrincipalController.js"></script>
+
+<script src="~/Scripts/jquery-3.4.0/BlockUI/jquery.blockUI.min.js"></script>
 <script src="~/Scripts/GlobalFunc/URLController.js"></script>
+
+
+
+

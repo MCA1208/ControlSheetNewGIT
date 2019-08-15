@@ -222,6 +222,7 @@
     <Content Include="Scripts\bootstrap-4.2.1\js\bootstrap.min.js" />
     <Content Include="Scripts\chart\chart.js" />
     <Content Include="Scripts\Controller\LoginController.js" />
+    <Content Include="Scripts\Controller\PaperBag\PrincipalController.js" />
     <Content Include="Scripts\Controller\ProyectAdminController.js" />
     <Content Include="Scripts\Controller\ProyectController.js" />
     <Content Include="Scripts\Controller\ReportGraphicByTypeController.js" />
