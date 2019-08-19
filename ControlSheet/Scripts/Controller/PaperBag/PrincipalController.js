@@ -1,13 +1,15 @@
-﻿
+﻿var param = '';
+
+
 $(document).ready(function () {
 
     
-
+    //PERFIL
     $('#file-perfil').change(function (e) {
-        addImage(e);
+        addImagePerfil(e);
     });
 
-    function addImage(e) {
+    function addImagePerfil(e) {
         var file = e.target.files[0],
             imageType = /image.*/;
 
@@ -15,20 +17,91 @@ $(document).ready(function () {
             return;
 
         var reader = new FileReader();
-        reader.onload = fileOnload;
+        reader.onload = fileOnloadPerfil;
         reader.readAsDataURL(file);
     }
 
-    function fileOnload(e) {
+    function fileOnloadPerfil(e) {
         var result = e.target.result;
-        $('#imgSalida').attr("src", result);
+        $('#imgPerfil').attr("src", result);
     }
 
-    $('#btnModal').on("click", function () {
-
-        $('#tblModify').DataTable();
+    //PASION
+    $('#file-pasion').change(function (e) {
+        addImagePasion(e);
     });
+
+    function addImagePasion(e) {
+        var file = e.target.files[0],
+            imageType = /image.*/;
+
+        if (!file.type.match(imageType))
+            return;
+
+        var reader = new FileReader();
+        reader.onload = fileOnloadPasion;
+        reader.readAsDataURL(file);
+    }
+
+    function fileOnloadPasion(e) {
+        var result = e.target.result;
+        $('#imgPasion').attr("src", result);
+    }
+
+    //ALGO
+    $('#file-algo').change(function (e) {
+        addImageAlgo(e);
+    });
+
+    function addImageAlgo(e) {
+        var file = e.target.files[0],
+            imageType = /image.*/;
+
+        if (!file.type.match(imageType))
+            return;
+
+        var reader = new FileReader();
+        reader.onload = fileOnloadAlgo;
+        reader.readAsDataURL(file);
+    }
+
+    function fileOnloadAlgo(e) {
+        var result = e.target.result;
+        $('#imgAlgo').attr("src", result);
+    }
+
 
     
 
 });
+
+function savePerfilData() {
+
+    var formData = new FormData();
+
+    formData.append("filePerfil", $('#file-perfil')[0].files);
+
+
+    param = {
+        filePerfil: $('#file-perfil')[0].files[0]
+
+    };
+
+    $.post(directories.paperBag.ModifyPerfil, formData)
+        .done(function (data) {
+            if (data.status !== "error") {
+
+                alertify.success("Se creo el proyecto");
+
+                }
+            else {
+                alertify.error(data.message);
+
+            }
+
+        })
+        .fail(function (data) {
+            alertify.error(data.statusText);
+        });
+
+}

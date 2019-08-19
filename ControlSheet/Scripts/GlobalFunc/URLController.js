@@ -28,6 +28,11 @@
         ChangePassword: 'ChangePassword',
         LoadUser: 'LoadUser',
         DeleteUser: 'DeleteUser'
+    },
+
+    paperBag: {
+
+        ModifyPerfil: 'ModifyPerfil'
     }
 
 

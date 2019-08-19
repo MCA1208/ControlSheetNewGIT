@@ -46,8 +46,8 @@
 <!-- Modal -->
 
 <div class="modal fade" id="ModifyProfileModal">
-    <div class="modal-dialog">
-        <div class="modal-content">
+    <div class="modal-dialog" style="max-width:60%">
+        <div class="modal-content" style="color:black">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Modificar Perfil</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -56,49 +56,78 @@
             </div>
             <div class="modal-body">
                 <div class="table-responsive">
-                    <table id="tblModify" class="table table" style="color:black">
-                        <tr>
-                            <th>Foto - Perfil</th>
-                            <td>
-                                <input style="width:300px" id="file-perfil" name="file-perfil" type="file" />
-                            </td>
-                            <td>
-                                <img id="imgSalida" width="50%" height="50%" src="" />
-                            </td>
+           
+                    <table id="tblModify" class="table" style="color:black">
 
-                        </tr>
-                        <tr>
-                            <th>Foto - Una pasión</th>
-                            <td>
-                                <input style="width:300px" id="txtNewEmail" type="file" />
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>Foto - Algo que me gusta</th>
-                            <td>
-                                <input style="width:300px" id="txtNewPass" type="file" />
-                            </td>
+                        <tbody style="text-align:left">
+                            <tr>
+                                <th>Foto - Perfil</th>
+                                <td>
+                                    <input style="width:300px" id="file-perfil" name="file-perfil" type="file" />
+                                </td>
+                                <td>
+                                    <img id="imgPerfil" width="80px" height="80px" src="" />
+                                </td>
 
-                        </tr>
-                        <tr>
-                            <th>Datos Personales</th>
-                            <td>
-                                <input style="width:300px" id="txtNewPassRepeat" type="password" />
-                            </td>
+                            </tr>
+                            <tr>
+                                <th>Foto - Una pasión</th>
+                                <td>
+                                    <input style="width:300px" id="file-pasion" type="file" />
+                                </td>
+                                <td>
+                                    <img id="imgPasion" width="80px" height="80px" src="" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Foto - Algo que me gusta</th>
+                                <td>
+                                    <input style="width:300px" id="file-algo" type="file" />
+                                </td>
+                                <td>
+                                    <img id="imgAlgo" width="80px" height="80px" src="" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Datos Personales</th>
+                                <td>
 
-                        </tr>
-                        <tr>
-                            <td>
-                                <img id="imgSalida" width="50%" height="50%" src="" />
-                            </td>
-                        </tr>
+                                    <textarea style="max-width:100%" class="form-control" id="" rows="7"></textarea>
+                                </td>
 
+                            </tr>
+                            <tr>
+                                <th>Datos Academicos</th>
+                                <td>
+
+                                    <textarea style="max-width:100%" class="form-control" id="" rows="7"></textarea>
+                                </td>
+
+                            </tr>
+                            <tr>
+                                <th>Experiencia laboral</th>
+                                <td>
+
+                                    <textarea style="max-width:100%" class="form-control" id="" rows="7"></textarea>
+                                </td>
+
+                            </tr>
+                            <tr>
+                                <th>Contacto</th>
+                                <td>
+
+                                    <textarea style="max-width:100%" class="form-control" id="" rows="7"></textarea>
+                                </td>
+
+                            </tr>
+
+                        </tbody>
                     </table>                
                 </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fas fa-window-close"></i> Cerrar</button>
-                <button type="button" class="btn btn-primary" onclick="createUserAdmin();"><i class="fas fa-user-alt"></i> Crear</button>
+                <button type="button" class="btn btn-primary" onclick="savePerfilData();"><i class="fas fa-savet"></i> Guardar</button>
             </div>
         </div>
     </div>
