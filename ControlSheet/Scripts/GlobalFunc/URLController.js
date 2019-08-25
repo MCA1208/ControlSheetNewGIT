@@ -32,7 +32,8 @@
 
     paperBag: {
 
-        ModifyPerfil: 'ModifyPerfil'
+        ModifyPerfil: 'ModifyPerfil',
+        LoadAllProfile: 'LoadAllProfile'
     }
 
 

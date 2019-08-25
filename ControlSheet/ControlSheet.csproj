@@ -155,6 +155,7 @@
     <Compile Include="Models\UserModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service\Encrypting.cs" />
+    <Compile Include="Service\paperBag\ProfileDetailService.cs" />
     <Compile Include="Service\ProyectService.cs" />
     <Compile Include="Service\ReportsService.cs" />
     <Compile Include="Service\SendMailService.cs" />

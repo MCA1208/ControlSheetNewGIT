@@ -33,6 +33,12 @@ namespace ControlSheet.Models
             public string spDeleteUser = "spDeleteUser";
             public string spGetUserForIdCompany = "spGetUserForIdCompany";
 
+            //PAPER BAG
+            public string spInsertModifyProfile = "spInsertModifyProfile";
+            public string spGetAllProfile = "spGetAllProfile";
+
+
+
 
 
         }
