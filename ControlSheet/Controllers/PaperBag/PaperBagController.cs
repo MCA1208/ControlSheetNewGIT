@@ -35,32 +35,43 @@ namespace ControlSheet.Controllers.PaperBag
                 HttpPostedFileBase _filePerfil = Request.Files["filePerfil"];
                 HttpPostedFileBase _filePasion = Request.Files["filePasion"];
                 HttpPostedFileBase _fileAlgo = Request.Files["fileAlgo"];
-                string _personaData = Request.Form["personalData"];
+                string _name = Request.Form["name"];
+                string _profession = Request.Form["profession"];
                 string _academyData = Request.Form["academyData"];
                 string _experience = Request.Form["experience"];
                 string _contact = Request.Form["contact"];
 
                 byte[] imgPerfil = null;
-                Stream myStreamPerfil = _filePerfil.InputStream;
-                MemoryStream ms = new MemoryStream();
-                myStreamPerfil.CopyTo(ms);
-                imgPerfil = ms.ToArray();
+
+                if (_filePerfil != null)
+                {
+                    Stream myStreamPerfil = _filePerfil.InputStream;
+                    MemoryStream ms = new MemoryStream();
+                    myStreamPerfil.CopyTo(ms);
+                    imgPerfil = ms.ToArray();
+                }
 
                 byte[] imgPasion = null;
-                Stream myStreamPasion = _filePasion.InputStream;
-                MemoryStream msPasion = new MemoryStream();
-                myStreamPerfil.CopyTo(msPasion);
-                imgPasion = msPasion.ToArray();
+
+                if (_filePasion != null)
+                {
+                    Stream myStreamPasion = _filePasion.InputStream;
+                    MemoryStream msPasion = new MemoryStream();
+                    myStreamPasion.CopyTo(msPasion);
+                    imgPasion = msPasion.ToArray();
+                }
 
                 byte[] imgAlgo = null;
-                Stream myStreamAlgo = _filePasion.InputStream;
-                MemoryStream msAlgo = new MemoryStream();
-                myStreamAlgo.CopyTo(msAlgo);
-                imgAlgo = msAlgo.ToArray();
 
-                //string result = Convert.ToBase64String(imgPerfil);
+                if (_fileAlgo != null)
+                {
+                    Stream myStreamAlgo = _fileAlgo.InputStream;
+                    MemoryStream msAlgo = new MemoryStream();
+                    myStreamAlgo.CopyTo(msAlgo);
+                    imgAlgo = msAlgo.ToArray();
+                }
 
-                Service.InsertModifyProfile(imgPerfil, imgPasion, imgAlgo, _personaData, _academyData, _experience, _contact, idUser);
+                Service.InsertModifyProfile(imgPerfil, imgPasion, imgAlgo, _name, _profession, _academyData, _experience, _contact, idUser);
 
                 data.result = JsonConvert.SerializeObject(dt, Formatting.Indented);
             }
@@ -82,37 +93,7 @@ namespace ControlSheet.Controllers.PaperBag
             {
                 dt = Service.GetAllProfile();
 
-                var Imag = dt.Rows[0][1];
-
-                //Convert.ToBase64String((byte[])dt.Rows[0][1]);
-                //Convert.ToBase64String((byte[])dt.Rows[0][2]);
-                //Convert.ToBase64String((byte[])dt.Rows[0][3]);
-
-                var base64 = Convert.ToBase64String((byte[])dt.Rows[0][1]);
-                var imgSrc = String.Format("data:image/png;base64,{0}", base64);
-
-                MemoryStream ms = new MemoryStream((byte[])dt.Rows[0][1]);
-                Image returnImage = Image.FromStream(ms);
-
-                //dt.Columns.Add("newColum", typeof(System.String));
-                //dt.Columns["newColum"].Expression = returnImage;
-
-                Bitmap imagen = null;
-
-                Byte[] bytes = (Byte[])((byte[])dt.Rows[0][1]);
-
-                MemoryStream ms2 = new MemoryStream(bytes);
-
-                imagen = new Bitmap(ms);
-
-                ViewBag.Image = imagen;
-
-                //Image img = Image.FromStream(ms);
-                //dataGridView1.Rows[rowIndex].Cells[columnIndex].Value = img;
-
-
-
-                data.result = JsonConvert.SerializeObject(dt, Formatting.Indented);
+               data.result = JsonConvert.SerializeObject(dt, Formatting.Indented);
             }
             catch (Exception ex)
             {

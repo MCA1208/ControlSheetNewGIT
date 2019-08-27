@@ -90,10 +90,18 @@
                                 </td>
                             </tr>
                             <tr>
-                                <th>Datos Personales</th>
+                                <th>Nombre y Apellido</th>
                                 <td>
 
-                                    <textarea style="max-width:100%" class="form-control" id="txtPersonalData" rows="7"></textarea>
+                                    <input style="max-width:100%" class="form-control" id="txtName" type="text">
+                                </td>
+
+                            </tr>
+                            <tr>
+                                <th>Preofesión</th>
+                                <td>
+
+                                    <input style="max-width:100%" class="form-control" id="txtProfession" type="text">
                                 </td>
 
                             </tr>
@@ -124,6 +132,87 @@
 
                         </tbody>
                     </table>                
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fas fa-window-close"></i> Cerrar</button>
+                <button type="button" class="btn btn-primary" onclick="savePerfilData();"><i class="fas fa-savet"></i> Guardar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="WatchProfileUser">
+    <div class="modal-dialog" style="max-width:60%">
+        <div class="modal-content" style="color:black">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Detalle Perfil</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="table-responsive">
+
+                    <table id="tblModify" class="table" style="color:black">
+
+                        <tbody style="text-align:left">
+                            <tr>
+                                <th>Foto - Perfil</th>
+                                <td>
+                                    <img id="imgPerfilWatch" width="80px" height="80px" src="" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Foto - Una pasión</th>
+                                <td>
+                                    <img id="imgPasionWatch" width="80px" height="80px" src="" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Foto - Algo que me gusta</th>
+                                <td>
+                                    <img id="imgAlgoWatch" width="80px" height="80px" src="" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Nombre y Apellido</th>
+                                <td>
+
+                                    <input style="max-width:100%" class="form-control" id="txtNameWatch" type="text">
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Preofesión</th>
+                                <td>
+
+                                    <input style="max-width:100%" class="form-control" id="txtProfessionWatch" type="text">
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Datos Academicos</th>
+                                <td>
+
+                                    <textarea style="max-width:100%" class="form-control" id="txtAcademyDataWatch" rows="7"></textarea>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Experiencia laboral</th>
+                                <td>
+
+                                    <textarea style="max-width:100%" class="form-control" id="txtExperienceWatch" rows="7"></textarea>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Contacto</th>
+                                <td>
+
+                                    <textarea style="max-width:100%" class="form-control" id="txtContactWatch" rows="7"></textarea>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
             <div class="modal-footer">

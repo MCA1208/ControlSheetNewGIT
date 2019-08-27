@@ -86,7 +86,8 @@ function savePerfilData() {
     formData.append("filePasion", $('#file-pasion')[0].files[0]);
     formData.append("fileAlgo", $('#file-algo')[0].files[0]);
 
-    formData.append("personalData", $('#txtPersonalData').val());
+    formData.append("name", $('#txtName').val());
+    formData.append("profession", $('#txtProfession').val());
     formData.append("academyData", $('#txtAcademyData').val());
     formData.append("experience", $('#txtExperience').val());
     formData.append("contact", $('#txtContact').val());
@@ -114,34 +115,17 @@ function LoadAllProfile() {
                 _html += '<tbody class="customtable" style= text-align:left;>';
                 data = JSON.parse(data.result);
                 $.each(data, function (key, value) {
-
-                   // _html += '<tr><td><img width="80px" height="80px"  src="data:image/jpg:base64,' + value.imagePerfil + '"/></td><td>' + value.imagePasion + '</td><td>' + value.imageAlgo + '</td><td>' + value.personalData + '</td><td>' + value.academyData + '</td><td>' + '<button type="button" class="btn btn-primary" onclick="showModalEditProyect(' + value.id + ',' + `'${value.proyectName}'` + ');"><i class="fas fa-edit"></i> Editar </button>' + '</td>';
-                    _html += '<tr><td><img width="80px" height="80px"  src=""/></td><td>' + value.imagePasion + '</td><td>' + value.imageAlgo + '</td><td>' + value.personalData + '</td><td>' + value.academyData + '</td><td>' + '<button type="button" class="btn btn-primary" onclick="showModalEditProyect(' + value.id + ',' + `'${value.proyectName}'` + ');"><i class="fas fa-edit"></i> Editar </button>' + '</td>';
+                  
+                    _html += '<tr><td><img width="80px" height="80px"  src="data:image/jpg;base64,' + value.imagePerfil + '"/></td><td><img width="80px" height="80px"  src="data:image/jpg;base64,' + value.imagePasion + '"/></td><td><img width="80px" height="80px"  src="data:image/jpg;base64,' + value.imageAlgo + '"/></td><td>' + value.names + '</td><td>' + value.profession + '</td><td>' + '<button type="button" class="btn btn-primary" onclick="showWatchProfileUser(' + value.id + ');"><i class="fas fa-eye"></i> VER </button>' + '</td>';
 
                 });
-                //[imagePerfil][image] NULL,
-                //[imagePasion][image] NULL,
-                //[imageAlgo][image] NULL,
-                //[personalData][nvarchar](200) NULL,
-                //[academyData][nvarchar](200) NULL,
-                //[experience][nvarchar](200) NULL,
-                //[contact][nvarchar](200) NULL,
+
 
                 _html += '</tbody >';
 
                 $('#tblPaperBag').append(_html);
 
-                $('#tblPaperBag').DataTable({
-                    destroy: true,
-                    retrieve: true,
-                    dom: 'Bfrtip',
-                    buttons: [
-                        { "extend": 'excel', "text": '<span data-toggle="tooltip" data-placement="top" title="Exportar Excel" class="fas fa-file-excel fa-2x"></span>' },
-                        { "extend": 'pdf', "text": '<span data-toggle="tooltip" data-placement="top" title="Exportar PDF" class="fas fa-file-pdf fa-2x" ></span>' },
-                        { "extend": 'print', "text": '<span data-toggle="tooltip" data-placement="top" title="Imprimir" class="fas fa-print fa-2x"></span>' }
-                    ]
-
-                });
+                $('#tblPaperBag').DataTable();
 
             }
             else {
@@ -158,5 +142,39 @@ function LoadAllProfile() {
         });
 
 
+
+}
+
+
+function showWatchProfileUser(id) {
+
+    $('#WatchProfileUser').modal('show');
+    LoadProfileDetail(id);
+
+}
+function LoadProfileDetail(id) {
+
+    $.blockUI();
+
+    $.post(directories.paperBag.LoadAllProfile)
+        .done(function (data) {
+            if (data.status !== "error") {
+
+                data = JSON.parse(data.result);
+
+
+            }
+            else {
+                alertify.error(data.message);
+
+            }
+
+        })
+        .fail(function (data) {
+            alertify.error(data.statusText);
+        })
+        .always(function () {
+            $.unblockUI();
+        });
 
 }
