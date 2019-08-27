@@ -36,6 +36,9 @@ namespace ControlSheet.Models
             //PAPER BAG
             public string spInsertModifyProfile = "spInsertModifyProfile";
             public string spGetAllProfile = "spGetAllProfile";
+            public string spGetProfileForId = "spGetProfileForId";
+            public string spGetUserPB = "spGetUserPB";
+            public string spCreateUserPB = "spCreateUserPB"; 
 
 
 

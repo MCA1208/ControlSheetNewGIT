@@ -17,7 +17,7 @@ namespace ControlSheet.Controllers.PaperBag
         ResultModel data = new ResultModel();
         Service.paperBag.ProfileDetailService Service = new Service.paperBag.ProfileDetailService();
         DataTable dt = null;
-        public int idUser = 1;
+        public int idUser = 0;
         public int idCompany = 0;
         // GET: PaperBag
         public ActionResult Principal()
@@ -29,8 +29,7 @@ namespace ControlSheet.Controllers.PaperBag
         {
             try
             {
-                //idUser = (int)System.Web.HttpContext.Current.Session["idUser"];
-                //idCompany = (int)System.Web.HttpContext.Current.Session["idcompany"];
+                idUser = (int)System.Web.HttpContext.Current.Session["idUser"];               
 
                 HttpPostedFileBase _filePerfil = Request.Files["filePerfil"];
                 HttpPostedFileBase _filePasion = Request.Files["filePasion"];
@@ -89,11 +88,36 @@ namespace ControlSheet.Controllers.PaperBag
 
         public JsonResult LoadAllProfile()
         {
+
             try
             {
                 dt = Service.GetAllProfile();
 
-               data.result = JsonConvert.SerializeObject(dt, Formatting.Indented);
+             
+                data.result = JsonConvert.SerializeObject(dt, Formatting.Indented);
+            }
+            catch (Exception ex)
+            {
+                data.message = ex.Message;
+                data.status = "error";
+                return Json(data, JsonRequestBehavior.AllowGet);
+
+            }
+
+            return  Json(data, JsonRequestBehavior.AllowGet);
+
+        }
+
+        public JsonResult GetProfileForId(int? Id)
+        {
+            try
+            {
+                if (Id == null)
+                    Id = (int)System.Web.HttpContext.Current.Session["idUser"];
+
+                dt = Service.GetProfileForId(Id);
+
+                data.result = JsonConvert.SerializeObject(dt, Formatting.Indented);
             }
             catch (Exception ex)
             {
@@ -104,6 +128,8 @@ namespace ControlSheet.Controllers.PaperBag
             }
 
             return Json(data, JsonRequestBehavior.AllowGet);
+
+
 
         }
 

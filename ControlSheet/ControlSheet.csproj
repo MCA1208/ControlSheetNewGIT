@@ -144,6 +144,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\ControlSheetController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\PaperBag\LoginPaperBagController.cs" />
     <Compile Include="Controllers\PaperBag\PaperBagController.cs" />
     <Compile Include="Controllers\ReportController.cs" />
     <Compile Include="Controllers\UserController.cs" />
@@ -156,6 +157,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service\Encrypting.cs" />
     <Compile Include="Service\paperBag\ProfileDetailService.cs" />
+    <Compile Include="Service\paperBag\UserService.cs" />
     <Compile Include="Service\ProyectService.cs" />
     <Compile Include="Service\ReportsService.cs" />
     <Compile Include="Service\SendMailService.cs" />
@@ -223,6 +225,7 @@
     <Content Include="Scripts\bootstrap-4.2.1\js\bootstrap.min.js" />
     <Content Include="Scripts\chart\chart.js" />
     <Content Include="Scripts\Controller\LoginController.js" />
+    <Content Include="Scripts\Controller\PaperBag\LoginController.js" />
     <Content Include="Scripts\Controller\PaperBag\PrincipalController.js" />
     <Content Include="Scripts\Controller\ProyectAdminController.js" />
     <Content Include="Scripts\Controller\ProyectController.js" />
@@ -291,6 +294,7 @@
     <Content Include="Views\User\CreateUserOperator.cshtml" />
     <Content Include="Views\Report\ReportGraphicByType.cshtml" />
     <Content Include="Views\PaperBag\Principal.cshtml" />
+    <Content Include="Views\LoginPaperBag\Login.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

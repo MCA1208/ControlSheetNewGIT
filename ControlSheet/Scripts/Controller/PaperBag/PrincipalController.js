@@ -116,7 +116,7 @@ function LoadAllProfile() {
                 data = JSON.parse(data.result);
                 $.each(data, function (key, value) {
                   
-                    _html += '<tr><td><img width="80px" height="80px"  src="data:image/jpg;base64,' + value.imagePerfil + '"/></td><td><img width="80px" height="80px"  src="data:image/jpg;base64,' + value.imagePasion + '"/></td><td><img width="80px" height="80px"  src="data:image/jpg;base64,' + value.imageAlgo + '"/></td><td>' + value.names + '</td><td>' + value.profession + '</td><td>' + '<button type="button" class="btn btn-primary" onclick="showWatchProfileUser(' + value.id + ');"><i class="fas fa-eye"></i> VER </button>' + '</td>';
+                    _html += '<tr><td><img width="80px" height="80px"  src="data:image/jpg;base64,' + value.imagePerfil + '"/></td><td><img width="80px" height="80px"  src="data:image/jpg;base64,' + value.imagePasion + '"/></td><td><img width="80px" height="80px"  src="data:image/jpg;base64,' + value.imageAlgo + '"/></td><td>' + value.names + '</td><td>' + value.profession + '</td><td>' + '<button type="button" class="btn btn-primary" onclick="showWatchProfileUser(' + value.idUsers + ');"><i class="fas fa-eye"></i> VER </button>' + '</td>';
 
                 });
 
@@ -156,12 +156,69 @@ function LoadProfileDetail(id) {
 
     $.blockUI();
 
-    $.post(directories.paperBag.LoadAllProfile)
+    param = {
+        Id: id
+    };
+
+    $.post(directories.paperBag.GetProfileForId, param)
         .done(function (data) {
             if (data.status !== "error") {
 
                 data = JSON.parse(data.result);
 
+                $('#imgPerfilWatch').attr('src', "data:image/jpg;base64," + data[0].imagePerfil);
+                $('#imgPasionWatch').attr('src', "data:image/jpg;base64," + data[0].imagePasion);
+                $('#imgAlgoWatch').attr('src', "data:image/jpg;base64," + data[0].imageAlgo);
+                $('#txtNameWatch').val(data[0].names);
+                $('#txtProfessionWatch').val(data[0].profession);
+                $('#txtAcademyDataWatch').val(data[0].academyData);
+                $('#txtExperienceWatch').val(data[0].experience);
+                $('#txtContactWatch').val(data[0].contact);
+
+            }
+            else {
+                alertify.error(data.message);
+
+            }
+
+        })
+        .fail(function (data) {
+            alertify.error(data.statusText);
+        })
+        .always(function () {
+            $.unblockUI();
+        });
+
+}
+
+function ShowModifyProfile() {
+
+    $('#ModifyProfileModal').modal('show');
+    LoadProfileModify();
+}
+
+function LoadProfileModify() {
+
+    $.blockUI();
+
+    param = {
+        Id: null
+    };
+
+    $.post(directories.paperBag.GetProfileForId, param)
+        .done(function (data) {
+            if (data.status !== "error") {
+
+                data = JSON.parse(data.result);
+
+                $('#imgPerfil').attr('src', "data:image/jpg;base64," + data[0].imagePerfil);
+                $('#imgPasion').attr('src', "data:image/jpg;base64," + data[0].imagePasion);
+                $('#imgAlgo').attr('src', "data:image/jpg;base64," + data[0].imageAlgo);
+                $('#txtName').val(data[0].names);
+                $('#txtProfession').val(data[0].profession);
+                $('#txtAcademyData').val(data[0].academyData);
+                $('#txtExperience').val(data[0].experience);
+                $('#txtContact').val(data[0].contact);
 
             }
             else {

@@ -33,7 +33,10 @@
     paperBag: {
 
         ModifyPerfil: 'ModifyPerfil',
-        LoadAllProfile: 'LoadAllProfile'
+        LoadAllProfile: 'LoadAllProfile',
+        GetProfileForId: 'GetProfileForId',
+        CreateUser: 'CreateUser',
+        LoginUser: 'LoginUser'
     }
 
 
