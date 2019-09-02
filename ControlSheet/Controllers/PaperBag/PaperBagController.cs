@@ -134,5 +134,33 @@ namespace ControlSheet.Controllers.PaperBag
         }
 
 
+
+        public JsonResult HasProfile()
+        {
+            try
+            {
+
+                 var Id = (int)System.Web.HttpContext.Current.Session["idUser"];
+
+
+                dt = Service.GetProfileForId(Id);
+
+                data.result = JsonConvert.SerializeObject(dt, Formatting.Indented);
+            }
+            catch (Exception ex)
+            {
+                data.message = ex.Message;
+                data.status = "error";
+                return Json(data, JsonRequestBehavior.AllowGet);
+
+            }
+
+            return Json(data, JsonRequestBehavior.AllowGet);
+
+
+
+        }
+
+
     }
 }

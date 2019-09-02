@@ -36,7 +36,8 @@
         LoadAllProfile: 'LoadAllProfile',
         GetProfileForId: 'GetProfileForId',
         CreateUser: 'CreateUser',
-        LoginUser: 'LoginUser'
+        LoginUser: 'LoginUser',
+        HasProfile: 'HasProfile'
     }
 
 

@@ -74,5 +74,22 @@ namespace ControlSheet.Service.paperBag
 
         }
 
+        
+        public DataTable GetHasProfile(int Id)
+        {
+            con = new SqlConnection(Connection.stringConnPB);
+            comando = new SqlCommand(SPName.spGetHasProfile, con);
+
+            comando.CommandType = System.Data.CommandType.StoredProcedure;
+            comando.Parameters.AddWithValue("@Id", Id);
+
+            SqlDataAdapter da = new SqlDataAdapter(comando);
+
+            da.Fill(dt);
+
+            return dt;
+
+        }
+
     }
 }

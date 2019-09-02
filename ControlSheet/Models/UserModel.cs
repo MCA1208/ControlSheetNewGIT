@@ -38,7 +38,8 @@ namespace ControlSheet.Models
             public string spGetAllProfile = "spGetAllProfile";
             public string spGetProfileForId = "spGetProfileForId";
             public string spGetUserPB = "spGetUserPB";
-            public string spCreateUserPB = "spCreateUserPB"; 
+            public string spCreateUserPB = "spCreateUserPB";
+            public string spGetHasProfile = "spGetHasProfile";
 
 
 

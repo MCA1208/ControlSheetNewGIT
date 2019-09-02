@@ -149,7 +149,24 @@ function LoadAllProfile() {
 function showWatchProfileUser(id) {
 
     $('#WatchProfileUser').modal('show');
-    LoadProfileDetail(id);
+
+    $.post(directories.paperBag.HasProfile)
+        .done(function (data) {
+            data = JSON.parse(data.result);
+            var datos = data[0].id;
+            if (data[0].id !== 0) {
+
+                LoadProfileDetail(id);
+            }
+
+
+        })
+        .fail(function (data) {
+            alertify.error(data.statusText);
+           
+        });
+
+
 
 }
 function LoadProfileDetail(id) {
@@ -233,5 +250,27 @@ function LoadProfileModify() {
         .always(function () {
             $.unblockUI();
         });
+
+}
+
+
+function HasProfile() {
+
+    $.post(directories.paperBag.HasProfile)
+        .done(function (data) {
+            data = JSON.parse(data.result);
+            var datos = data[0].id;
+            if (data[0].id !== 0) {
+
+                return true;
+            }
+           
+
+        })
+        .fail(function (data) {
+            alertify.error(data.statusText);
+            return false;
+        });
+
 
 }

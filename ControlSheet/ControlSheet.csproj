@@ -295,6 +295,7 @@
     <Content Include="Views\Report\ReportGraphicByType.cshtml" />
     <Content Include="Views\PaperBag\Principal.cshtml" />
     <Content Include="Views\LoginPaperBag\Login.cshtml" />
+    <Content Include="Views\Shared\_LayoutPaperBag.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
