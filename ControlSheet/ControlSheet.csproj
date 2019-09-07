@@ -179,6 +179,7 @@
     <Content Include="Image\Logo\ControlSheet2.png" />
     <Content Include="Image\Logo\LogoUC.png" />
     <Content Include="Image\Logo\LogoUC2.png" />
+    <Content Include="Image\Logo\paperIcono.png" />
     <Content Include="Scripts\AlertMessage\alertifyjs\alertify.js" />
     <Content Include="Scripts\AlertMessage\alertifyjs\alertify.min.js" />
     <Content Include="Scripts\AlertMessage\alertifyjs\css\alertify.css" />

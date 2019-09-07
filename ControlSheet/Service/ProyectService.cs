@@ -105,7 +105,7 @@ namespace ControlSheet.Service
 
         }
 
-        public DataTable EditProyectDetail(int idProyect, int idProyectDetail, string moduleName, string descriptions, DateTime? dateEstimated, float? hourEstimated, float? hourDedicated)
+        public DataTable EditProyectDetail(int idProyect, int idProyectDetail, string moduleName, string descriptions, DateTime? dateEstimated, float? hourEstimated, float? hourDedicated, bool finalizado)
         {
             con = new SqlConnection(Connection.stringConn);
             comando = new SqlCommand(SPName.spEditProyectDetail, con);
@@ -118,6 +118,7 @@ namespace ControlSheet.Service
             comando.Parameters.AddWithValue("@dateEstimated", dateEstimated);
             comando.Parameters.AddWithValue("@hourEstimated", hourEstimated);
             comando.Parameters.AddWithValue("@hourDedicated", hourDedicated);
+            comando.Parameters.AddWithValue("@finalizado", finalizado);
 
             SqlDataAdapter da = new SqlDataAdapter(comando);
 

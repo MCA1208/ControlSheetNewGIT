@@ -1,4 +1,5 @@
 ﻿using ControlSheet.Models;
+using ControlSheet.Service;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -16,6 +17,7 @@ namespace ControlSheet.Controllers.PaperBag
 
         ResultModel data = new ResultModel();
         Service.paperBag.ProfileDetailService Service = new Service.paperBag.ProfileDetailService();
+
         DataTable dt = null;
         public int idUser = 0;
         public int idCompany = 0;
@@ -29,7 +31,7 @@ namespace ControlSheet.Controllers.PaperBag
         {
             try
             {
-                idUser = (int)System.Web.HttpContext.Current.Session["idUser"];               
+                idUser = (int)System.Web.HttpContext.Current.Session["idUser"];
 
                 HttpPostedFileBase _filePerfil = Request.Files["filePerfil"];
                 HttpPostedFileBase _filePasion = Request.Files["filePasion"];
@@ -50,6 +52,7 @@ namespace ControlSheet.Controllers.PaperBag
                     imgPerfil = ms.ToArray();
                 }
 
+
                 byte[] imgPasion = null;
 
                 if (_filePasion != null)
@@ -60,6 +63,7 @@ namespace ControlSheet.Controllers.PaperBag
                     imgPasion = msPasion.ToArray();
                 }
 
+
                 byte[] imgAlgo = null;
 
                 if (_fileAlgo != null)
@@ -69,6 +73,7 @@ namespace ControlSheet.Controllers.PaperBag
                     myStreamAlgo.CopyTo(msAlgo);
                     imgAlgo = msAlgo.ToArray();
                 }
+
 
                 Service.InsertModifyProfile(imgPerfil, imgPasion, imgAlgo, _name, _profession, _academyData, _experience, _contact, idUser);
 
@@ -93,7 +98,7 @@ namespace ControlSheet.Controllers.PaperBag
             {
                 dt = Service.GetAllProfile();
 
-             
+
                 data.result = JsonConvert.SerializeObject(dt, Formatting.Indented);
             }
             catch (Exception ex)
@@ -104,7 +109,7 @@ namespace ControlSheet.Controllers.PaperBag
 
             }
 
-            return  Json(data, JsonRequestBehavior.AllowGet);
+            return Json(data, JsonRequestBehavior.AllowGet);
 
         }
 
@@ -116,6 +121,8 @@ namespace ControlSheet.Controllers.PaperBag
                     Id = (int)System.Web.HttpContext.Current.Session["idUser"];
 
                 dt = Service.GetProfileForId(Id);
+
+                var imageFile = File(dt.Columns[1].ToString(), "image/png");
 
                 data.result = JsonConvert.SerializeObject(dt, Formatting.Indented);
             }
@@ -140,7 +147,7 @@ namespace ControlSheet.Controllers.PaperBag
             try
             {
 
-                 var Id = (int)System.Web.HttpContext.Current.Session["idUser"];
+                var Id = (int)System.Web.HttpContext.Current.Session["idUser"];
 
 
                 dt = Service.GetProfileForId(Id);
@@ -160,7 +167,6 @@ namespace ControlSheet.Controllers.PaperBag
 
 
         }
-
 
     }
 }

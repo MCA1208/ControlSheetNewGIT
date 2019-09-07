@@ -63,6 +63,7 @@ function showModalEditProyect(id, proyectName)
     $('#txtIdProyect').val(id);
     $('#titleEditProyectModal').text('Editar Proyecto: ' + proyectName );
     LoadProyectDetail(id);
+    LoadProyect();
 
 }
 
@@ -233,9 +234,12 @@ function loadEditProyectDetail(idProyect, idProyectDetail) {
 
 function editDetailproyect() {
 
+    //var tilde = $("#cbxFinishTask").prop("checked"); 
+
     param = {
         idProyect: $('#txtIdProyect').val(), idProyectDetail: $('#txtIdProyectDetail').val(),
-        moduleName: $('#txtModuleNameD').val(), descriptions: $('#txtModuleDescription').val(), dateEstimated: null, hourEstimated: null, hourDedicated: $('#txtHourConsumed').val()
+        moduleName: $('#txtModuleNameD').val(), descriptions: $('#txtModuleDescription').val(), dateEstimated: null, hourEstimated: null, hourDedicated: $('#txtHourConsumed').val(),
+        finalizado: true
     };
 
     $.post(directories.controlSheet.EditProyectDetail, param)

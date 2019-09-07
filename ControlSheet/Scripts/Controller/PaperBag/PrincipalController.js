@@ -80,6 +80,12 @@ $(document).ready(function () {
 
 function savePerfilData() {
 
+    if ($('#file-perfil')[0].files[0] === null && $('#file-pasion')[0].files[0] === null && $('#file-algo')[0].files[0] == null) {
+
+        alertify.error("Las 3 fotos son requeridas para el perfil");
+        return;
+    }
+
     var formData = new FormData();
 
     formData.append("filePerfil", $('#file-perfil')[0].files[0]);
@@ -98,7 +104,9 @@ function savePerfilData() {
     xhr.send(formData);
     xhr.onreadystatechange = function () {
         if (xhr.readyState === 4 && xhr.status === 200) {
-            alert(xhr.responseText);
+            //alert(xhr.responseText);
+            alertify.success("Se edito correctamente");
+            LoadAllProfile();
         }
     }
 
@@ -150,28 +158,13 @@ function showWatchProfileUser(id) {
 
     $('#WatchProfileUser').modal('show');
 
-    $.post(directories.paperBag.HasProfile)
-        .done(function (data) {
-            data = JSON.parse(data.result);
-            var datos = data[0].id;
-            if (data[0].id !== 0) {
-
-                LoadProfileDetail(id);
-            }
-
-
-        })
-        .fail(function (data) {
-            alertify.error(data.statusText);
-           
-        });
-
+    LoadProfileDetail(id);
 
 
 }
 function LoadProfileDetail(id) {
 
-    $.blockUI();
+    //$.blockUI();
 
     param = {
         Id: id
@@ -203,7 +196,7 @@ function LoadProfileDetail(id) {
             alertify.error(data.statusText);
         })
         .always(function () {
-            $.unblockUI();
+            //$.unblockUI();
         });
 
 }
@@ -211,12 +204,13 @@ function LoadProfileDetail(id) {
 function ShowModifyProfile() {
 
     $('#ModifyProfileModal').modal('show');
+
     LoadProfileModify();
 }
 
 function LoadProfileModify() {
 
-    $.blockUI();
+    //$.blockUI();
 
     param = {
         Id: null
@@ -247,9 +241,9 @@ function LoadProfileModify() {
         .fail(function (data) {
             alertify.error(data.statusText);
         })
-        .always(function () {
-            $.unblockUI();
-        });
+        //.always(function () {
+        //    $.unblockUI();
+        //});
 
 }
 

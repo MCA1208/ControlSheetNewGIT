@@ -45,6 +45,23 @@ namespace ControlSheet.Service.paperBag
          
         }
 
+        public DataTable SpRecoveryPassword(string Email, string Password)
+        {
+            con = new SqlConnection(Connection.stringConnPB);
+            comando = new SqlCommand(SPName.spRecoveryPasswordPaper, con);
+
+            comando.CommandType = System.Data.CommandType.StoredProcedure;
+            comando.Parameters.AddWithValue("@Email", Email);
+            comando.Parameters.AddWithValue("@Password", Password);
+
+            SqlDataAdapter da = new SqlDataAdapter(comando);
+
+            da.Fill(dt);
+
+            return dt;
+
+
+        }
 
 
         //End Controller

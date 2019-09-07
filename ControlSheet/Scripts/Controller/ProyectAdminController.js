@@ -238,7 +238,8 @@ function editDetailproyect() {
 
     param = {
         idProyect: $('#txtIdProyect').val(), idProyectDetail: $('#txtIdProyectDetail').val(),
-        moduleName: $('#txtModuleNameD').val(), descriptions: $('#txtModuleDescription').val(), dateEstimated: $('#txtDateEstimatedEdit').val(), hourEstimated: $('#txtHourEstimated').val(), hourDedicated: $('#txtHourConsumed').val()
+        moduleName: $('#txtModuleNameD').val(), descriptions: $('#txtModuleDescription').val(), dateEstimated: $('#txtDateEstimatedEdit').val(), hourEstimated: $('#txtHourEstimated').val(), hourDedicated: $('#txtHourConsumed').val(),
+        finalizado: true
     };
 
     $.post(directories.controlSheet.EditProyectDetail, param)

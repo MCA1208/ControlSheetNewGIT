@@ -175,11 +175,11 @@ namespace ControlSheet.Controllers
             return Json(data, JsonRequestBehavior.AllowGet);
 
         }
-        public JsonResult EditProyectDetail(int idProyect, int idProyectDetail, string moduleName, string descriptions, DateTime? dateEstimated , float? hourEstimated, float? hourDedicated)
+        public JsonResult EditProyectDetail(int idProyect, int idProyectDetail, string moduleName, string descriptions, DateTime? dateEstimated , float? hourEstimated, float? hourDedicated, bool finalizado)
         {
             try
             {
-                dt = ProyectService.EditProyectDetail(idProyect, idProyectDetail, moduleName, descriptions, dateEstimated, hourEstimated, hourDedicated);
+                dt = ProyectService.EditProyectDetail(idProyect, idProyectDetail, moduleName, descriptions, dateEstimated, hourEstimated, hourDedicated, finalizado);
                 data.result = JsonConvert.SerializeObject(dt, Formatting.Indented);
             }
             catch (Exception ex)

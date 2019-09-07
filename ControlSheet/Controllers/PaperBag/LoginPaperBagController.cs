@@ -20,6 +20,10 @@ namespace ControlSheet.Controllers.PaperBag
         public string DesCryptPass = null;
         Encrypting ServiceEncryp = new Encrypting();
 
+        Service.UserService UserServiceGral = new Service.UserService();
+
+
+
         // GET: LoginPaperBag
         public ActionResult Login()
         {
@@ -130,8 +134,59 @@ namespace ControlSheet.Controllers.PaperBag
 
         }
 
-        //end Controller
+        public JsonResult SendRecoveryPassword(string EMail)
+        {
+            try
+            {
+                int longitud = 4;
+                Guid miGuid = Guid.NewGuid();
+                string token = Convert.ToBase64String(miGuid.ToByteArray());
+                token = token.Replace("=", "").Replace("+", "");
+                token = token.Substring(0, longitud);
+
+                if (MailService.IsEmail(EMail))
+                {
+                    EncryptPass = ServiceEncryp.Encryp(token);
+
+                    DataTable recPass = UserService.SpRecoveryPassword(EMail, EncryptPass);
+
+                    if (recPass.Rows[0][0].ToString() == "OK")
+                    {
+                        MailService.SendMail(EMail, "Recuperación de contraseña", "Nueva Contraseña: " + EncryptPass);
+                    }
+                    else
+                    {
+                        data.message = recPass.Rows[0][0].ToString();
+                        data.status = "error";
+                        return Json(data, JsonRequestBehavior.AllowGet);
+
+                    }
+
+                    data.message = recPass.Rows[0][0].ToString();
+                }
+                else
+                {
+                    data.message = "Se ha ingresado un email no valido";
+                    data.status = "error";
+                    return Json(data, JsonRequestBehavior.AllowGet);
+
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+                data.message = ex.Message;
+                data.status = "error";
+                return Json(data, JsonRequestBehavior.AllowGet);
+
+            }
+
+            return Json(data, JsonRequestBehavior.AllowGet);
+        }
     }
 
-
+    //end Controller
 }
+
+

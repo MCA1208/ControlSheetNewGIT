@@ -40,6 +40,8 @@ namespace ControlSheet.Models
             public string spGetUserPB = "spGetUserPB";
             public string spCreateUserPB = "spCreateUserPB";
             public string spGetHasProfile = "spGetHasProfile";
+            public string spGetImageCurrent = "spGetImageCurrent";
+            public string spRecoveryPasswordPaper = "spRecoveryPasswordPaper";
 
 
 

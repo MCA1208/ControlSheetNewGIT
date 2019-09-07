@@ -91,5 +91,23 @@ namespace ControlSheet.Service.paperBag
 
         }
 
+        public DataTable GetImageCurrent(int IdUser, int TypeImage)
+        {
+            con = new SqlConnection(Connection.stringConnPB);
+            comando = new SqlCommand(SPName.spGetImageCurrent, con);
+
+            comando.CommandType = System.Data.CommandType.StoredProcedure;
+            comando.Parameters.AddWithValue("@IdUser", IdUser);
+            comando.Parameters.AddWithValue("@typeImage", TypeImage);
+
+            SqlDataAdapter da = new SqlDataAdapter(comando);
+
+            da.Fill(dt);
+
+            return dt;
+
+        }
+
+
     }
 }
