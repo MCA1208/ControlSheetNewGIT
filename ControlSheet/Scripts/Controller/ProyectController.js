@@ -169,9 +169,15 @@ function LoadProyectDetail(id) {
                 data = JSON.parse(data.result);
                 $.each(data, function (key, value) {
 
-                    _html += '<tr><td>' + value.moduleName + '</td><td>' + value.descriptions + '</td><td>' + value.hourEstimated + '</td><td>' + value.hourDedicated + '</td><td>' + value.dateEstimated + '</td><td>'
-                        + '<button class="btn btn-primary" id="btnEditProyect" type="button" onclick="showModalEditProyectDetail(' + $('#txtIdProyect').val() + ',' + value.id + ');"><i class="fas fa-edit"></i> Editar Tarea </button>' + '</td>';
-                    
+                    if (value.finaled === 1) {
+                        _html += '<tr><td>' + value.moduleName + '</td><td>' + value.descriptions + '</td><td>' + value.hourEstimated + '</td><td>' + value.hourDedicated + '</td><td>' + value.dateEstimated + '</td><td><span class="badge badge-secondary" ><i class="fas fa-check-circle"></i></span></td><td>'
+                            + '<button class="btn btn-primary" id="btnEditProyect" type="button" onclick="showModalEditProyectDetail(' + $('#txtIdProyect').val() + ',' + value.id + ');"><i class="fas fa-edit"></i> Editar Tarea </button>' + '</td>';
+                    }
+                    else {
+
+                        _html += '<tr><td>' + value.moduleName + '</td><td>' + value.descriptions + '</td><td>' + value.hourEstimated + '</td><td>' + value.hourDedicated + '</td><td>' + value.dateEstimated + '</td><td><span class="badge badge-secondary" ><i class="fas fa-window-close"></i></span></td><td>'
+                            + '<button class="btn btn-primary" id="btnEditProyect" type="button" onclick="showModalEditProyectDetail(' + $('#txtIdProyect').val() + ',' + value.id + ');"><i class="fas fa-edit"></i> Editar Tarea </button>' + '</td>';
+                    }
                     
                 });
                 //id, moduleName, descriptions, hourEstimated, hourDedicated, dateCreate, dateEnd
@@ -218,10 +224,11 @@ function loadEditProyectDetail(idProyect, idProyectDetail) {
                 $('#txtModuleNameD').val(result[0]["moduleName"]);
                 $('#txtModuleDescription').val(result[0]["descriptions"]);
                 $('#txtHourConsumed').val(result[0]["hourDedicated"]);
+                $('#cbxFinishTask').prop('checked', result[0]["finaled"]);
 
             }
             else {
-                alertify.error(data.message); tableAddRow
+                alertify.error(data.message); 
 
             }
 
@@ -234,12 +241,10 @@ function loadEditProyectDetail(idProyect, idProyectDetail) {
 
 function editDetailproyect() {
 
-    //var tilde = $("#cbxFinishTask").prop("checked"); 
-
     param = {
         idProyect: $('#txtIdProyect').val(), idProyectDetail: $('#txtIdProyectDetail').val(),
         moduleName: $('#txtModuleNameD').val(), descriptions: $('#txtModuleDescription').val(), dateEstimated: null, hourEstimated: null, hourDedicated: $('#txtHourConsumed').val(),
-        finalizado: true
+        finalizado: $('#cbxFinishTask').prop('checked')
     };
 
     $.post(directories.controlSheet.EditProyectDetail, param)
@@ -248,8 +253,7 @@ function editDetailproyect() {
 
                 alertify.success("Se edito correctamente");
                 $('#EditDetailProyectModal').modal('hide');
-                //loadEditProyectDetail($('#txtIdProyect').val(), $('#txtIdProyectDetail').val());
-                //showModalEditProyectDetail($('#txtIdProyect').val(), $('#txtIdProyectDetail').val());
+
                 LoadProyectDetail($('#txtIdProyect').val());
             }
             else {
