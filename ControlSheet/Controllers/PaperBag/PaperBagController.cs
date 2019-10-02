@@ -27,6 +27,7 @@ namespace ControlSheet.Controllers.PaperBag
             return View();
         }
 
+        [Authorize]
         public JsonResult ModifyPerfil(HttpPostedFileBase filePerfil)
         {
             try
@@ -91,6 +92,7 @@ namespace ControlSheet.Controllers.PaperBag
 
         }
 
+        [Authorize]
         public JsonResult LoadAllProfile()
         {
 
@@ -113,6 +115,7 @@ namespace ControlSheet.Controllers.PaperBag
 
         }
 
+        [Authorize]
         public JsonResult GetProfileForId(int? Id)
         {
             try
@@ -141,7 +144,7 @@ namespace ControlSheet.Controllers.PaperBag
         }
 
 
-
+        [Authorize]
         public JsonResult HasProfile()
         {
             try

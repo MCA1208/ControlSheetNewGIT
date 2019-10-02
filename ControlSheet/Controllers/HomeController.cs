@@ -62,13 +62,8 @@ namespace ControlSheet.Controllers
                 {
 
                     var em = dt.Rows[0]["email"];
-                    System.Web.HttpContext.Current.Session["idUser"] = dt.Rows[0]["id"];
-                    System.Web.HttpContext.Current.Session["email"] = dt.Rows[0]["email"];
-                    System.Web.HttpContext.Current.Session["idcompany"] = dt.Rows[0]["idcompany"]; 
-                    System.Web.HttpContext.Current.Session["idUserProfile"] = dt.Rows[0]["idUserProfile"];
-                    System.Web.HttpContext.Current.Session["active"] = dt.Rows[0]["active"];
 
-                    var active = Convert.ToInt32(System.Web.HttpContext.Current.Session["active"]);
+                    var active = Convert.ToInt32(dt.Rows[0]["active"]);
                     var email = System.Web.HttpContext.Current.Session["email"];
                     if (active == 0)
                     {
@@ -78,6 +73,13 @@ namespace ControlSheet.Controllers
 
                     }
 
+                    SecurityHelper.GenerateAuthentication(user);
+
+                    System.Web.HttpContext.Current.Session["idUser"] = dt.Rows[0]["id"];
+                    System.Web.HttpContext.Current.Session["email"] = dt.Rows[0]["email"];
+                    System.Web.HttpContext.Current.Session["idcompany"] = dt.Rows[0]["idcompany"];
+                    System.Web.HttpContext.Current.Session["idUserProfile"] = dt.Rows[0]["idUserProfile"];
+                    System.Web.HttpContext.Current.Session["active"] = dt.Rows[0]["active"];
                     int idProfile = (int)System.Web.HttpContext.Current.Session["idUserProfile"];
 
                     DataTable dtPermission = UserService.spGetPermissionByProfile(idProfile);
@@ -112,6 +114,7 @@ namespace ControlSheet.Controllers
 
         }
 
+        [Authorize]
         public JsonResult CreateUserAdmin(string nameCompany, string eMail, string pass)
         {
             try

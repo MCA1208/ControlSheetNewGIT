@@ -17,6 +17,8 @@ namespace ControlSheet.Controllers
         public int? idUser = 0;
         public int idCompany = 0;
         public int idUserProfile = 0;
+
+        [Authorize]
         // GET: Report
         public ActionResult Index()
         {
@@ -27,6 +29,7 @@ namespace ControlSheet.Controllers
             return View();
         }
 
+        [Authorize]
         public ActionResult ReportPrincipal()
         {
             if (System.Web.HttpContext.Current.Session["idUser"] == null)
@@ -35,16 +38,20 @@ namespace ControlSheet.Controllers
             }
             return View();
         }
+
+        [Authorize]
         public ActionResult ReportSumHour()
         {
             return View();
         }
 
+        [Authorize]
         public ActionResult ReportGraphicByType()
         {
             return View();
         }
 
+        [Authorize]
         public JsonResult LoadReportPrincipal(DateTime? dateBegin, DateTime? dateEnd, int? Estado)
         {
             try
@@ -73,6 +80,7 @@ namespace ControlSheet.Controllers
 
         }
 
+        [Authorize]
         public JsonResult LoadReportSumHour(DateTime? dateBegin, DateTime? dateEnd, int? Estado)
         {
             try
@@ -101,7 +109,7 @@ namespace ControlSheet.Controllers
 
         }
 
-
+        [Authorize]
         public JsonResult LoadReportGraphicByType(DateTime? dateBegin, DateTime? dateEnd, int? Estado)
         {
             try

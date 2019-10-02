@@ -93,6 +93,7 @@ namespace ControlSheet.Controllers.PaperBag
 
         }
 
+        [Authorize]
         public JsonResult CreateUser(string eMail, string pass)
         {
             try

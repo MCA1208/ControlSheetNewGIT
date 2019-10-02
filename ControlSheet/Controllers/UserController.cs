@@ -18,8 +18,10 @@ namespace ControlSheet.Controllers
         Encrypting ServiceEncryp = new Encrypting();
         DataTable dt = null;
         public int idUser = 0;
-        public int idCompany = 0; 
+        public int idCompany = 0;
         public string EncryptPass = "";
+
+        [Authorize]
         // GET: User
         public ActionResult CreateUserOperator()
         {
@@ -30,11 +32,13 @@ namespace ControlSheet.Controllers
             return View();
         }
 
+        [Authorize]
         public ActionResult Profiler()
         {
             return View();
         }
 
+        [Authorize]
         public JsonResult CreateNewUserOperator(string EMail)
         {
             try
@@ -83,6 +87,7 @@ namespace ControlSheet.Controllers
 
         }
 
+        [Authorize]
         public JsonResult ChangePassword(string Pass)
         {
             try
@@ -109,7 +114,7 @@ namespace ControlSheet.Controllers
 
         }
 
-
+        [Authorize]
         public JsonResult LoadUser()
         {
             try
@@ -132,6 +137,7 @@ namespace ControlSheet.Controllers
 
         }
 
+        [Authorize]
         public JsonResult DeleteUser(int idUser)
         {
             try
