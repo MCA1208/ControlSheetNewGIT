@@ -1,7 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
+using System.Security.Principal;
+using System.Threading;
 using System.Web;
+using System.Web.Script.Serialization;
+using System.Web.Security;
 
 namespace ControlSheet.Helper
 {
@@ -16,7 +21,7 @@ namespace ControlSheet.Helper
                 user,
                 DateTime.Now,
                 DateTime.Now.AddMinutes(Int16.Parse(ConfigurationManager.AppSettings["CookieExpireTime"])),
-                true, B64Helper.Instance.Encode(_serializer.Serialize(_user)));
+                true, _serializer.Serialize(_user));
 
             var _ticket = FormsAuthentication.Encrypt(_authTicket);
 

@@ -1,6 +1,5 @@
 ﻿
 function Login() {
-    $.blockUI();
     var User = $('#txtUser').val();
     var Pass = $('#txtPass').val();
 
@@ -16,6 +15,9 @@ function Login() {
         pass: $('#txtPass').val()
 
     };
+
+    $.blockUI();
+
 
     $.post(directories.paperBag.LoginUser, data)
         .done(function (data) {

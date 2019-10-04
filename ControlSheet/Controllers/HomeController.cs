@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using ControlSheet.Models;
 using ControlSheet.Service;
 using System.Data;
+using ControlSheet.Helper;
 
 namespace ControlSheet.Controllers
 {
@@ -50,6 +51,7 @@ namespace ControlSheet.Controllers
 
                 if(dt.Rows.Count == 0)
                 {
+
                     data.message = "las Credenciales ingresadas no son validas";
                     data.status = "error";
                     return Json(data, JsonRequestBehavior.AllowGet);
@@ -67,6 +69,7 @@ namespace ControlSheet.Controllers
                     var email = System.Web.HttpContext.Current.Session["email"];
                     if (active == 0)
                     {
+
                         data.message = "El usuario se encuentra inactivo";
                         data.status = "error";
                         return Json(data, JsonRequestBehavior.AllowGet);
@@ -95,6 +98,8 @@ namespace ControlSheet.Controllers
                 }
                 else
                 {
+                    //MvcApplication._logger.Info("Contraseña invalida", user, pass);
+
                     data.message = "Contraseña Invalida";
                     data.status = "error";
                     return Json(data, JsonRequestBehavior.AllowGet);
@@ -102,10 +107,11 @@ namespace ControlSheet.Controllers
             }
             catch(Exception ex)
             {
+                //MvcApplication._logger.Fatal(ex);
+
                 data.message = ex.Message;
                 data.status = "error";
                 return Json(data, JsonRequestBehavior.AllowGet);
-
             }
 
             return Json( data, JsonRequestBehavior.AllowGet);
@@ -114,7 +120,6 @@ namespace ControlSheet.Controllers
 
         }
 
-        [Authorize]
         public JsonResult CreateUserAdmin(string nameCompany, string eMail, string pass)
         {
             try

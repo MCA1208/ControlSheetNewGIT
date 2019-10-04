@@ -8,7 +8,7 @@ $(document).ready(function () {
 
 
 function Login() {
-    $.blockUI();
+   
     var User = $('#txtUser').val();
     var Pass = $('#txtPass').val();
 
@@ -25,7 +25,8 @@ function Login() {
 
     };
 
-   // $.post(directories.user.loginUser, data)
+    $.blockUI();
+
     $.post(directories.home.loginUser, data)
         .done(function (data) {
 

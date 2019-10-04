@@ -1,4 +1,5 @@
-﻿using ControlSheet.Models;
+﻿using ControlSheet.Helper;
+using ControlSheet.Models;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -67,6 +68,7 @@ namespace ControlSheet.Controllers
         {
             FormsAuthentication.SignOut();
             Session.Abandon(); // it will clear the session at the end of request
+            SecurityHelper.LogOffUser();
             return RedirectToAction("index", "Home");
         }
 
