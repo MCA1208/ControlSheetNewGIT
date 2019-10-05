@@ -59,6 +59,9 @@ namespace ControlSheet.Controllers.PaperBag
 
                     var active = Convert.ToInt32(System.Web.HttpContext.Current.Session["active"]);
                     var email = System.Web.HttpContext.Current.Session["email"];
+
+                    SecurityHelper.GenerateAuthentication(user);
+
                     if (active == 0)
                     {
                         data.message = "El usuario se encuentra inactivo";
