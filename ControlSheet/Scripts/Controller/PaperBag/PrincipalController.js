@@ -124,7 +124,7 @@ function LoadAllProfile() {
                 data = JSON.parse(data.result);
                 $.each(data, function (key, value) {
                   
-                    _html += '<tr><td><img width="80px" height="80px"  src="data:image/jpg;base64,' + value.imagePerfil + '"/></td><td><img width="80px" height="80px"  src="data:image/jpg;base64,' + value.imagePasion + '"/></td><td><img width="80px" height="80px"  src="data:image/jpg;base64,' + value.imageAlgo + '"/></td><td>' + value.names + '</td><td>' + value.profession + '</td><td>' + '<button type="button" class="btn btn-primary" onclick="showWatchProfileUser(' + value.idUsers + ');"><i class="fas fa-eye"></i> VER </button>' + '</td>';
+                    _html += '<tr><td><img width="90px" height="90px"  src="data:image/jpg;base64,' + value.imagePerfil + '"/></td><td><img width="80px" height="80px"  src="data:image/jpg;base64,' + value.imagePasion + '"/></td><td><img width="80px" height="80px"  src="data:image/jpg;base64,' + value.imageAlgo + '"/></td><td>' + value.names + '</td><td>' + value.profession + '</td><td>' + '<button type="button" class="btn btn-primary" onclick="showWatchProfileUser(' + value.idUsers + ');"><i class="fas fa-eye"></i> VER </button>' + '</td>';
 
                 });
 

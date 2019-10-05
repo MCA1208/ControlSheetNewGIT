@@ -1,4 +1,5 @@
-﻿using ControlSheet.Models;
+﻿using ControlSheet.Helper;
+using ControlSheet.Models;
 using ControlSheet.Service;
 using System;
 using System.Collections.Generic;
@@ -66,6 +67,7 @@ namespace ControlSheet.Controllers.PaperBag
 
                     }
 
+                    SecurityHelper.GenerateAuthentication(user);
 
                     data.message = "las Credenciales validas";
 
@@ -92,6 +94,7 @@ namespace ControlSheet.Controllers.PaperBag
 
 
         }
+
 
         public JsonResult CreateUser(string eMail, string pass)
         {

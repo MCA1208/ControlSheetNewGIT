@@ -9,6 +9,6 @@ namespace ControlSheet.Models
     public class ConnectionModel
     {
         public string stringConn = ConfigurationManager.ConnectionStrings["cnnString"].ToString();
-        public string stringConnPB = ConfigurationManager.ConnectionStrings["cnnStringPB"].ToString();
+
     }
 }

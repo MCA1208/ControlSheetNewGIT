@@ -108,7 +108,7 @@ function SendPasswordMail() {
         .done(function (data) {
 
             if (data.status !== "error") {
-                alertify.success('Se creo con exito el usuario Administrador');
+                alertify.success('Se envió la contraseña por email');
             }
             else {
                 alertify.error(data.message);

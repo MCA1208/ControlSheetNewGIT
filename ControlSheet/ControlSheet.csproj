@@ -151,6 +151,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helper\SecurityHelper.cs" />
     <Compile Include="Models\ConnectionModel.cs" />
     <Compile Include="Models\ResultModel.cs" />
     <Compile Include="Models\UserModel.cs" />
@@ -213,6 +214,7 @@
     <Content Include="Scripts\bootstrap-4.2.1\js\bootstrap.min.js.map" />
     <Content Include="Content\dataTables\Buttons-1.5.6\common.scss" />
     <Content Include="Content\dataTables\Buttons-1.5.6\mixins.scss" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\bootstrap-4.2.1\css\bootstrap-grid.css" />
     <Content Include="Scripts\bootstrap-4.2.1\css\bootstrap-grid.min.css" />

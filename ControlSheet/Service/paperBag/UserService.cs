@@ -18,7 +18,7 @@ namespace ControlSheet.Service.paperBag
 
         public DataTable spGetUse(string user)
         {
-            con = new SqlConnection(Connection.stringConnPB);
+            con = new SqlConnection(Connection.stringConn);
             comando = new SqlCommand(SPName.spGetUserPB, con);
             comando.CommandType = CommandType.StoredProcedure;
             comando.Parameters.AddWithValue("@userName", user);
@@ -32,7 +32,7 @@ namespace ControlSheet.Service.paperBag
         public void CreateUser( string eMail, string pass)
         {
 
-            con = new SqlConnection(Connection.stringConnPB);
+            con = new SqlConnection(Connection.stringConn);
             con.Open();
             comando = new SqlCommand(SPName.spCreateUserPB, con);
             comando.CommandType = CommandType.StoredProcedure;
@@ -47,7 +47,7 @@ namespace ControlSheet.Service.paperBag
 
         public DataTable SpRecoveryPassword(string Email, string Password)
         {
-            con = new SqlConnection(Connection.stringConnPB);
+            con = new SqlConnection(Connection.stringConn);
             comando = new SqlCommand(SPName.spRecoveryPasswordPaper, con);
 
             comando.CommandType = System.Data.CommandType.StoredProcedure;

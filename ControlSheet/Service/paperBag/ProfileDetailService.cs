@@ -20,7 +20,7 @@ namespace ControlSheet.Service.paperBag
         public DataTable InsertModifyProfile(byte[] imagePerfil, byte[] imagePasion, byte[] imageAlgo,string name, string profession,
             string academyData, string experience, string contact, int idUser)
         {
-            con = new SqlConnection(Connection.stringConnPB);
+            con = new SqlConnection(Connection.stringConn);
             comando = new SqlCommand(SPName.spInsertModifyProfile, con);
 
             comando.CommandType = System.Data.CommandType.StoredProcedure;
@@ -45,7 +45,7 @@ namespace ControlSheet.Service.paperBag
 
         public DataTable GetAllProfile ()
         {
-            con = new SqlConnection(Connection.stringConnPB);
+            con = new SqlConnection(Connection.stringConn);
             comando = new SqlCommand(SPName.spGetAllProfile, con);
 
             comando.CommandType = System.Data.CommandType.StoredProcedure;
@@ -60,7 +60,7 @@ namespace ControlSheet.Service.paperBag
 
         public DataTable GetProfileForId(int? Id)
         {
-            con = new SqlConnection(Connection.stringConnPB);
+            con = new SqlConnection(Connection.stringConn);
             comando = new SqlCommand(SPName.spGetProfileForId, con);
 
             comando.CommandType = System.Data.CommandType.StoredProcedure;
@@ -77,7 +77,7 @@ namespace ControlSheet.Service.paperBag
         
         public DataTable GetHasProfile(int Id)
         {
-            con = new SqlConnection(Connection.stringConnPB);
+            con = new SqlConnection(Connection.stringConn);
             comando = new SqlCommand(SPName.spGetHasProfile, con);
 
             comando.CommandType = System.Data.CommandType.StoredProcedure;
@@ -93,7 +93,7 @@ namespace ControlSheet.Service.paperBag
 
         public DataTable GetImageCurrent(int IdUser, int TypeImage)
         {
-            con = new SqlConnection(Connection.stringConnPB);
+            con = new SqlConnection(Connection.stringConn);
             comando = new SqlCommand(SPName.spGetImageCurrent, con);
 
             comando.CommandType = System.Data.CommandType.StoredProcedure;

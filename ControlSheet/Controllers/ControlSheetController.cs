@@ -1,4 +1,5 @@
-﻿using ControlSheet.Models;
+﻿using ControlSheet.Helper;
+using ControlSheet.Models;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -19,11 +20,14 @@ namespace ControlSheet.Controllers
         public int  idUser = 0;
         public int idCompany = 0;
 
+        [Authorize]
         public ActionResult Index()
         {
 
             return View();
         }
+
+        [Authorize]
         public ActionResult Proyect()
         {
             if (System.Web.HttpContext.Current.Session["idUser"] == null)
@@ -34,6 +38,7 @@ namespace ControlSheet.Controllers
             return View();
         }
 
+        [Authorize]
         public ActionResult ProyectAdmin()
         {
             if (System.Web.HttpContext.Current.Session["idUser"] == null)
@@ -43,6 +48,7 @@ namespace ControlSheet.Controllers
             return View();
         }
 
+        [Authorize]
         public ActionResult Report()
         {
             ViewBag.Message = "Your application description page.";
@@ -50,6 +56,7 @@ namespace ControlSheet.Controllers
             return View();
         }
 
+        [Authorize]
         public ActionResult Help()
         {
             ViewBag.Message = "Your contact page.";
@@ -61,9 +68,11 @@ namespace ControlSheet.Controllers
         {
             FormsAuthentication.SignOut();
             Session.Abandon(); // it will clear the session at the end of request
+            SecurityHelper.LogOffUser();
             return RedirectToAction("index", "Home");
         }
 
+        [Authorize]
         public JsonResult LoadProyectActive()
         {
             try
@@ -95,6 +104,7 @@ namespace ControlSheet.Controllers
             return Json(data, JsonRequestBehavior.AllowGet);
         }
 
+        [Authorize]
         public JsonResult CreateNewProyect(string proyectName, int tipoReq)
         {
             try
@@ -117,6 +127,7 @@ namespace ControlSheet.Controllers
 
         }
 
+        [Authorize]
         public JsonResult LoadProyectDetail(int id)
         {
             try
@@ -136,6 +147,7 @@ namespace ControlSheet.Controllers
 
         }
 
+        [Authorize]
         public JsonResult InsertProyectDetail(string moduleName, string proyectDescription, string hourEstimated, DateTime dateEstimatedEnd, int idProyect)
         {
             try
@@ -156,6 +168,7 @@ namespace ControlSheet.Controllers
 
         }
 
+        [Authorize]
         public JsonResult LoadEditProyectDetail(int idProyect, int idProyectDetail)
         {
             try
@@ -175,6 +188,8 @@ namespace ControlSheet.Controllers
             return Json(data, JsonRequestBehavior.AllowGet);
 
         }
+
+        [Authorize]
         public JsonResult EditProyectDetail(int idProyect, int idProyectDetail, string moduleName, string descriptions, DateTime? dateEstimated , float? hourEstimated, float? hourDedicated, bool finalizado)
         {
             try
@@ -194,6 +209,7 @@ namespace ControlSheet.Controllers
 
         }
 
+        [Authorize]
         public JsonResult DeleteProyect (int idProyect)
         {
             try

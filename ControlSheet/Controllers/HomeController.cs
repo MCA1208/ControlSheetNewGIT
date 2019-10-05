@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using ControlSheet.Models;
 using ControlSheet.Service;
 using System.Data;
+using ControlSheet.Helper;
 
 namespace ControlSheet.Controllers
 {
@@ -49,7 +50,7 @@ namespace ControlSheet.Controllers
                 DataTable dt =  UserService.spGetUse(user);
 
                 if(dt.Rows.Count == 0)
-                {
+                {                  
                     data.message = "las Credenciales ingresadas no son validas";
                     data.status = "error";
                     return Json(data, JsonRequestBehavior.AllowGet);
@@ -62,22 +63,25 @@ namespace ControlSheet.Controllers
                 {
 
                     var em = dt.Rows[0]["email"];
-                    System.Web.HttpContext.Current.Session["idUser"] = dt.Rows[0]["id"];
-                    System.Web.HttpContext.Current.Session["email"] = dt.Rows[0]["email"];
-                    System.Web.HttpContext.Current.Session["idcompany"] = dt.Rows[0]["idcompany"]; 
-                    System.Web.HttpContext.Current.Session["idUserProfile"] = dt.Rows[0]["idUserProfile"];
-                    System.Web.HttpContext.Current.Session["active"] = dt.Rows[0]["active"];
 
-                    var active = Convert.ToInt32(System.Web.HttpContext.Current.Session["active"]);
+                    var active = Convert.ToInt32(dt.Rows[0]["active"]);
                     var email = System.Web.HttpContext.Current.Session["email"];
                     if (active == 0)
                     {
+                        
                         data.message = "El usuario se encuentra inactivo";
                         data.status = "error";
                         return Json(data, JsonRequestBehavior.AllowGet);
 
                     }
 
+                    SecurityHelper.GenerateAuthentication(user);
+
+                    System.Web.HttpContext.Current.Session["idUser"] = dt.Rows[0]["id"];
+                    System.Web.HttpContext.Current.Session["email"] = dt.Rows[0]["email"];
+                    System.Web.HttpContext.Current.Session["idcompany"] = dt.Rows[0]["idcompany"];
+                    System.Web.HttpContext.Current.Session["idUserProfile"] = dt.Rows[0]["idUserProfile"];
+                    System.Web.HttpContext.Current.Session["active"] = dt.Rows[0]["active"];
                     int idProfile = (int)System.Web.HttpContext.Current.Session["idUserProfile"];
 
                     DataTable dtPermission = UserService.spGetPermissionByProfile(idProfile);
@@ -103,7 +107,6 @@ namespace ControlSheet.Controllers
                 data.message = ex.Message;
                 data.status = "error";
                 return Json(data, JsonRequestBehavior.AllowGet);
-
             }
 
             return Json( data, JsonRequestBehavior.AllowGet);
