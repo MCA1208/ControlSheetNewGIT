@@ -62,7 +62,7 @@ namespace ControlSheet.Controllers.PaperBag
                     MemoryStream msPasion = new MemoryStream();
                     myStreamPasion.CopyTo(msPasion);
                     imgPasion = msPasion.ToArray();
-                }
+                 }
 
 
                 byte[] imgAlgo = null;
