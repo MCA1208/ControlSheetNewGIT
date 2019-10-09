@@ -80,11 +80,13 @@ $(document).ready(function () {
 
 function savePerfilData() {
 
-    if ($('#file-perfil')[0].files[0] === null && $('#file-pasion')[0].files[0] === null && $('#file-algo')[0].files[0] == null) {
+    if ($('#file-perfil')[0].files[0] === null && $('#file-pasion')[0].files[0] === null && $('#file-algo')[0].files[0] === null) {
 
         alertify.error("Las 3 fotos son requeridas para el perfil");
         return;
     }
+
+    $.blockUI();
 
     var formData = new FormData();
 
@@ -107,6 +109,7 @@ function savePerfilData() {
             //alert(xhr.responseText);
             alertify.success("Se edito correctamente");
             LoadAllProfile();
+            $.unblockUI();
         }
     }
 
@@ -155,16 +158,16 @@ function LoadAllProfile() {
 
 
 function showWatchProfileUser(id) {
-
-    $('#WatchProfileUser').modal('show');
-
     LoadProfileDetail(id);
+   
+
+    
 
 
 }
 function LoadProfileDetail(id) {
 
-    //$.blockUI();
+    $.blockUI();
 
     param = {
         Id: id
@@ -185,6 +188,8 @@ function LoadProfileDetail(id) {
                 $('#txtExperienceWatch').val(data[0].experience);
                 $('#txtContactWatch').val(data[0].contact);
 
+                $('#WatchProfileUser').modal('show');
+
             }
             else {
                 alertify.error(data.message);
@@ -196,7 +201,7 @@ function LoadProfileDetail(id) {
             alertify.error(data.statusText);
         })
         .always(function () {
-            //$.unblockUI();
+            $.unblockUI();
         });
 
 }
@@ -210,7 +215,7 @@ function ShowModifyProfile() {
 
 function LoadProfileModify() {
 
-    //$.blockUI();
+    $.blockUI();
 
     param = {
         Id: null
@@ -241,9 +246,9 @@ function LoadProfileModify() {
         .fail(function (data) {
             alertify.error(data.statusText);
         })
-        //.always(function () {
-        //    $.unblockUI();
-        //});
+        .always(function () {
+            $.unblockUI();
+        });
 
 }
 
