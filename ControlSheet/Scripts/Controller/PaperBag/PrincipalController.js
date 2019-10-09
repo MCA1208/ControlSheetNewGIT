@@ -215,7 +215,7 @@ function ShowModifyProfile() {
 
 function LoadProfileModify() {
 
-    $.blockUI();
+    //$.blockUI();
 
     param = {
         Id: null
@@ -247,7 +247,7 @@ function LoadProfileModify() {
             alertify.error(data.statusText);
         })
         .always(function () {
-            $.unblockUI();
+            //$.unblockUI();
         });
 
 }
