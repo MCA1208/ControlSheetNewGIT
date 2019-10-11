@@ -154,6 +154,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helper\ImageHelper.cs" />
     <Compile Include="Helper\SecurityHelper.cs" />
     <Compile Include="Models\ConnectionModel.cs" />
     <Compile Include="Models\ResultModel.cs" />

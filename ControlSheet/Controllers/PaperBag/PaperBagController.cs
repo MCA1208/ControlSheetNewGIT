@@ -1,10 +1,12 @@
-﻿using ControlSheet.Models;
+﻿using ControlSheet.Helper;
+using ControlSheet.Models;
 using ControlSheet.Service;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using System.Web;
@@ -43,40 +45,40 @@ namespace ControlSheet.Controllers.PaperBag
                 string _experience = Request.Form["experience"];
                 string _contact = Request.Form["contact"];
 
-                byte[] imgPerfil = null;
+                if (!Directory.Exists(Server.MapPath("~/Pictures")))
+                    Directory.CreateDirectory(Server.MapPath("~/Pictures"));
 
                 if (_filePerfil != null)
                 {
-                    Stream myStreamPerfil = _filePerfil.InputStream;
-                    MemoryStream ms = new MemoryStream();
-                    myStreamPerfil.CopyTo(ms);
-                    imgPerfil = ms.ToArray();
+                    
+
+                    var namePathPerfil = Path.GetFileName(_filePerfil.FileName).Replace(_filePerfil.FileName, idUser.ToString() + "_perfil.jpg");
+                    System.IO.File.Delete(Server.MapPath("~/Pictures") + "\\" + namePathPerfil);
+                     _filePerfil.SaveAs(Server.MapPath("~/Pictures") +"\\" + namePathPerfil);
+
+
                 }
 
-
-                byte[] imgPasion = null;
 
                 if (_filePasion != null)
                 {
-                    Stream myStreamPasion = _filePasion.InputStream;
-                    MemoryStream msPasion = new MemoryStream();
-                    myStreamPasion.CopyTo(msPasion);
-                    imgPasion = msPasion.ToArray();
-                 }
+                    var namePathPasion = Path.GetFileName(_filePasion.FileName).Replace(_filePasion.FileName, idUser.ToString() + "_pasion.jpg");
+                    System.IO.File.Delete(Server.MapPath("~/Pictures") + "\\" + namePathPasion);
+                    _filePasion.SaveAs(Server.MapPath("~/Pictures") + "\\" + namePathPasion);
 
 
-                byte[] imgAlgo = null;
-
-                if (_fileAlgo != null)
-                {
-                    Stream myStreamAlgo = _fileAlgo.InputStream;
-                    MemoryStream msAlgo = new MemoryStream();
-                    myStreamAlgo.CopyTo(msAlgo);
-                    imgAlgo = msAlgo.ToArray();
                 }
 
 
-                Service.InsertModifyProfile(imgPerfil, imgPasion, imgAlgo, _name, _profession, _academyData, _experience, _contact, idUser);
+                if (_fileAlgo != null)
+                {
+                    var namePathAlgo = Path.GetFileName(_fileAlgo.FileName).Replace(_fileAlgo.FileName, idUser.ToString() + "_algo.jpg");
+                    System.IO.File.Delete(Server.MapPath("~/Pictures") + "\\" + namePathAlgo);
+                    _fileAlgo.SaveAs(Server.MapPath("~/Pictures") + "\\" + namePathAlgo);
+
+                }
+
+                Service.InsertModifyProfile( _name, _profession, _academyData, _experience, _contact, idUser);
 
                 data.result = JsonConvert.SerializeObject(dt, Formatting.Indented);
             }
@@ -99,6 +101,41 @@ namespace ControlSheet.Controllers.PaperBag
             try
             {
                 dt = Service.GetAllProfile();
+
+                string imgB64Perfil = string.Empty;
+                string imgB64Pasion = string.Empty;
+                string imgB64Algo = string.Empty;
+
+                foreach (DataRow row in dt.Rows)
+                {
+
+                    string filePerfil = Directory.GetFiles(Server.MapPath("~/Pictures"), row[3] + "_perfil.jpg").FirstOrDefault(x => x.Contains(row[3] + "_perfil.jpg"));
+                    string filePasion = Directory.GetFiles(Server.MapPath("~/Pictures"), row[3] + "_pasion.jpg").FirstOrDefault(x => x.Contains(row[3] + "_pasion.jpg"));
+                    string fileAlgo = Directory.GetFiles(Server.MapPath("~/Pictures"), row[3] + "_algo.jpg").FirstOrDefault(x => x.Contains(row[3] + "_algo.jpg"));
+
+                    if (!string.IsNullOrWhiteSpace(filePerfil))
+                    {
+                        imgB64Perfil = ImageHelper.ImageFileToB64(filePerfil);
+
+                        row[0] = imgB64Perfil;
+                    }
+
+                    if (!string.IsNullOrWhiteSpace(filePasion))
+                    {
+                        imgB64Pasion = ImageHelper.ImageFileToB64(filePasion);
+
+                        row[1] = imgB64Pasion;
+                    }
+
+                    if (!string.IsNullOrWhiteSpace(fileAlgo))
+                    {
+                        imgB64Algo = ImageHelper.ImageFileToB64(fileAlgo);
+
+                        row[2] = imgB64Algo;
+                    }
+
+                }
+
 
 
                 data.result = JsonConvert.SerializeObject(dt, Formatting.Indented);
@@ -124,9 +161,26 @@ namespace ControlSheet.Controllers.PaperBag
                     Id = (int)System.Web.HttpContext.Current.Session["idUser"];
 
                 dt = Service.GetProfileForId(Id);
+                var pathCombinePerfil = Path.Combine(Server.MapPath("~/Pictures"), Id.ToString() + "_perfil.jpg");
+                var pathCombinePasion = Path.Combine(Server.MapPath("~/Pictures"), Id.ToString() + "_pasion.jpg");
+                var pathCombineAlgo = Path.Combine(Server.MapPath("~/Pictures"), Id.ToString() + "_algo.jpg");
 
-                var imageFile = File(dt.Columns[1].ToString(), "image/png");
+                string imgB64Perfil = string.Empty;
 
+                imgB64Perfil = ImageHelper.ImageFileToB64(pathCombinePerfil);
+                
+                string imgB64Pasion = string.Empty;
+
+                imgB64Pasion = ImageHelper.ImageFileToB64(pathCombinePasion);
+
+                string imgB64Algo = string.Empty;
+
+                imgB64Algo = ImageHelper.ImageFileToB64(pathCombineAlgo);
+
+
+                dt.Rows[0][0] = imgB64Perfil;
+                dt.Rows[0][1] = imgB64Pasion;
+                dt.Rows[0][2] = imgB64Algo;
                 data.result = JsonConvert.SerializeObject(dt, Formatting.Indented);
             }
             catch (Exception ex)

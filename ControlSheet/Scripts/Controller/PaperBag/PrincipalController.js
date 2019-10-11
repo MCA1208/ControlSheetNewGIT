@@ -80,6 +80,8 @@ $(document).ready(function () {
 
 function savePerfilData() {
 
+    var fileSave = $('#file-perfil')[0].files[0];
+
     if ($('#file-perfil')[0].files[0] === null && $('#file-pasion')[0].files[0] === null && $('#file-algo')[0].files[0] === null) {
 
         alertify.error("Las 3 fotos son requeridas para el perfil");
@@ -110,7 +112,8 @@ function savePerfilData() {
             alertify.success("Se edito correctamente");
             LoadAllProfile();
             $.unblockUI();
-        }
+        }     
+
     }
 
 }

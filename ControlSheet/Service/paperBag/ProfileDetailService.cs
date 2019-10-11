@@ -17,7 +17,7 @@ namespace ControlSheet.Service.paperBag
         readonly UserModel.SPName SPName = new UserModel.SPName();
         readonly ConnectionModel Connection = new ConnectionModel();
 
-        public DataTable InsertModifyProfile(byte[] imagePerfil, byte[] imagePasion, byte[] imageAlgo,string name, string profession,
+        public DataTable InsertModifyProfile(string name, string profession,
             string academyData, string experience, string contact, int idUser)
         {
             con = new SqlConnection(Connection.stringConn);
@@ -25,9 +25,6 @@ namespace ControlSheet.Service.paperBag
 
             comando.CommandType = System.Data.CommandType.StoredProcedure;
 
-            comando.Parameters.AddWithValue("@imagePerfil", imagePerfil);
-            comando.Parameters.AddWithValue("@imagePasion", imagePasion);
-            comando.Parameters.AddWithValue("@imageAlgo", imageAlgo);
             comando.Parameters.AddWithValue("@name", name);
             comando.Parameters.AddWithValue("@profession", profession);
             comando.Parameters.AddWithValue("@academyData", academyData);
