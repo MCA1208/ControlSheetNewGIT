@@ -109,9 +109,10 @@ namespace ControlSheet.Controllers.PaperBag
                 foreach (DataRow row in dt.Rows)
                 {
 
-                    string filePerfil = Directory.GetFiles(Server.MapPath("~/Pictures"), row[3] + "_perfil.jpg").FirstOrDefault(x => x.Contains(row[3] + "_perfil.jpg"));
-                    string filePasion = Directory.GetFiles(Server.MapPath("~/Pictures"), row[3] + "_pasion.jpg").FirstOrDefault(x => x.Contains(row[3] + "_pasion.jpg"));
-                    string fileAlgo = Directory.GetFiles(Server.MapPath("~/Pictures"), row[3] + "_algo.jpg").FirstOrDefault(x => x.Contains(row[3] + "_algo.jpg"));
+                    string filePerfil = Directory.GetFiles(Server.MapPath("~/Pictures"), row[10] + "_perfil.jpg").FirstOrDefault(x => x.Contains(row[10] + "_perfil.jpg"));
+                    string filePasion = Directory.GetFiles(Server.MapPath("~/Pictures"), row[10] + "_pasion.jpg").FirstOrDefault(x => x.Contains(row[10] + "_pasion.jpg"));
+                    string fileAlgo = Directory.GetFiles(Server.MapPath("~/Pictures"), row[10] + "_algo.jpg").FirstOrDefault(x => x.Contains(row[10] + "_algo.jpg"));
+
 
                     if (!string.IsNullOrWhiteSpace(filePerfil))
                     {
@@ -167,15 +168,18 @@ namespace ControlSheet.Controllers.PaperBag
 
                 string imgB64Perfil = string.Empty;
 
-                imgB64Perfil = ImageHelper.ImageFileToB64(pathCombinePerfil);
+                if (System.IO.File.Exists(pathCombinePerfil))
+                    imgB64Perfil = ImageHelper.ImageFileToB64(pathCombinePerfil);
                 
                 string imgB64Pasion = string.Empty;
 
-                imgB64Pasion = ImageHelper.ImageFileToB64(pathCombinePasion);
+                if (System.IO.File.Exists(pathCombinePasion))
+                    imgB64Pasion = ImageHelper.ImageFileToB64(pathCombinePasion);
 
                 string imgB64Algo = string.Empty;
 
-                imgB64Algo = ImageHelper.ImageFileToB64(pathCombineAlgo);
+                if (System.IO.File.Exists(pathCombineAlgo))
+                    imgB64Algo = ImageHelper.ImageFileToB64(pathCombineAlgo);
 
 
                 dt.Rows[0][0] = imgB64Perfil;
