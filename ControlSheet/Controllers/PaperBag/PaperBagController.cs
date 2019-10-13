@@ -10,6 +10,7 @@ using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using System.Web;
+using System.Web.Configuration;
 using System.Web.Mvc;
 
 namespace ControlSheet.Controllers.PaperBag
@@ -19,10 +20,11 @@ namespace ControlSheet.Controllers.PaperBag
 
         ResultModel data = new ResultModel();
         Service.paperBag.ProfileDetailService Service = new Service.paperBag.ProfileDetailService();
-
+        readonly string PathPictures = WebConfigurationManager.AppSettings["PathPictures"].ToString();
         DataTable dt = null;
         public int idUser = 0;
         public int idCompany = 0;
+
         // GET: PaperBag
         public ActionResult Principal()
         {
@@ -45,36 +47,43 @@ namespace ControlSheet.Controllers.PaperBag
                 string _experience = Request.Form["experience"];
                 string _contact = Request.Form["contact"];
 
-                if (!Directory.Exists(Server.MapPath("~/Pictures")))
-                    Directory.CreateDirectory(Server.MapPath("~/Pictures"));
+                //if (!Directory.Exists(Server.MapPath("~/Pictures")))
+                //    Directory.CreateDirectory(Server.MapPath("~/Pictures"));
 
                 if (_filePerfil != null)
                 {
-                    
+                    //var namePathPerfil = Path.GetFileName(_filePerfil.FileName).Replace(_filePerfil.FileName, idUser.ToString() + "_perfil.jpg");
+                    //System.IO.File.Delete(Server.MapPath("~/Pictures") + "\\" + namePathPerfil);
+                    //_filePerfil.SaveAs(Server.MapPath("~/Pictures") + "\\" + namePathPerfil);
 
-                    var namePathPerfil = Path.GetFileName(_filePerfil.FileName).Replace(_filePerfil.FileName, idUser.ToString() + "_perfil.jpg");
-                    System.IO.File.Delete(Server.MapPath("~/Pictures") + "\\" + namePathPerfil);
-                     _filePerfil.SaveAs(Server.MapPath("~/Pictures") +"\\" + namePathPerfil);
-
+                    string namePathPerfil = @PathPictures + idUser.ToString() + "_perfil.jpg";
+                    System.IO.File.Delete(@PathPictures + namePathPerfil);
+                    _filePerfil.SaveAs(@PathPictures + namePathPerfil);
 
                 }
 
-
                 if (_filePasion != null)
                 {
-                    var namePathPasion = Path.GetFileName(_filePasion.FileName).Replace(_filePasion.FileName, idUser.ToString() + "_pasion.jpg");
-                    System.IO.File.Delete(Server.MapPath("~/Pictures") + "\\" + namePathPasion);
-                    _filePasion.SaveAs(Server.MapPath("~/Pictures") + "\\" + namePathPasion);
+                    //var namePathPasion = Path.GetFileName(_filePasion.FileName).Replace(_filePasion.FileName, idUser.ToString() + "_pasion.jpg");
+                    //System.IO.File.Delete(Server.MapPath("~/Pictures") + "\\" + namePathPasion);
+                    //_filePasion.SaveAs(Server.MapPath("~/Pictures") + "\\" + namePathPasion);
 
+                    string namePathPasion = @PathPictures + idUser.ToString() + "_pasion.jpg";
+                    System.IO.File.Delete(@PathPictures + namePathPasion);
+                    _filePasion.SaveAs(@PathPictures + namePathPasion);
 
                 }
 
 
                 if (_fileAlgo != null)
                 {
-                    var namePathAlgo = Path.GetFileName(_fileAlgo.FileName).Replace(_fileAlgo.FileName, idUser.ToString() + "_algo.jpg");
-                    System.IO.File.Delete(Server.MapPath("~/Pictures") + "\\" + namePathAlgo);
-                    _fileAlgo.SaveAs(Server.MapPath("~/Pictures") + "\\" + namePathAlgo);
+                    //var namePathAlgo = Path.GetFileName(_fileAlgo.FileName).Replace(_fileAlgo.FileName, idUser.ToString() + "_algo.jpg");
+                    //System.IO.File.Delete(Server.MapPath("~/Pictures") + "\\" + namePathAlgo);
+                    //_fileAlgo.SaveAs(Server.MapPath("~/Pictures") + "\\" + namePathAlgo);
+
+                    string namePathAlgo = @PathPictures + idUser.ToString() + "_algo.jpg";
+                    System.IO.File.Delete(@PathPictures + namePathAlgo);
+                    _fileAlgo.SaveAs(@PathPictures + namePathAlgo);
 
                 }
 
@@ -109,10 +118,30 @@ namespace ControlSheet.Controllers.PaperBag
                 foreach (DataRow row in dt.Rows)
                 {
 
-                    string filePerfil = Directory.GetFiles(Server.MapPath("~/Pictures"), row[10] + "_perfil.jpg").FirstOrDefault(x => x.Contains(row[10] + "_perfil.jpg"));
-                    string filePasion = Directory.GetFiles(Server.MapPath("~/Pictures"), row[10] + "_pasion.jpg").FirstOrDefault(x => x.Contains(row[10] + "_pasion.jpg"));
-                    string fileAlgo = Directory.GetFiles(Server.MapPath("~/Pictures"), row[10] + "_algo.jpg").FirstOrDefault(x => x.Contains(row[10] + "_algo.jpg"));
+                    //string filePerfil = Directory.GetFiles(Server.MapPath("~/Pictures"), row[10] + "_perfil.jpg").FirstOrDefault(x => x.Contains(row[10] + "_perfil.jpg"));
+                    //string filePasion = Directory.GetFiles(Server.MapPath("~/Pictures"), row[10] + "_pasion.jpg").FirstOrDefault(x => x.Contains(row[10] + "_pasion.jpg"));
+                    //string fileAlgo = Directory.GetFiles(Server.MapPath("~/Pictures"), row[10] + "_algo.jpg").FirstOrDefault(x => x.Contains(row[10] + "_algo.jpg"));
 
+                    //################### LocalHost
+                    //string filePerfil = @"D:\Milton Doc\Proyectos .NET\ControlSheetNewGIT\ControlSheet\Pictures\" + row[10] + "_perfil.jpg";
+                    //string filePasion = @"D:\Milton Doc\Proyectos .NET\ControlSheetNewGIT\ControlSheet\Pictures\" + row[10] + "_pasion.jpg";
+                    //string fileAlgo = @"D:\Milton Doc\Proyectos .NET\ControlSheetNewGIT\ControlSheet\Pictures\" + row[10] + "_algo.jpg";
+
+
+
+                    //################# Server Hosting
+                    string filePerfil = (@PathPictures + row[10] + "_perfil.jpg").Trim();
+                    string filePasion = (@PathPictures + row[10] + "_pasion.jpg").Trim();
+                    string fileAlgo = (@PathPictures + row[10] + "_algo.jpg").Trim();
+
+                    if (!System.IO.File.Exists(filePerfil))
+                        filePerfil = null;
+
+                    if (!System.IO.File.Exists(filePasion))
+                        filePasion = null;
+
+                    if (!System.IO.File.Exists(fileAlgo))
+                        fileAlgo = null;
 
                     if (!string.IsNullOrWhiteSpace(filePerfil))
                     {
@@ -162,9 +191,13 @@ namespace ControlSheet.Controllers.PaperBag
                     Id = (int)System.Web.HttpContext.Current.Session["idUser"];
 
                 dt = Service.GetProfileForId(Id);
-                var pathCombinePerfil = Path.Combine(Server.MapPath("~/Pictures"), Id.ToString() + "_perfil.jpg");
-                var pathCombinePasion = Path.Combine(Server.MapPath("~/Pictures"), Id.ToString() + "_pasion.jpg");
-                var pathCombineAlgo = Path.Combine(Server.MapPath("~/Pictures"), Id.ToString() + "_algo.jpg");
+                //var pathCombinePerfil = Path.Combine(Server.MapPath("~/Pictures"), Id.ToString() + "_perfil.jpg");
+                //var pathCombinePasion = Path.Combine(Server.MapPath("~/Pictures"), Id.ToString() + "_pasion.jpg");
+                //var pathCombineAlgo = Path.Combine(Server.MapPath("~/Pictures"), Id.ToString() + "_algo.jpg");
+
+                var pathCombinePerfil = @PathPictures + Id.ToString() + "_perfil.jpg";
+                var pathCombinePasion = @PathPictures + Id.ToString() + "_pasion.jpg";
+                var pathCombineAlgo = @PathPictures + Id.ToString() + "_algo.jpg";
 
                 string imgB64Perfil = string.Empty;
 
