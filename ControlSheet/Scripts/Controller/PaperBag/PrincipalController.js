@@ -111,7 +111,7 @@ function savePerfilData() {
 
     if ($('#file-algo')[0].files[0] !== undefined) {
 
-        var FileSizeAlgo = $('#file-pasion')[0].files[0].size / 1024;
+        var FileSizeAlgo = $('#file-algo')[0].files[0].size / 1024;
 
         if (FileSizeAlgo > 500) {
 
@@ -144,10 +144,12 @@ function savePerfilData() {
             //alert(xhr.responseText);
             alertify.success("Se edito correctamente");
             LoadAllProfile();
-            $.unblockUI();
+            
         }     
 
     }
+
+    $.unblockUI();
 
 }
 function LoadAllProfile() {

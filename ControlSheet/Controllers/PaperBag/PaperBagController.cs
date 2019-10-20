@@ -52,11 +52,6 @@ namespace ControlSheet.Controllers.PaperBag
 
                 if (_filePerfil != null)
                 {
-                    //var namePathPerfil = Path.GetFileName(_filePerfil.FileName).Replace(_filePerfil.FileName, idUser.ToString() + "_perfil.jpg");
-                    //System.IO.File.Delete(Server.MapPath("~/Pictures") + "\\" + namePathPerfil);
-                    //_filePerfil.SaveAs(Server.MapPath("~/Pictures") + "\\" + namePathPerfil);
-
-                    //string namePathPerfil = @PathPictures + idUser.ToString() + "_perfil.jpg";
                     var namePathPerfil = Path.GetFileName(_filePerfil.FileName).Replace(_filePerfil.FileName, idUser.ToString() + "_perfil.jpg");
                     System.IO.File.Delete(AppDomain.CurrentDomain.BaseDirectory + @"Pictures\" + namePathPerfil);
                     _filePerfil.SaveAs(AppDomain.CurrentDomain.BaseDirectory + @"Pictures\" + namePathPerfil);
@@ -65,10 +60,6 @@ namespace ControlSheet.Controllers.PaperBag
 
                 if (_filePasion != null)
                 {
-                    //var namePathPasion = Path.GetFileName(_filePasion.FileName).Replace(_filePasion.FileName, idUser.ToString() + "_pasion.jpg");
-                    //System.IO.File.Delete(Server.MapPath("~/Pictures") + "\\" + namePathPasion);
-                    //_filePasion.SaveAs(Server.MapPath("~/Pictures") + "\\" + namePathPasion);
-
                     string namePathPasion = Path.GetFileName(_filePasion.FileName).Replace(_filePasion.FileName, idUser.ToString() + "_pasion.jpg");
                     System.IO.File.Delete(AppDomain.CurrentDomain.BaseDirectory + @"Pictures\" + namePathPasion);
                     _filePasion.SaveAs(AppDomain.CurrentDomain.BaseDirectory + @"Pictures\" + namePathPasion);
@@ -78,9 +69,6 @@ namespace ControlSheet.Controllers.PaperBag
 
                 if (_fileAlgo != null)
                 {
-                    //var namePathAlgo = Path.GetFileName(_fileAlgo.FileName).Replace(_fileAlgo.FileName, idUser.ToString() + "_algo.jpg");
-                    //System.IO.File.Delete(Server.MapPath("~/Pictures") + "\\" + namePathAlgo);
-                    //_fileAlgo.SaveAs(Server.MapPath("~/Pictures") + "\\" + namePathAlgo);
 
                     string namePathAlgo = Path.GetFileName(_fileAlgo.FileName).Replace(_fileAlgo.FileName, idUser.ToString() + "_algo.jpg");
                     System.IO.File.Delete(AppDomain.CurrentDomain.BaseDirectory + @"Pictures\" + namePathAlgo);
@@ -118,16 +106,6 @@ namespace ControlSheet.Controllers.PaperBag
 
                 foreach (DataRow row in dt.Rows)
                 {
-
-                    //string filePerfil = Directory.GetFiles(Server.MapPath("~/Pictures"), row[10] + "_perfil.jpg").FirstOrDefault(x => x.Contains(row[10] + "_perfil.jpg"));
-                    //string filePasion = Directory.GetFiles(Server.MapPath("~/Pictures"), row[10] + "_pasion.jpg").FirstOrDefault(x => x.Contains(row[10] + "_pasion.jpg"));
-                    //string fileAlgo = Directory.GetFiles(Server.MapPath("~/Pictures"), row[10] + "_algo.jpg").FirstOrDefault(x => x.Contains(row[10] + "_algo.jpg"));
-
-                    //################### LocalHost
-                    //string filePerfil = @"D:\Milton Doc\Proyectos .NET\ControlSheetNewGIT\ControlSheet\Pictures\" + row[10] + "_perfil.jpg";
-                    //string filePasion = @"D:\Milton Doc\Proyectos .NET\ControlSheetNewGIT\ControlSheet\Pictures\" + row[10] + "_pasion.jpg";
-                    //string fileAlgo = @"D:\Milton Doc\Proyectos .NET\ControlSheetNewGIT\ControlSheet\Pictures\" + row[10] + "_algo.jpg";
-
 
 
                     //################# Server Hosting
@@ -192,9 +170,6 @@ namespace ControlSheet.Controllers.PaperBag
                     Id = (int)System.Web.HttpContext.Current.Session["idUser"];
 
                 dt = Service.GetProfileForId(Id);
-                //var pathCombinePerfil = Path.Combine(Server.MapPath("~/Pictures"), Id.ToString() + "_perfil.jpg");
-                //var pathCombinePasion = Path.Combine(Server.MapPath("~/Pictures"), Id.ToString() + "_pasion.jpg");
-                //var pathCombineAlgo = Path.Combine(Server.MapPath("~/Pictures"), Id.ToString() + "_algo.jpg");
 
                 var pathCombinePerfil = AppDomain.CurrentDomain.BaseDirectory + @"Pictures\" + Id.ToString() + "_perfil.jpg";
                 var pathCombinePasion = AppDomain.CurrentDomain.BaseDirectory + @"Pictures\" + Id.ToString() + "_pasion.jpg";
@@ -204,19 +179,26 @@ namespace ControlSheet.Controllers.PaperBag
 
                 if (System.IO.File.Exists(pathCombinePerfil))
                     imgB64Perfil = ImageHelper.ImageFileToB64(pathCombinePerfil);
+                else    
+                    imgB64Perfil = ImageHelper.ImageFileToB64((AppDomain.CurrentDomain.BaseDirectory + "Image\\User\\userPerfil.jpg"));
+                
                 
                 string imgB64Pasion = string.Empty;
 
                 if (System.IO.File.Exists(pathCombinePasion))
                     imgB64Pasion = ImageHelper.ImageFileToB64(pathCombinePasion);
+                else
+                    imgB64Pasion = ImageHelper.ImageFileToB64((AppDomain.CurrentDomain.BaseDirectory + "Image\\User\\userPasion.jpg"));
 
                 string imgB64Algo = string.Empty;
 
                 if (System.IO.File.Exists(pathCombineAlgo))
                     imgB64Algo = ImageHelper.ImageFileToB64(pathCombineAlgo);
+                else
+                    imgB64Algo = ImageHelper.ImageFileToB64((AppDomain.CurrentDomain.BaseDirectory + "Image\\User\\userAlgo.jpg"));
 
 
-                if(dt.Rows.Count > 0)
+                if (dt.Rows.Count > 0)
                 {
                     dt.Rows[0][0] = imgB64Perfil;
                     dt.Rows[0][1] = imgB64Pasion;
