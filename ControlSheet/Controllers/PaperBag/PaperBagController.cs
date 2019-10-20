@@ -136,13 +136,13 @@ namespace ControlSheet.Controllers.PaperBag
                     string fileAlgo = (AppDomain.CurrentDomain.BaseDirectory + @"Pictures\" + row[10] + "_algo.jpg").Trim();
 
                     if (!System.IO.File.Exists(filePerfil))
-                        filePerfil = null;
+                        filePerfil = (AppDomain.CurrentDomain.BaseDirectory + "Image\\User\\userPerfil.jpg"); 
 
                     if (!System.IO.File.Exists(filePasion))
-                        filePasion = null;
+                        filePasion = (AppDomain.CurrentDomain.BaseDirectory + "Image\\User\\userPasion.jpg");
 
                     if (!System.IO.File.Exists(fileAlgo))
-                        fileAlgo = null;
+                        fileAlgo = (AppDomain.CurrentDomain.BaseDirectory + "Image\\User\\userAlgo.jpg");
 
                     if (!string.IsNullOrWhiteSpace(filePerfil))
                     {

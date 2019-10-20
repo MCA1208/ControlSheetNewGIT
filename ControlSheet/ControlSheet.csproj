@@ -185,6 +185,9 @@
     <Content Include="Image\Logo\LogoUC.png" />
     <Content Include="Image\Logo\LogoUC2.png" />
     <Content Include="Image\Logo\paperIcono.png" />
+    <Content Include="Image\User\userAlgo.jpg" />
+    <Content Include="Image\User\userPasion.jpg" />
+    <Content Include="Image\User\userPerfil.jpg" />
     <Content Include="Scripts\AlertMessage\alertifyjs\alertify.js" />
     <Content Include="Scripts\AlertMessage\alertifyjs\alertify.min.js" />
     <Content Include="Scripts\AlertMessage\alertifyjs\css\alertify.css" />

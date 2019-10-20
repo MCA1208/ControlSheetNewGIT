@@ -81,11 +81,44 @@ $(document).ready(function () {
 function savePerfilData() {
 
     var fileSave = $('#file-perfil')[0].files[0];
+    var fileSave1 = $('#file-pasion')[0].files[0];
+    var fileSave2 = $('#file-algo')[0].files[0];
 
-    if ($('#file-perfil')[0].files[0] === null && $('#file-pasion')[0].files[0] === null && $('#file-algo')[0].files[0] === null) {
 
-        alertify.error("Las 3 fotos son requeridas para el perfil");
-        return;
+    if ($('#file-perfil')[0].files[0] !== undefined) {
+
+        var FileSizePerfil = $('#file-perfil')[0].files[0].size / 1024;
+
+        if (FileSizePerfil > 500) {
+
+            alertify.error("El tamaño de la foto de perfil, debe ser menor a 500 KB");
+            return;
+        }
+
+    }
+
+    if ($('#file-pasion')[0].files[0] !== undefined) {
+
+        var FileSizePasion = $('#file-pasion')[0].files[0].size / 1024;
+
+        if (FileSizePasion > 500) {
+
+            alertify.error("El tamaño de la foto de pasión, debe ser menor a 500 KB");
+            return;
+        }
+
+    }
+
+    if ($('#file-algo')[0].files[0] !== undefined) {
+
+        var FileSizeAlgo = $('#file-pasion')[0].files[0].size / 1024;
+
+        if (FileSizeAlgo > 500) {
+
+            alertify.error("El tamaño de la foto de algo, debe ser menor a 500 KB");
+            return;
+        }
+
     }
 
     $.blockUI();
