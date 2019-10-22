@@ -121,6 +121,12 @@ function savePerfilData() {
 
     }
 
+    if ($('#txtName').text() === "" || $('#txtProfession').text() === "" || $('#txtAcademyData').text() === "" || $('#txtExperience').text() === "" || $('#txtContact').text() === "" ) {
+        alertify.error("Todos los campos de texto son obligatorios");
+        return;
+    }
+
+
     $.blockUI();
 
     var formData = new FormData();
