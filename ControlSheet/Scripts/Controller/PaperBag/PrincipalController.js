@@ -121,7 +121,7 @@ function savePerfilData() {
 
     }
 
-    if ($('#txtName').text() === "" || $('#txtProfession').text() === "" || $('#txtAcademyData').text() === "" || $('#txtExperience').text() === "" || $('#txtContact').text() === "" ) {
+    if ($('#txtName').val() === "" || $('#txtProfession').val() === "" || $('#txtAcademyData').val() === "" || $('#txtExperience').val() === "" || $('#txtContact').val() === "" ) {
         alertify.error("Todos los campos de texto son obligatorios");
         return;
     }

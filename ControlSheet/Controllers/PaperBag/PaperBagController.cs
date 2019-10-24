@@ -205,6 +205,11 @@ namespace ControlSheet.Controllers.PaperBag
                     dt.Rows[0][2] = imgB64Algo;
 
                 }
+                else
+                {
+                    dt.Rows.Add(imgB64Perfil, imgB64Perfil, imgB64Algo);
+
+                }
 
 
                 data.result = JsonConvert.SerializeObject(dt, Formatting.Indented);
