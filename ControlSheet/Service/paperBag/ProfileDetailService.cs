@@ -105,6 +105,23 @@ namespace ControlSheet.Service.paperBag
 
         }
 
+        public DataTable ModifyPass(string _newPass, int idUser)
+        {
+            con = new SqlConnection(Connection.stringConn);
+            comando = new SqlCommand(SPName.spchangePasswordPaper, con);
+
+            comando.CommandType = CommandType.StoredProcedure;
+            comando.Parameters.AddWithValue("@newPass", _newPass);
+            comando.Parameters.AddWithValue("@idUser", idUser);
+
+            SqlDataAdapter da = new SqlDataAdapter(comando);
+
+            da.Fill(dt);
+
+            return dt;
+
+        }
+
 
     }
 }

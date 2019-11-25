@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Mail;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 using System.Web;
 
 namespace ControlSheet.Service
@@ -44,6 +45,20 @@ namespace ControlSheet.Service
                 return (false);
         }
 
+        public void SendMailSinCred()
+        {
+            MailMessage mensaje = new MailMessage("Remitente del correo ", "milton.amado10@gmail.com");
+            mensaje.IsBodyHtml = true;
+
+            //mensaje.IsBodyHtml = True; //Para permitir el uso de código html en el cuerpo del correo
+            mensaje.Subject = "Asunto del correo electronico";
+            mensaje.Body = "Aquí ya podemos especificar el contenido del correo electronico";
+            mensaje.BodyEncoding = System.Text.Encoding.GetEncoding(1252);
+            SmtpClient cliente;
+            cliente = new SmtpClient("direccion_del_servidor_smtp_para_envia r_el_correo");
+            //enviamos el mensaje
+            cliente.Send(mensaje);
+        }
 
 
     }

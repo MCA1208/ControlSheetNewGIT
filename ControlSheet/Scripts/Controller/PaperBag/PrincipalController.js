@@ -89,7 +89,7 @@ function savePerfilData() {
 
         var FileSizePerfil = $('#file-perfil')[0].files[0].size / 1024;
 
-        if (FileSizePerfil > 500) {
+        if (FileSizePerfil > 400) {
 
             alertify.error("El tamaño de la foto de perfil, debe ser menor a 500 KB");
             return;
@@ -101,7 +101,7 @@ function savePerfilData() {
 
         var FileSizePasion = $('#file-pasion')[0].files[0].size / 1024;
 
-        if (FileSizePasion > 500) {
+        if (FileSizePasion > 400) {
 
             alertify.error("El tamaño de la foto de pasión, debe ser menor a 500 KB");
             return;
@@ -113,7 +113,7 @@ function savePerfilData() {
 
         var FileSizeAlgo = $('#file-algo')[0].files[0].size / 1024;
 
-        if (FileSizeAlgo > 500) {
+        if (FileSizeAlgo > 400) {
 
             alertify.error("El tamaño de la foto de algo, debe ser menor a 500 KB");
             return;
@@ -313,6 +313,45 @@ function HasProfile() {
         .fail(function (data) {
             alertify.error(data.statusText);
             return false;
+        });
+
+
+}
+
+function saveNewPass() {
+
+    var newPass = $('#txtNewPass').val();
+    var repitNewPass = $('#txtRepitNewPass').val();
+
+    if (newPass !== repitNewPass) {
+
+        alertify.error("Las contraseñas no son iguales");
+        return;
+    }
+
+    param = {
+        _newPass: newPass
+    };
+
+    $.post(directories.paperBag.ModifyPass, param)
+        .done(function (data) {
+            if (data.status !== "error") {
+
+                alertify.success(data.message);
+                $('#ChangePassModal').modal('hide');
+
+            }
+            else {
+                alertify.error(data.message);
+
+            }
+
+        })
+        .fail(function (data) {
+            alertify.error(data.statusText);
+        })
+        .always(function () {
+            //$.unblockUI();
         });
 
 

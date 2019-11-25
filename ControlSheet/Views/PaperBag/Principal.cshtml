@@ -23,7 +23,8 @@
 
 <div class="card-body">
     @*<button id="btnModal" type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModifyProfileModal"><i class="fas fa-arrow-circle-right"></i> Modifical Perfil </button>*@
-    <button id="btnModal" type="button" class="btn btn-primary" onclick="ShowModifyProfile()"><i class="fas fa-arrow-circle-right"></i> Modifical Perfil </button>
+    <button id="btnModal" type="button" class="btn btn-primary" onclick="ShowModifyProfile()"><i class="fas fa-arrow-circle-right"></i> Modifical Perfil </button>    
+    <button id="btnModal" type="button" class="btn btn-primary" data-toggle="modal" data-target="#ChangePassModal"><i class="fas fa-key"></i> Cambiar Contraseña </button>
 </div>
 
 <div>
@@ -217,6 +218,52 @@
                 </div>
             </div>
 
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="ChangePassModal">
+    <div class="modal-dialog" style="max-width:60%">
+        <div class="modal-content" style="color:black">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modificar Contraseña</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="table-responsive">
+
+                    <table id="tblModify" class="table" style="color:black">
+
+                        <tbody style="text-align:left">
+                            
+                            <tr>
+                                <th>Nueva Contraseña</th>
+                                <td>
+
+                                    <input style="max-width:100%" class="form-control" id="txtNewPass" type="password">
+                                </td>
+
+                            </tr>
+                            <tr>
+                                <th>Repetir Contraseña</th>
+                                <td>
+
+                                    <input style="max-width:100%" class="form-control" id="txtRepitNewPass" type="password">
+                                </td>
+
+                            </tr>
+                            
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fas fa-window-close"></i> Cerrar</button>
+                <button type="button" class="btn btn-primary" onclick="saveNewPass();"><i class="fas fa-savet"></i> Guardar</button>
+            </div>
         </div>
     </div>
 </div>

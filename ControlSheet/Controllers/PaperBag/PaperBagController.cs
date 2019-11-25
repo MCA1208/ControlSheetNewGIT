@@ -24,6 +24,9 @@ namespace ControlSheet.Controllers.PaperBag
         DataTable dt = null;
         public int idUser = 0;
         public int idCompany = 0;
+        Encrypting ServiceEncryp = new Encrypting();
+        public string EncryptPass = null;
+        public string DesCryptPass = null;
 
         // GET: PaperBag
         public ActionResult Principal()
@@ -255,6 +258,34 @@ namespace ControlSheet.Controllers.PaperBag
 
 
         }
+
+        [Authorize]
+        public JsonResult ModifyPass(string _newPass)
+        {
+
+            try
+            {
+                idUser = Convert.ToInt32(System.Web.HttpContext.Current.Session["idUser"]);
+
+                EncryptPass = ServiceEncryp.Encryp(_newPass);
+
+                dt = Service.ModifyPass(EncryptPass, idUser);
+
+                data.message = "Se cambió la contraseña con éxito";
+
+            }
+            catch (Exception ex)
+            {
+                data.message = ex.Message;
+                data.status = "error";
+                return Json(data, JsonRequestBehavior.AllowGet);
+
+            }
+
+            return Json(data, JsonRequestBehavior.AllowGet);
+
+        }
+
 
     }
 }

@@ -157,6 +157,8 @@ namespace ControlSheet.Controllers
         {
             try
             {
+                MailService.SendMailSinCred();
+
                 int longitud = 4;
                 Guid miGuid = Guid.NewGuid();
                 string token = Convert.ToBase64String(miGuid.ToByteArray());

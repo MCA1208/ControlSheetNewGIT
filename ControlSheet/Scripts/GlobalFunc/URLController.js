@@ -37,7 +37,8 @@
         GetProfileForId: 'GetProfileForId',
         CreateUser: 'CreateUser',
         LoginUser: 'LoginUser',
-        HasProfile: 'HasProfile'
+        HasProfile: 'HasProfile',
+        ModifyPass: 'ModifyPass'
     }
 
 
