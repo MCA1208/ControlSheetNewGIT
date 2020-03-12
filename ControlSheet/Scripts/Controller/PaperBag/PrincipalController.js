@@ -80,9 +80,15 @@ $(document).ready(function () {
 
 function savePerfilData() {
 
-    var fileSave = $('#file-perfil')[0].files[0];
+     var fileSave = $('#file-perfil')[0].files[0];
     var fileSave1 = $('#file-pasion')[0].files[0];
     var fileSave2 = $('#file-algo')[0].files[0];
+
+    foto = new Image();
+    foto.src = $('#file-perfil')[0].files[0].name;
+    document.images[0].src = foto.src;
+    ancho = foto.width;
+    alto = foto.height;
 
 
     if ($('#file-perfil')[0].files[0] !== undefined) {
@@ -91,7 +97,7 @@ function savePerfilData() {
 
         if (FileSizePerfil > 400) {
 
-            alertify.error("El tamaño de la foto de perfil, debe ser menor a 500 KB");
+            alertify.error("El tamaño de la foto de perfil, debe ser menor a 400 KB");
             return;
         }
 
@@ -103,7 +109,7 @@ function savePerfilData() {
 
         if (FileSizePasion > 400) {
 
-            alertify.error("El tamaño de la foto de pasión, debe ser menor a 500 KB");
+            alertify.error("El tamaño de la foto de pasión, debe ser menor a 400 KB");
             return;
         }
 
@@ -115,7 +121,7 @@ function savePerfilData() {
 
         if (FileSizeAlgo > 400) {
 
-            alertify.error("El tamaño de la foto de algo, debe ser menor a 500 KB");
+            alertify.error("El tamaño de la foto de algo, debe ser menor a 400 KB");
             return;
         }
 
